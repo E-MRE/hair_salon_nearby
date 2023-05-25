@@ -2,64 +2,64 @@ import 'package:flutter/material.dart';
 
 import '../enum/sizes.dart';
 
-///Dairesel yarıçap vermek için kullanılır.
+///Used to give a circular radius.
 class CircularBorderRadius extends BorderRadius {
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///Girilen radius değeri kadar dairesel yarıçap uygular.
-  CircularBorderRadius({required Sizes radius}) : super.circular(radius.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It applies a circular radius as much as the entered radius value.
+  CircularBorderRadius({required Sizes radius}) : super.circular(radius.value);
 
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 4.0` olarak ayarlanmıştır.
-  CircularBorderRadius.extraSmall() : super.circular(Sizes.extraSmall.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It's set to `Radius = 4.0`.
+  CircularBorderRadius.extraSmall() : super.circular(Sizes.extraSmall.value);
 
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 8.0` olarak ayarlanmıştır.
-  CircularBorderRadius.small() : super.circular(Sizes.small.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It's set to `Radius = 8.0`.
+  CircularBorderRadius.small() : super.circular(Sizes.prettySmall.value);
 
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 16.0` olarak ayarlanmıştır.
-  CircularBorderRadius.normal() : super.circular(Sizes.medium.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It's set to `Radius = 16.0`.
+  CircularBorderRadius.normal() : super.circular(Sizes.medium.value);
 
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 24.0` olarak ayarlanmıştır.
-  CircularBorderRadius.big() : super.circular(Sizes.big.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It's set to `Radius = 24.0`.
+  CircularBorderRadius.big() : super.circular(Sizes.big.value);
 
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 32.0` olarak ayarlanmıştır.
-  CircularBorderRadius.huge() : super.circular(Sizes.veryBig.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It's set to `Radius = 32.0`.
+  CircularBorderRadius.huge() : super.circular(Sizes.veryBig.value);
 
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 48.0` olarak ayarlanmıştır.
-  CircularBorderRadius.moreHuge() : super.circular(Sizes.extraBig.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It's set to `Radius = 48.0`.
+  CircularBorderRadius.moreHuge() : super.circular(Sizes.large.value);
 
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 64.0` olarak ayarlanmıştır.
-  CircularBorderRadius.extreme() : super.circular(Sizes.extraLarge.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It's set to `Radius = 64.0`.
+  CircularBorderRadius.extreme() : super.circular(Sizes.extraLarge.value);
 
-  ///Dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 96.0` olarak ayarlanmıştır.
-  CircularBorderRadius.ultraBig() : super.circular(Sizes.huge.getRadiusScale());
+  ///Used to give a circular radius.
+  ///It's set to `Radius = 96.0`.
+  CircularBorderRadius.ultraBig() : super.circular(Sizes.huge.value);
 
-  //Sadece üst kısma dairesel yarıçap vermek için kullanılır.
+  //Used to give a circular radius only top side.
   CircularBorderRadius.topCircular(Sizes radius)
       : super.only(
-          topLeft: Radius.circular(radius.getRadiusScale()),
-          topRight: Radius.circular(radius.getRadiusScale()),
+          topLeft: Radius.circular(radius.value),
+          topRight: Radius.circular(radius.value),
         );
 
-  //Sadece üst kısma dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 8.0` olarak ayarlanmıştır.
+  //Used to give a circular radius only top side.
+  ///It's set to `Radius = 8.0`.
   CircularBorderRadius.topCircularSmall()
       : super.only(
-          topLeft: Radius.circular(Sizes.small.getRadiusScale()),
-          topRight: Radius.circular(Sizes.small.getRadiusScale()),
+          topLeft: Radius.circular(Sizes.prettySmall.value),
+          topRight: Radius.circular(Sizes.prettySmall.value),
         );
 
-  //Sadece alt kısma dairesel yarıçap vermek için kullanılır.
-  ///`Yarıçap = 8.0` olarak ayarlanmıştır.
+  // Used to give a circular radius only bottom side.
+  ///It's set to `Radius = 8.0`.
   CircularBorderRadius.bottomCircularSmall()
       : super.only(
-          bottomLeft: Radius.circular(Sizes.small.getRadiusScale()),
-          bottomRight: Radius.circular(Sizes.small.getRadiusScale()),
+          bottomLeft: Radius.circular(Sizes.prettySmall.value),
+          bottomRight: Radius.circular(Sizes.prettySmall.value),
         );
 }
