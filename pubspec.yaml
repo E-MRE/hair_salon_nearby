@@ -126,6 +126,7 @@ flutter:
     - assets/images/
     - assets/images/svg/
     - assets/images/png/
+    - assets/images/png/ic_logo_horizontal.png
     - assets/images/jpg/
     - assets/fonts/
     - assets/translations/
