@@ -1,30 +1,18 @@
 import 'package:flutter/material.dart';
 
-/// Yerelleştirme için kullanılır.
-enum LocalizationLocales {
-  init,
-  tr,
-  en,
-}
+enum LocalizationLocales { init, tr }
 
-extension LocalizatonLocalesExtension on LocalizationLocales {
-  ///Seçili enum değerine karşılık gelen `Locale` değerini döndürür
+extension LocalizationLocalesExtension on LocalizationLocales {
   Locale get rawValue {
     switch (this) {
-      case LocalizationLocales.en:
-        return const Locale('en', 'US');
-
       case LocalizationLocales.tr:
-        return const Locale('tr', 'TR');
-
       case LocalizationLocales.init:
         return const Locale('tr', 'TR');
     }
   }
 
-  /// Desteklenen yerelleştirmeleri döner
-  List<Locale> get supportedLocales => [
-        const Locale('en', 'US'),
-        const Locale('tr', 'TR'),
-      ];
+  List<LocalizationLocales> get supportedLocalizations =>
+      LocalizationLocales.values.where((element) => element != LocalizationLocales.init).toList();
+
+  List<Locale> get supportedLocales => supportedLocalizations.map((element) => element.rawValue).toList();
 }
