@@ -1,6 +1,6 @@
-import 'package:base_flutter_project/utils/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/gen/fonts.gen.dart';
 import 'abstract/base_theme.dart';
 import 'abstract/theme_service.dart';
 

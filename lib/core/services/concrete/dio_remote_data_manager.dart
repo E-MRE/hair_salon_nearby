@@ -1,21 +1,21 @@
-import 'package:base_flutter_project/core/services/abstract/dio_remote_data_service.dart';
-import 'package:base_flutter_project/core/services/models/api_request_model.dart';
 import 'package:dio/dio.dart';
-import '../../utils/enums/duration_types.dart';
-import '../abstract/remote_data_service.dart';
-import '../models/api_cancel_token.dart';
-import '../models/dio_api_response.dart';
-import '../models/dio_api_response_model.dart';
-import 'dio_token_manager.dart';
 
+import '../../utils/enums/duration_types.dart';
 import '../../utils/enums/environment/dot_environment_type.dart';
 import '../../utils/enums/request_type.dart';
 import '../../utils/mixins/http_status_code_controller_mixin.dart';
 import '../../utils/results/data_result.dart';
+import '../abstract/dio_remote_data_service.dart';
+import '../abstract/remote_data_service.dart';
 import '../abstract/token_service.dart';
 import '../constants/api_constants.dart';
 import '../interceptors/token_expiration_interceptor.dart';
+import '../models/api_cancel_token.dart';
+import '../models/api_request_model.dart';
+import '../models/dio_api_response.dart';
+import '../models/dio_api_response_model.dart';
 import '../models/token_model.dart';
+import 'dio_token_manager.dart';
 
 class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeControllerMixin {
   DioRemoteDataManager.byOptions({

@@ -1,4 +1,4 @@
-import 'package:base_flutter_project/core/extensions/screen_util_extensions.dart';
+import 'package:hair_salon_nearby/core/extensions/screen_util_extensions.dart';
 
 ///Standart genişlik, yükseklik vermek için kullanılır.
 /// * none = 0

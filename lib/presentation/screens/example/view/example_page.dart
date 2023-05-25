@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:base_flutter_project/models/entity/example_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../../core/utils/enums/state_status.dart';
+import '../../../../models/entity/example_model.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../view_model/example_state.dart';
