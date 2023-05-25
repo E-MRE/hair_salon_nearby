@@ -127,6 +127,12 @@ flutter:
     - assets/images/svg/
     - assets/images/png/
     - assets/images/png/ic_logo_horizontal.png
+    - assets/images/png/ic_women_hairdresser_background.png
+    - assets/images/png/ic_men_hairdresser_background.png
+    - assets/images/png/ic_beauty_centre_background.png
+    - assets/images/png/ic_men_logo_and_name.png
+    - assets/images/png/ic_beauty_centre_logo_and_name.png
+    - assets/images/png/ic_women_logo_and_name.png
     - assets/images/jpg/
     - assets/fonts/
     - assets/translations/

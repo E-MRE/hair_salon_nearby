@@ -1,6 +1,6 @@
-import 'package:hair_salon_nearby/core/extensions/screen_util_extensions.dart';
+import '../../core/extensions/screen_util_extensions.dart';
 
-///Standart genişlik, yükseklik vermek için kullanılır.
+///Standard width is used to give height.
 /// * none = 0
 /// * ultraSmall = 2
 /// * extraSmall = 4
@@ -346,21 +346,21 @@ enum Sizes {
 extension SizesExtension on Sizes {
   ///It returns double value after scaled with radius
   double getRadiusScale() {
-    return this.rawValue().radiusScale;
+    return this.value.radiusScale;
   }
 
   ///It returns double value after scaled with screen & design height
   double getHeightScale() {
-    return this.rawValue().radiusScale;
+    return this.value.radiusScale;
   }
 
   ///It returns double value after scaled with screen & design width
   double getWidthScale() {
-    return this.rawValue().radiusScale;
+    return this.value.radiusScale;
   }
 
   ///It returns double value of [Sizes]
-  double rawValue() {
+  double get value {
     switch (this) {
       ///value =  0
       case Sizes.none:
