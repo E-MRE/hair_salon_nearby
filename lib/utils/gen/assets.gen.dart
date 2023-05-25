@@ -8,6 +8,8 @@
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 
 class $AssetsEnvsGen {
   const $AssetsEnvsGen();
@@ -105,33 +107,87 @@ class $AssetsFontsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  $AssetsImagesJpgGen get jpg => const $AssetsImagesJpgGen();
   $AssetsImagesPngGen get png => const $AssetsImagesPngGen();
+  $AssetsImagesSvgGen get svg => const $AssetsImagesSvgGen();
 }
 
 class $AssetsTranslationsGen {
   const $AssetsTranslationsGen();
 
-  /// File path: assets/translations/en-En.json
-  String get enEn => 'assets/translations/en-En.json';
-
   /// File path: assets/translations/tr-TR.json
   String get trTR => 'assets/translations/tr-TR.json';
 
   /// List of all assets
-  List<String> get values => [enEn, trTR];
+  List<String> get values => [trTR];
+}
+
+class $AssetsImagesJpgGen {
+  const $AssetsImagesJpgGen();
+
+  /// File path: assets/images/jpg/ic_blank.jpg
+  AssetGenImage get icBlank => const AssetGenImage('assets/images/jpg/ic_blank.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [icBlank];
 }
 
 class $AssetsImagesPngGen {
   const $AssetsImagesPngGen();
 
+  /// File path: assets/images/png/ic_beauty_centre_background.png
+  AssetGenImage get icBeautyCentreBackground =>
+      const AssetGenImage('assets/images/png/ic_beauty_centre_background.png');
+
+  /// File path: assets/images/png/ic_beauty_centre_logo_and_name.png
+  AssetGenImage get icBeautyCentreLogoAndName =>
+      const AssetGenImage('assets/images/png/ic_beauty_centre_logo_and_name.png');
+
   /// File path: assets/images/png/ic_logo.png
   AssetGenImage get icLogo => const AssetGenImage('assets/images/png/ic_logo.png');
+
+  /// File path: assets/images/png/ic_logo_horizontal.png
+  AssetGenImage get icLogoHorizontal => const AssetGenImage('assets/images/png/ic_logo_horizontal.png');
+
+  /// File path: assets/images/png/ic_men_hairdresser_background.png
+  AssetGenImage get icMenHairdresserBackground =>
+      const AssetGenImage('assets/images/png/ic_men_hairdresser_background.png');
+
+  /// File path: assets/images/png/ic_men_logo_and_name.png
+  AssetGenImage get icMenLogoAndName => const AssetGenImage('assets/images/png/ic_men_logo_and_name.png');
+
+  /// File path: assets/images/png/ic_women_hairdresser_background.png.png
+  AssetGenImage get icWomenHairdresserBackgroundPng =>
+      const AssetGenImage('assets/images/png/ic_women_hairdresser_background.png.png');
+
+  /// File path: assets/images/png/ic_women_logo_and_name.png
+  AssetGenImage get icWomenLogoAndName => const AssetGenImage('assets/images/png/ic_women_logo_and_name.png');
 
   /// File path: assets/images/png/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/png/splash.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [icLogo, splash];
+  List<AssetGenImage> get values => [
+        icBeautyCentreBackground,
+        icBeautyCentreLogoAndName,
+        icLogo,
+        icLogoHorizontal,
+        icMenHairdresserBackground,
+        icMenLogoAndName,
+        icWomenHairdresserBackgroundPng,
+        icWomenLogoAndName,
+        splash
+      ];
+}
+
+class $AssetsImagesSvgGen {
+  const $AssetsImagesSvgGen();
+
+  /// File path: assets/images/svg/ic_rounded_square.svg
+  SvgGenImage get icRoundedSquare => const SvgGenImage('assets/images/svg/ic_rounded_square.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [icRoundedSquare];
 }
 
 class Assets {
@@ -209,6 +265,59 @@ class AssetGenImage {
       _assetName,
       bundle: bundle,
       package: package,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class SvgGenImage {
+  const SvgGenImage(this._assetName);
+
+  final String _assetName;
+
+  SvgPicture svg({
+    Key? key,
+    bool matchTextDirection = false,
+    AssetBundle? bundle,
+    String? package,
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.contain,
+    AlignmentGeometry alignment = Alignment.center,
+    bool allowDrawingOutsideViewBox = false,
+    WidgetBuilder? placeholderBuilder,
+    String? semanticsLabel,
+    bool excludeFromSemantics = false,
+    SvgTheme theme = const SvgTheme(),
+    ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated bool cacheColorFilter = false,
+  }) {
+    return SvgPicture.asset(
+      _assetName,
+      key: key,
+      matchTextDirection: matchTextDirection,
+      bundle: bundle,
+      package: package,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+      placeholderBuilder: placeholderBuilder,
+      semanticsLabel: semanticsLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      theme: theme,
+      colorFilter: colorFilter,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
     );
   }
 

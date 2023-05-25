@@ -4,8 +4,8 @@ abstract class BaseColorTheme {
   Color? scaffoldBackgroundColor;
   Color? appBarColor;
   Color? tabBarColor;
-  Color? tabbarSelectedColor;
-  Color? tabbarNormalColor;
+  Color? tabBarSelectedColor;
+  Color? tabBarNormalColor;
   Color? hintColor;
   Color? focusColor;
   Color? disabledColor;

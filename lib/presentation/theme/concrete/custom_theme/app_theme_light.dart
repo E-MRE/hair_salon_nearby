@@ -13,6 +13,6 @@ class AppThemeLight extends BaseTheme {
   late final BaseTextTheme textTheme;
 
   AppThemeLight() {
-    textTheme = TextThemeLight(AppColors.dark);
+    textTheme = TextThemeLight(AppColors.primary);
   }
 }
