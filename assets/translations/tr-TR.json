@@ -1,0 +1,36 @@
+{
+    "welcome":"Hoşgeldin {}",
+    "completed":"Tamamlandı!",
+    "waiting":"Bekleyin Lütfen...",
+    "clickStart":"Başlamak için butona tıklayınız.",
+    "valueNotFound":"Aranan veri bulunamadı",
+    "success":"Başarılı",
+    "error":"Hata",
+    "attention":"Uyarı",
+    "yes":"Evet",
+    "no":"Hayır",
+    "okay":"Tamam",
+    "unExpectedError":"Beklenmedik bir hata meydana geldi",
+    "noRecordPhone":"Kullanıcı bulunamadı",
+    "main":{
+        "title":"Temel Mimari"
+    },
+    "apiMessage":{
+        "fetchError":"Veriler alınırken bir hata meydana geldi",
+        "postError":"Veriler gönderilirken bir hata meydana geldi",
+        "failed":"İşlem sırasında bir hata meydana geldi",
+        "successful":"İşlem başarılı",
+        "badRequest":"Sunucu geçersiz sözdizimi nedeniyle talebi anlayamadı.",
+        "unauthorized":"Yetkisiz çalışma.",
+        "forbidden":"İçeriğe erişim haklarınız yok.",
+        "notFound":"Sunucu istenen kaynağı bulamıyor.",
+        "internalServerError":"Sunucu, hatası.",
+        "timeoutError":"İşlem zaman aşımına uğradı",
+        "connectionError":"İnternet bağlantısı yok"
+    },
+    "token":{
+        "getError":"Token alınırken bir hata meydana geldi",
+        "notFound":"Token bilgisi bulunamadı",
+        "expired":"Tokenin geçerlilik süresi doldu"
+    }
+}

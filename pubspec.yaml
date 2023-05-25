@@ -1,0 +1,146 @@
+name: base_flutter_project
+description: A Template Flutter Project.
+
+#This is preferred for private packages.
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <3.7.3"
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #API Connection  
+  http:
+  vexana: ^3.4.0
+  dio: ^5.0.0
+
+  #Cache & Storage
+  flutter_secure_storage:
+  hive_flutter:
+
+  #Image Operations
+  flutter_svg:
+
+  #Input
+  mask_input_formatter:
+
+  #State Management
+  provider:
+  flutter_bloc:
+
+  #localization
+  easy_localization:
+
+  #Json Operations
+  json_annotation:
+
+  ################
+  collection:
+  intl:
+
+  #File Operations
+  better_open_file:
+
+  #Cryptology
+  cryptography:
+  
+  #Navigation
+  auto_route: ^7.1.0
+
+  #Version compare
+  version_comparator: ^1.0.0
+
+  #Responsive Design
+  responsive_framework: ^1.0.0
+  responsive_builder:
+  flutter_screenutil: ^5.6.0
+  flutter_native_splash: ^2.2.18
+
+  #Device
+  device_preview:
+
+  #Launch Url, Phone or Mail
+  url_launcher:
+
+  #env
+  flutter_dotenv: ^5.0.2
+
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+    
+  build_runner:
+  hive_generator:
+  auto_route_generator: ^7.0.0
+  flutter_gen_runner:
+
+  #Json Opertion
+  json_serializable:
+
+  flutter_launcher_icons:
+
+flutter_icons:
+  image_path: "assets/images/png/ic_logo.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. 
+  flutter_lints: ^1.0.0
+
+flutter_gen:
+  output: lib/utils/gen/
+  line_length: 120
+
+  colors:
+    enabled: true
+    inputs:
+      - assets/color/colors.xml
+    outputs:
+      class_name: AppColors
+
+  integrations:
+    flutter_svg: true
+    flare_flutter: true
+    rive: true
+    lottie: true
+
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/images/svg/
+    - assets/images/png/
+    - assets/images/jpg/
+    - assets/fonts/
+    - assets/translations/
+    - assets/envs/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+        - asset: assets/fonts/Poppins-Light.ttf
+        - asset: assets/fonts/Poppins-Black.ttf
+        - asset: assets/fonts/Poppins-BlackItalic.ttf
+        - asset: assets/fonts/Poppins-BoldItalic.ttf
