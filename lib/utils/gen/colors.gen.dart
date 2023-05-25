@@ -13,60 +13,66 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  /// Color: #ee4540
-  static const Color alert = Color(0xFFEE4540);
-
-  /// Color: #a3aaba
-  static const Color blueGrey = Color(0xFFA3AABA);
-
-  /// Color: #1686ff
-  static const Color clearBlue = Color(0xFF1686FF);
-
-  /// Color: #b0b3c2
-  static const Color coolGrey = Color(0xFFB0B3C2);
-
-  /// Color: #311830
-  static const Color dark = Color(0xFF311830);
-
-  /// Color: #303c5c0
-  static const Color darkGreyBlue = Color(0x303C5C0);
-
-  /// Color: #774e76
-  static const Color dullPurple = Color(0xFF774E76);
-
-  /// Color: #54638b
-  static const Color dusk = Color(0xFF54638B);
-
-  /// Color: #bdb4bd
-  static const Color dustLavender = Color(0xFFBDB4BD);
-
-  /// Color: #27ae60
-  static const Color jadeGreen = Color(0xFF27AE60);
-
-  /// Color: #5470fe
-  static const Color lightishBlue = Color(0xFF5470FE);
-
-  /// Color: #1686ff
-  static const Color link = Color(0xFF1686FF);
-
-  /// Color: #ffa622
-  static const Color mango = Color(0xFFFFA622);
-
-  /// Color: #ff6e4e
-  static const Color pinkishOrange = Color(0xFFFF6E4E);
-
-  /// Color: #897e89
-  static const Color purpleGrey = Color(0xFF897E89);
+  /// Color: #ffffff
+  static const Color background = Color(0xFFFFFFFF);
 
   /// Color: #ffffff
-  static const Color realWhite = Color(0xFFFFFFFF);
+  static const Color card = Color(0xFFFFFFFF);
+
+  /// Color: #999999
+  static const Color disable = Color(0xFF999999);
 
   /// Color: #ee4540
-  static const Color tomato = Color(0xFFEE4540);
+  static const Color error = Color(0xFFEE4540);
 
-  /// Color: #e4310a
-  static const Color vermillion = Color(0xFFE4310A);
+  /// Color: #efd182
+  static const Color focus = Color(0xFFEFD182);
 
-  /// Color: #f9f9f9
-  static const Color white = Color(0xFFF9F9F9);
+  /// Color: #d9d9d9
+  static const Color hint = Color(0xFFD9D9D9);
+
+  /// Color: #efd182
+  static const Color hover = Color(0xFFEFD182);
+
+  /// Color: #ffffff
+  static const Color onError = Color(0xFFFFFFFF);
+
+  /// Color: #ffffff
+  static const Color onPrimary = Color(0xFFFFFFFF);
+
+  /// Color: #ffffff
+  static const Color onSecondary = Color(0xFFFFFFFF);
+
+  /// Color: #10100f
+  static const Color onSurface = Color(0xFF10100F);
+
+  /// Color: #efd182
+  static const Color primary = Color(0xFFEFD182);
+
+  /// Color: #E16D84
+  static const Color primaryBeautyCentre = Color(0xFFE16D84);
+
+  /// Color: #4A688E
+  static const Color primaryMen = Color(0xFF4A688E);
+
+  /// Color: #efd182
+  static const Color primaryWomen = Color(0xFFEFD182);
+
+  /// Color: #181818
+  static const Color secondary = Color(0xFF181818);
+
+  /// Color: #999999
+  static const Color shadow = Color(0xFF999999);
+
+  /// Color: #27ae60
+  static const Color success = Color(0xFF27AE60);
+
+  /// Color: #ffffff
+  static const Color surface = Color(0xFFFFFFFF);
+
+  /// Color: #999999
+  static const Color text = Color(0xFF999999);
+
+  /// Color: #10100f
+  static const Color title = Color(0xFF10100F);
 }

@@ -8,7 +8,6 @@ class ThemeManager extends ThemeService {
   ThemeManager({required BaseTheme theme}) : super(theme: theme);
 
   @override
-  //TODO: set your project theme options.
   ThemeData get createTheme {
     return ThemeData(
       fontFamily: FontFamily.poppins,

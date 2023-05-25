@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--//TODO: set your project's colors and start build runner. After then remove this comment-->
 <resources>
-    <color name="dark_grey_blue">#303c5c0</color>
-    <color name="dusk">#54638b</color>
-    <color name="lightish_blue">#5470fe</color>
-    <color name="mango">#ffa622</color>
-    <color name="pinkish_orange">#ff6e4e</color>
-    <color name="vermillion">#e4310a</color>
-    <color name="blue_grey">#a3aaba</color>
-    <color name="cool_grey">#b0b3c2</color>
-    <color name="dark">#311830</color>
-    <color name="dull_purple">#774e76</color>
-    <color name="dust_lavender">#bdb4bd</color>
-    <color name="clear_blue">#1686ff</color>
-    <color name="link">#1686ff</color>
-    <color name="tomato">#ee4540</color>
-    <color name="alert">#ee4540</color>
-
-    <color name="jade_green">#27ae60</color>
-    <color name="white">#f9f9f9</color>
-    <color name="purple_grey">#897e89</color>
-    <color name="real_white">#ffffff</color>
+    <color name="primary">#efd182</color>
+    <color name="primaryWomen">#efd182</color>
+    <color name="primaryMen">#4A688E</color>
+    <color name="primaryBeautyCentre">#E16D84</color>
+    <color name="secondary">#181818</color>
+    <color name="title">#10100f</color>
+    <color name="text">#999999</color>
+    <color name="shadow">#999999</color>
+    <color name="disable">#999999</color>
+    <color name="hover">#efd182</color>
+    <color name="focus">#efd182</color>
+    <color name="onPrimary">#ffffff</color>
+    <color name="onError">#ffffff</color>
+    <color name="background">#ffffff</color>
+    <color name="card">#ffffff</color>
+    <color name="hint">#d9d9d9</color>
+    <color name="error">#ee4540</color>
+    <color name="success">#27ae60</color>
+    <color name="surface">#ffffff</color>
+    <color name="onSurface">#10100f</color>
+    <color name="onSecondary">#ffffff</color>
 </resources>

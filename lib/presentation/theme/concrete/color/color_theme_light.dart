@@ -20,10 +20,10 @@ class ColorThemeLight implements BaseColorTheme {
   Color? tabBarColor;
 
   @override
-  Color? tabbarNormalColor;
+  Color? tabBarNormalColor;
 
   @override
-  Color? tabbarSelectedColor;
+  Color? tabBarSelectedColor;
 
   @override
   Color? hintColor;
@@ -52,31 +52,32 @@ class ColorThemeLight implements BaseColorTheme {
   ColorThemeLight() {
     _initColors();
     colorScheme = const ColorScheme.light().copyWith(
-      primary: AppColors.dark,
-      onPrimary: AppColors.white,
-      onSecondary: AppColors.white,
-      onSurface: AppColors.white,
-      error: AppColors.tomato,
-      onError: AppColors.white,
-      background: AppColors.white,
-      surface: AppColors.dark,
+      primary: AppColors.primary,
+      secondary: AppColors.secondary,
+      onPrimary: AppColors.onPrimary,
+      onSecondary: AppColors.onSecondary,
+      onSurface: AppColors.onSurface,
+      error: AppColors.error,
+      onError: AppColors.onError,
+      background: AppColors.background,
+      surface: AppColors.surface,
     );
     brightness = Brightness.light;
   }
 
   void _initColors() {
-    appBarColor = AppColors.dark;
-    scaffoldBackgroundColor = AppColors.white;
-    tabBarColor = AppColors.purpleGrey;
-    tabbarNormalColor = AppColors.dullPurple;
-    tabbarSelectedColor = AppColors.tomato;
-    hintColor = AppColors.dustLavender;
-    focusColor = AppColors.dullPurple;
-    disabledColor = AppColors.purpleGrey;
-    hoverColor = AppColors.clearBlue;
-    shadowColor = AppColors.purpleGrey;
-    errorColor = AppColors.tomato;
-    backgroundColor = AppColors.white;
-    labelColor = AppColors.darkGreyBlue;
+    appBarColor = AppColors.primary;
+    scaffoldBackgroundColor = AppColors.background;
+    tabBarColor = AppColors.onPrimary;
+    tabBarNormalColor = AppColors.hint;
+    tabBarSelectedColor = AppColors.primary;
+    hintColor = AppColors.hint;
+    focusColor = AppColors.focus;
+    disabledColor = AppColors.disable;
+    hoverColor = AppColors.hover;
+    shadowColor = AppColors.shadow;
+    errorColor = AppColors.error;
+    backgroundColor = AppColors.background;
+    labelColor = AppColors.text;
   }
 }
