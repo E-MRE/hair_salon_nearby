@@ -13,7 +13,7 @@
 ## Neler Bulunuyor?
 
 - Easy Localization (Çoklu dil desteği)
-- Http & Vexana ile GET,POST işlemleri yapabilme
+- Http & Dio ile GET,POST işlemleri yapabilme
 - Secure Storage & Hive ile lokal depolama
 - Svg resimleri kullanabilme
 - Input Formatter

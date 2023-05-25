@@ -1,5 +1,5 @@
-name: base_flutter_project
-description: A Template Flutter Project.
+name: hair_salon_nearby
+description: A Hair Salon Project
 
 #This is preferred for private packages.
 publish_to: 'none' 
@@ -16,7 +16,6 @@ dependencies:
 
   #API Connection  
   http:
-  vexana: ^3.4.0
   dio: ^5.0.0
 
   #Cache & Storage

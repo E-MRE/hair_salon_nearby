@@ -1,7 +1,8 @@
-import 'package:base_flutter_project/utils/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_framework/utils/responsive_utils.dart';
+
+import '../constants/app_constants.dart';
 
 class CustomResponsiveWrapper extends StatelessWidget {
   const CustomResponsiveWrapper({

@@ -14,7 +14,6 @@
 - Nesnemizi oluşturduktan sonra JsonSerialization kullanarak fromJson toJson metotları oluşturulmalıdır. Basit örneği lib/models/entity/example.dart içerisinde bulabilirsin.
 
 - HttpManager kullanıyorsan Entity sınıfların EntityModel<T> ile extend edilmelidir. (T: sınıfın adı)
-- Vexana kullanıyorsan INetworkModel'den kalıtım alması gerekir.
 
 
 ## Örnekler
@@ -22,9 +21,4 @@
 ```dart
 @JsonSerializable()
 class MyModel extends EntityModel<MyModel>{}
-```
-
-```dart
-@JsonSerializable()
-class MyModel extends INetworkModel<MyModel>{}
 ```
