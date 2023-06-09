@@ -28,8 +28,8 @@ class AppColors {
   /// Color: #efd182
   static const Color focus = Color(0xFFEFD182);
 
-  /// Color: #d9d9d9
-  static const Color hint = Color(0xFFD9D9D9);
+  /// Color: #c1c1c1
+  static const Color hint = Color(0xFFC1C1C1);
 
   /// Color: #efd182
   static const Color hover = Color(0xFFEFD182);
@@ -43,8 +43,8 @@ class AppColors {
   /// Color: #ffffff
   static const Color onSecondary = Color(0xFFFFFFFF);
 
-  /// Color: #10100f
-  static const Color onSurface = Color(0xFF10100F);
+  /// Color: #101010
+  static const Color onSurface = Color(0xFF101010);
 
   /// Color: #efd182
   static const Color primary = Color(0xFFEFD182);
@@ -67,12 +67,12 @@ class AppColors {
   /// Color: #27ae60
   static const Color success = Color(0xFF27AE60);
 
-  /// Color: #ffffff
-  static const Color surface = Color(0xFFFFFFFF);
+  /// Color: #f5f5ff
+  static const Color surface = Color(0xFFF5F5FF);
 
-  /// Color: #999999
-  static const Color text = Color(0xFF999999);
+  /// Color: #181818
+  static const Color text = Color(0xFF181818);
 
-  /// Color: #10100f
-  static const Color title = Color(0xFF10100F);
+  /// Color: #101010
+  static const Color title = Color(0xFF101010);
 }
