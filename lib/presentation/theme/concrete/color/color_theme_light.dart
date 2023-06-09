@@ -61,6 +61,14 @@ class ColorThemeLight implements BaseColorTheme {
       onError: AppColors.onError,
       background: AppColors.background,
       surface: AppColors.surface,
+      tertiary: AppColors.success,
+      onTertiary: AppColors.background,
+      shadow: AppColors.shadow,
+      outline: AppColors.shadow,
+      onBackground: AppColors.text,
+      surfaceVariant: AppColors.disable,
+      tertiaryContainer: AppColors.primaryBeautyCentre,
+      primaryContainer: AppColors.primaryMen,
     );
     brightness = Brightness.light;
   }

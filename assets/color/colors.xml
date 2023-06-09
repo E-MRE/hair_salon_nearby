@@ -1,24 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--sandy-->
     <color name="primary">#efd182</color>
+
+    <!--sandy-->
     <color name="primaryWomen">#efd182</color>
+
+    <!--cadetBlue-->
     <color name="primaryMen">#4A688E</color>
+
+    <!--pinkish-->
     <color name="primaryBeautyCentre">#E16D84</color>
+
+    <!--blackTwo-->
     <color name="secondary">#181818</color>
-    <color name="title">#10100f</color>
-    <color name="text">#999999</color>
+
+    <!--black-->
+    <color name="title">#101010</color>
+
+    <!--blackTwo-->
+    <color name="text">#181818</color>
+
+    <!--warmGray-->
     <color name="shadow">#999999</color>
+
+    <!--warmGray-->
     <color name="disable">#999999</color>
+
+    <!--sandy-->
     <color name="hover">#efd182</color>
+
+    <!--sandy-->
     <color name="focus">#efd182</color>
+
+    <!--white-->
     <color name="onPrimary">#ffffff</color>
+
+    <!--white-->
     <color name="onError">#ffffff</color>
+
+    <!--white-->
     <color name="background">#ffffff</color>
+
+    <!--white-->
     <color name="card">#ffffff</color>
-    <color name="hint">#d9d9d9</color>
+
+    <!--pinkishGrey-->
+    <color name="hint">#c1c1c1</color>
+
+    <!--red-->
     <color name="error">#ee4540</color>
+
     <color name="success">#27ae60</color>
-    <color name="surface">#ffffff</color>
-    <color name="onSurface">#10100f</color>
+
+    <!--whiteTwo-->
+    <color name="surface">#f5f5ff</color>
+
+    <!--black-->
+    <color name="onSurface">#101010</color>
+
+    <!--white-->
     <color name="onSecondary">#ffffff</color>
 </resources>
