@@ -64,11 +64,12 @@ class ColorThemeLight implements BaseColorTheme {
       tertiary: AppColors.success,
       onTertiary: AppColors.background,
       shadow: AppColors.shadow,
-      outline: AppColors.shadow,
+      outline: AppColors.outline,
       onBackground: AppColors.text,
       surfaceVariant: AppColors.disable,
       tertiaryContainer: AppColors.primaryBeautyCentre,
       primaryContainer: AppColors.primaryMen,
+      outlineVariant: AppColors.outlineVariant,
     );
     brightness = Brightness.light;
   }
