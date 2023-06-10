@@ -61,4 +61,10 @@
 
     <!--white-->
     <color name="onSecondary">#ffffff</color>
+
+    <!--whiteTwo-->
+    <color name="outline">#d9d9d9</color>
+
+        <!--whiteTwo-->
+    <color name="outlineVariant">#d9d9d9</color>
 </resources>

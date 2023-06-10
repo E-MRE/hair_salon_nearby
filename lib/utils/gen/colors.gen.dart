@@ -46,6 +46,12 @@ class AppColors {
   /// Color: #101010
   static const Color onSurface = Color(0xFF101010);
 
+  /// Color: #d9d9d9
+  static const Color outline = Color(0xFFD9D9D9);
+
+  /// Color: #d9d9d9
+  static const Color outlineVariant = Color(0xFFD9D9D9);
+
   /// Color: #efd182
   static const Color primary = Color(0xFFEFD182);
 
