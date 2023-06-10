@@ -81,15 +81,15 @@ class AppTextStyle extends TextStyle {
 
   ///``SemiBold TextStyle from titleLarge.``
   ///
-  /// `Size: 22 Height: 28 SemiBold`
+  /// `Size: 20 Height: 28 SemiBold`
   ///
-  /// * FontSize: 22
+  /// * FontSize: 20
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 28
   AppTextStyle.titleLargeSemiBold({
     String fontFamily = FontFamily.poppins,
-    Sizes fontSize = Sizes.smallerThanBig,
+    Sizes fontSize = Sizes.verySmallerThanBig,
     Sizes height = Sizes.prettyBig,
     required TextTheme textTheme,
     TextDecoration? decoration,
@@ -106,15 +106,15 @@ class AppTextStyle extends TextStyle {
 
   ///``Regular TextStyle from titleLarge.``
   ///
-  /// `Size: 22 Height: 28 Regular`
+  /// `Size: 20 Height: 28 Regular`
   ///
-  /// * FontSize: 22
+  /// * FontSize: 20
   /// * FontWeight: Regular [w400]
   /// * FontFamily: Poppins
   /// * LineHeight: 28
   AppTextStyle.titleLargeRegular({
     String fontFamily = FontFamily.poppins,
-    Sizes fontSize = Sizes.smallerThanBig,
+    Sizes fontSize = Sizes.verySmallerThanBig,
     Sizes height = Sizes.prettyBig,
     required TextTheme textTheme,
     TextDecoration? decoration,

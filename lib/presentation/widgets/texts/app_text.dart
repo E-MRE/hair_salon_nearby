@@ -11,9 +11,9 @@ import 'app_text_style.dart';
 ///-------------------------------------------------------------
 ///* ``[Size: 24 | Height: 32]`` headlineSmallSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
-///* ``[Size: 22 | Height: 28]`` titleLargeSemiBold - SemiBold [w600]
+///* ``[Size: 20 | Height: 28]`` titleLargeSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
-///* ``[Size: 22 | Height: 28]`` titleLargeRegular - Regular [w400]
+///* ``[Size: 20 | Height: 28]`` titleLargeRegular - Regular [w400]
 ///-------------------------------------------------------------
 ///* ``[Size: 16 | Height: 24]`` titleMediumSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
@@ -135,9 +135,9 @@ class AppText extends Text {
 
   ///``SemiBold TextStyle from titleLarge.``
   ///
-  /// `Size: 22 Height: 28 SemiBold`
+  /// `Size: 20 Height: 28 SemiBold`
   ///
-  /// * FontSize: 22
+  /// * FontSize: 20
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 28
@@ -165,9 +165,9 @@ class AppText extends Text {
 
   ///``Regular TextStyle from titleLarge.``
   ///
-  /// `Size: 22 Height: 28 Regular`
+  /// `Size: 20 Height: 28 Regular`
   ///
-  /// * FontSize: 22
+  /// * FontSize: 20
   /// * FontWeight: Regular [w400]
   /// * FontFamily: Poppins
   /// * LineHeight: 28
