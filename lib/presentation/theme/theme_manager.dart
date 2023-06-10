@@ -29,7 +29,7 @@ class ThemeManager extends ThemeService {
         style: ButtonStyle(
           alignment: Alignment.center,
           padding: MaterialStatePropertyAll(AppEdgeInsets.allMedium()),
-          fixedSize: MaterialStatePropertyAll(Size.fromHeight(Sizes.medium.value)),
+          fixedSize: MaterialStatePropertyAll(Size.fromHeight(Sizes.prettyLarge.value)),
           iconColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.onPrimary ?? AppColors.onPrimary),
           textStyle: MaterialStatePropertyAll(AppTextStyle.labelLargeSemiBold(textTheme: theme.textTheme.data)),
           backgroundColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.primary ?? AppColors.primary),
@@ -43,7 +43,7 @@ class ThemeManager extends ThemeService {
             BorderSide(color: theme.colorTheme.colorScheme?.outline ?? AppColors.outline),
           ),
           shape: MaterialStatePropertyAll(RoundedBorder.circular(radius: Sizes.medium.value)),
-          fixedSize: MaterialStatePropertyAll(Size.fromHeight(Sizes.medium.value)),
+          fixedSize: MaterialStatePropertyAll(Size.fromHeight(Sizes.prettyLarge.value)),
           foregroundColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.primary ?? AppColors.primary),
           iconColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.primary ?? AppColors.primary),
           textStyle: MaterialStatePropertyAll(AppTextStyle.labelLargeSemiBold(textTheme: theme.textTheme.data)),

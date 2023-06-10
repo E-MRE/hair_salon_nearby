@@ -15,74 +15,45 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    ExampleSecondRoute.name: (routeData) {
+    SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ExampleSecondPage(),
+        child: const SplashPage(),
       );
     },
-    ExampleRoute.name: (routeData) {
-      final args = routeData.argsAs<ExampleRouteArgs>(
-          orElse: () => const ExampleRouteArgs());
+    OnboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: ExamplePage(
-          key: args.key,
-          property: args.property,
-        ),
+        child: const OnboardPage(),
       );
     },
   };
 }
 
 /// generated route for
-/// [ExampleSecondPage]
-class ExampleSecondRoute extends PageRouteInfo<void> {
-  const ExampleSecondRoute({List<PageRouteInfo>? children})
+/// [SplashPage]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
       : super(
-          ExampleSecondRoute.name,
+          SplashRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ExampleSecondRoute';
+  static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [ExamplePage]
-class ExampleRoute extends PageRouteInfo<ExampleRouteArgs> {
-  ExampleRoute({
-    Key? key,
-    String? property,
-    List<PageRouteInfo>? children,
-  }) : super(
-          ExampleRoute.name,
-          args: ExampleRouteArgs(
-            key: key,
-            property: property,
-          ),
+/// [OnboardPage]
+class OnboardRoute extends PageRouteInfo<void> {
+  const OnboardRoute({List<PageRouteInfo>? children})
+      : super(
+          OnboardRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ExampleRoute';
+  static const String name = 'OnboardRoute';
 
-  static const PageInfo<ExampleRouteArgs> page =
-      PageInfo<ExampleRouteArgs>(name);
-}
-
-class ExampleRouteArgs {
-  const ExampleRouteArgs({
-    this.key,
-    this.property,
-  });
-
-  final Key? key;
-
-  final String? property;
-
-  @override
-  String toString() {
-    return 'ExampleRouteArgs{key: $key, property: $property}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

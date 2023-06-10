@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
+import 'presentation/theme/abstract/theme_service.dart';
 import 'presentation/theme/concrete/custom_theme/app_theme_light.dart';
 import 'presentation/theme/theme_manager.dart';
 import 'utils/constants/app_constants.dart';
@@ -13,10 +14,6 @@ import 'utils/enum/localization_locales.dart';
 import 'utils/helpers/cache_service_factory.dart';
 import 'utils/helpers/custom_responsive_wrapper.dart';
 import 'utils/navigation/auto_router/app_router.dart';
-import 'utils/navigation/generate_router/navigation_manager.dart';
-import 'utils/navigation/generate_router/navigation_route_manager.dart';
-import 'utils/navigation/generate_router/navigation_route_service.dart';
-import 'utils/navigation/generate_router/navigation_service.dart';
 
 part './app_start.dart';
 
@@ -29,10 +26,7 @@ void main() async {
     child: DevicePreview(
       enabled: AppConstants.getDevicePreviewEnable(),
       builder: (context) => _appStart._setMultiProviderByChild(
-        providers: [
-          Provider<NavigationService>(create: (context) => NavigationManager()),
-          Provider<NavigationRouteService>(create: (context) => NavigationRouteManager()),
-        ],
+        providers: [Provider<ThemeService>(create: (context) => ThemeManager(theme: AppThemeLight()))],
         child: MyAppByAutoRoute(appRouter: _appRouter),
       ),
     ),
@@ -41,27 +35,6 @@ void main() async {
     fallbackLocale: LocalizationLocales.init.rawValue,
     startLocale: LocalizationLocales.init.rawValue,
   ));
-}
-
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key) {
-    FlutterNativeSplash.remove();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      builder: (context, child) =>
-          CustomResponsiveWrapper(breakpoints: AppConstants.responsiveBreakpoints, child: child),
-      title: AppConstants.appName,
-      theme: ThemeManager(theme: AppThemeLight()).createTheme,
-      navigatorKey: context.read<NavigationService>().navigatorKey,
-      onGenerateRoute: context.read<NavigationRouteService>().generateRoute,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-    );
-  }
 }
 
 class MyAppByAutoRoute extends StatelessWidget {
@@ -80,7 +53,7 @@ class MyAppByAutoRoute extends StatelessWidget {
         child: child,
       ),
       title: AppConstants.appName,
-      theme: ThemeManager(theme: AppThemeLight()).createTheme,
+      theme: context.read<ThemeService>().createTheme,
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
       localizationsDelegates: context.localizationDelegates,
