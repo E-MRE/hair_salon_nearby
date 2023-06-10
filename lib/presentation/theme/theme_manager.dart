@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hair_salon_nearby/presentation/widgets/texts/app_text_style.dart';
 import 'package:hair_salon_nearby/utils/decorations/app_edge_insets.dart';
 import 'package:hair_salon_nearby/utils/decorations/rounded_border.dart';
 
@@ -26,15 +27,18 @@ class ThemeManager extends ThemeService {
       colorScheme: theme.colorTheme.colorScheme,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
+          alignment: Alignment.center,
+          padding: MaterialStatePropertyAll(AppEdgeInsets.allMedium()),
           fixedSize: MaterialStatePropertyAll(Size.fromHeight(Sizes.medium.value)),
+          iconColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.onPrimary ?? AppColors.onPrimary),
+          textStyle: MaterialStatePropertyAll(AppTextStyle.labelLargeSemiBold(textTheme: theme.textTheme.data)),
           backgroundColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.primary ?? AppColors.primary),
           foregroundColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.onPrimary ?? AppColors.onPrimary),
-          iconColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.onPrimary ?? AppColors.onPrimary),
-          padding: MaterialStatePropertyAll(AppEdgeInsets.allMedium()),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
+          alignment: Alignment.center,
           side: MaterialStatePropertyAll(
             BorderSide(color: theme.colorTheme.colorScheme?.outline ?? AppColors.outline),
           ),
@@ -42,11 +46,21 @@ class ThemeManager extends ThemeService {
           fixedSize: MaterialStatePropertyAll(Size.fromHeight(Sizes.medium.value)),
           foregroundColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.primary ?? AppColors.primary),
           iconColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.primary ?? AppColors.primary),
+          textStyle: MaterialStatePropertyAll(AppTextStyle.labelLargeSemiBold(textTheme: theme.textTheme.data)),
           padding: MaterialStatePropertyAll(AppEdgeInsets.allMedium()),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: MaterialStatePropertyAll(theme.colorTheme.colorScheme?.primary ?? AppColors.primary),
+          textStyle: MaterialStatePropertyAll(AppTextStyle.labelLargeSemiBold(textTheme: theme.textTheme.data)
+              .copyWith(color: theme.colorTheme.colorScheme?.primary, decoration: TextDecoration.underline)),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         focusColor: theme.colorTheme.focusColor,
+        hintStyle: AppTextStyle.labelLargeRegular(textTheme: theme.textTheme.data)
+            .copyWith(color: theme.colorTheme.colorScheme?.shadow),
         contentPadding: AppEdgeInsets.symmetric(horizontal: Sizes.medium, vertical: Sizes.extraSmallerThanBig),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: theme.colorTheme.colorScheme?.primary ?? AppColors.primary),

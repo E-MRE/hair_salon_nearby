@@ -1,44 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:hair_salon_nearby/core/extensions/context_extensions.dart';
 
-import '../../../core/extensions/context_extensions.dart';
 import '../../../core/utils/enums/special_key.dart';
 import '../../../utils/enum/text_line_type.dart';
-import '../../../utils/gen/fonts.gen.dart';
+import 'app_text_style.dart';
 
-///* ``[Size: 32 | Height: 40]`` headlineLarge - SemiBold [w600]
+///* ``[Size: 32 | Height: 40]`` headlineLargeSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
-///* ``[Size: 28 | Height: 36]`` headlineMedium - SemiBold [w600]
+///* ``[Size: 28 | Height: 36]`` headlineMediumSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
-///* ``[Size: 24 | Height: 32]`` headlineSmall - SemiBold [w600]
+///* ``[Size: 24 | Height: 32]`` headlineSmallSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
-///* ``[Size: 24 | Height: 28.8]`` headlineSmall2 - SemiBold [w600]
-///-------------------------------------------------------------
-///* ``[Size: 22 | Height: 28]`` titleLarge - SemiBold [w600]
+///* ``[Size: 22 | Height: 28]`` titleLargeSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
 ///* ``[Size: 22 | Height: 28]`` titleLargeRegular - Regular [w400]
 ///-------------------------------------------------------------
-///* ``[Size: 16 | Height: 24]`` titleMedium - SemiBold [w600]
+///* ``[Size: 16 | Height: 24]`` titleMediumSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
 ///* ``[Size: 16 | Height: 24]`` titleMediumRegular - Regular [w400]
 ///-------------------------------------------------------------
-///* ``[Size: 14 | Height: 20]`` labelLarge - SemiBold [w600]
+///* ``[Size: 14 | Height: 20]`` labelLargeSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
 ///* ``[Size: 14 | Height: 20]`` labelLargeMedium - Medium [w500]
 ///-------------------------------------------------------------
 ///* ``[Size: 14 | Height: 20]`` labelLargeRegular - Regular [w400]
 ///-------------------------------------------------------------
-///* ``[Size: 12 | Height: 16]`` labelMedium - SemiBold [w600]
+///* ``[Size: 12 | Height: 16]`` labelMediumSemiBold - SemiBold [w600]
 ///-------------------------------------------------------------
-///* ``[Size: 12 | Height: 16]`` bodySmall - Regular [w400]
+///* ``[Size: 12 | Height: 16]`` bodySmallRegular - Regular [w400]
 ///-------------------------------------------------------------
-///* ``[Size: 11 | Height: 16]`` labelSmall - Medium [w500]
-///-------------------------------------------------------------
-///* ``[Size: 11 | Height: 16]`` labelSmallRegular - Regular [w400]
-///-------------------------------------------------------------
-///* ``[Size: 11 | Height: 16]`` labelSmallMedium - Medium [w500]
+///* ``[Size: 12 | Height: 16]`` bodySmallMedium - Medium [w500]
 ///-------------------------------------------------------------
 class AppText extends Text {
-  const AppText.onlyData(super.data);
+  const AppText.onlyData(super.data, {super.key});
+
+  const AppText.customizable(
+    super.data, {
+    super.key,
+    super.textAlign,
+    super.maxLines,
+    super.overflow,
+    AppTextStyle? style,
+  }) : super(style: style);
 
   ///``SemiBold TextStyle from headlineLarge.``
   ///
@@ -48,17 +51,14 @@ class AppText extends Text {
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 40
-  AppText.headlineLarge(
+  AppText.headlineLargeSemiBold(
     String? data, {
     Key? key,
     Color? color,
-    double height = 40,
-    double fontSize = 32,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w600,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -66,12 +66,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.headlineLarge?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.headlineLargeSemiBold(
+            textTheme: context.textTheme,
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
             color: color,
           ),
         );
@@ -84,17 +81,14 @@ class AppText extends Text {
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 36
-  AppText.headlineMedium(
+  AppText.headlineMediumSemiBold(
     String? data, {
     Key? key,
     Color? color,
-    double height = 36,
-    double fontSize = 28,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w600,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -102,12 +96,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.headlineMedium?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.headlineMediumSemiBold(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
@@ -120,17 +111,14 @@ class AppText extends Text {
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 32
-  AppText.headlineSmall(
+  AppText.headlineSmallSemiBold(
     String? data, {
     Key? key,
     Color? color,
-    double height = 32,
-    double fontSize = 24,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w600,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -138,48 +126,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.headlineSmall?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.headlineSmallSemiBold(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
-            color: color,
-          ),
-        );
-
-  ///``SemiBold TextStyle from headlineSmall.``
-  ///
-  /// `Size: 24 Height: 28.8 SemiBold`
-  ///
-  /// * FontSize: 24
-  /// * FontWeight: SemiBold [w600]
-  /// * FontFamily: Poppins
-  /// * LineHeight: 28.8
-  AppText.headlineSmall2(
-    String? data, {
-    Key? key,
-    Color? color,
-    double height = 28.8,
-    double fontSize = 24,
-    TextLineType? maxLines,
-    TextDecoration? decoration,
-    required BuildContext context,
-    TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w600,
-    TextOverflow overflow = TextOverflow.ellipsis,
-  }) : super(
-          key: key,
-          data ?? '',
-          textAlign: align,
-          overflow: overflow,
-          maxLines: maxLines?.value,
-          style: context.textTheme.headlineSmall?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
-            decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
@@ -192,17 +141,14 @@ class AppText extends Text {
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 28
-  AppText.titleLarge(
+  AppText.titleLargeSemiBold(
     String? data, {
     Key? key,
     Color? color,
-    double height = 28,
-    double fontSize = 22,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w600,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -210,12 +156,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.titleLarge?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.titleLargeSemiBold(
+            textTheme: context.textTheme,
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
             color: color,
           ),
         );
@@ -232,13 +175,10 @@ class AppText extends Text {
     String? data, {
     Key? key,
     Color? color,
-    double height = 28,
-    double fontSize = 22,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w400,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -246,12 +186,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.titleLarge?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.titleLargeRegular(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
@@ -264,17 +201,14 @@ class AppText extends Text {
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 24
-  AppText.titleMedium(
+  AppText.titleMediumSemiBold(
     String? data, {
     Key? key,
     Color? color,
-    double height = 24,
-    double fontSize = 16,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w600,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -282,12 +216,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.titleMedium?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.titleMediumSemiBold(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
@@ -304,13 +235,10 @@ class AppText extends Text {
     String? data, {
     Key? key,
     Color? color,
-    double height = 24,
-    double fontSize = 16,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w400,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -318,12 +246,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.titleMedium?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.titleMediumRegular(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
@@ -336,17 +261,14 @@ class AppText extends Text {
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 20
-  AppText.labelLarge(
+  AppText.labelLargeSemiBold(
     String? data, {
     Key? key,
     Color? color,
-    double height = 20,
-    double fontSize = 14,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w600,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -354,12 +276,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.labelLarge?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.labelLargeSemiBold(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
@@ -376,13 +295,10 @@ class AppText extends Text {
     String? data, {
     Key? key,
     Color? color,
-    double height = 20,
-    double fontSize = 14,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w500,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -390,12 +306,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.labelLarge?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.labelLargeMedium(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
@@ -426,35 +339,29 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.labelLarge?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.labelLargeRegular(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
 
   ///``SemiBold TextStyle from labelMedium.``
   ///
-  /// `Size: 14 Height: 20 SemiBold`
+  /// `Size: 12 Height: 16 SemiBold`
   ///
   /// * FontSize: 12
   /// * FontWeight: SemiBold [w600]
   /// * FontFamily: Poppins
   /// * LineHeight: 16
-  AppText.labelMedium(
+  AppText.labelMediumSemiBold(
     String? data, {
     Key? key,
     Color? color,
-    double height = 16,
-    double fontSize = 12,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w600,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -462,12 +369,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.labelMedium?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.labelMediumSemiBold(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
@@ -480,17 +384,14 @@ class AppText extends Text {
   /// * FontWeight: Regular [w400]
   /// * FontFamily: Poppins
   /// * LineHeight: 16
-  AppText.bodySmall(
+  AppText.bodySmallRegular(
     String? data, {
     Key? key,
     Color? color,
-    double height = 16,
-    double fontSize = 12,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w400,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -498,35 +399,29 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.bodySmall?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.bodySmallRegular(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );
 
-  ///``Medium TextStyle from labelSmall.``
+  ///``Medium TextStyle from bodySmall.``
   ///
-  /// `Size: 11 Height: 16 Medium`
+  /// `Size: 12 Height: 16 Medium`
   ///
-  /// * FontSize: 11
+  /// * FontSize: 12
   /// * FontWeight: Medium [w500]
   /// * FontFamily: Poppins
   /// * LineHeight: 16
-  AppText.labelSmall(
+  AppText.bodySmallMedium(
     String? data, {
     Key? key,
     Color? color,
-    double height = 16,
-    double fontSize = 11,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w500,
     TextOverflow overflow = TextOverflow.ellipsis,
   }) : super(
           key: key,
@@ -534,84 +429,9 @@ class AppText extends Text {
           textAlign: align,
           overflow: overflow,
           maxLines: maxLines?.value,
-          style: context.textTheme.labelSmall?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
+          style: AppTextStyle.bodySmallMedium(
             decoration: decoration,
-            fontSize: fontSize,
-            height: height,
-            color: color,
-          ),
-        );
-
-  ///``Regular TextStyle from labelSmall.``
-  ///
-  /// `Size: 11 Height: 16 Regular`
-  ///
-  /// * FontSize: 11
-  /// * FontWeight: Regular [w400]
-  /// * FontFamily: Poppins
-  /// * LineHeight: 16
-  AppText.labelSmallRegular(
-    String? data, {
-    Key? key,
-    Color? color,
-    double height = 16,
-    double fontSize = 11,
-    TextLineType? maxLines,
-    TextDecoration? decoration,
-    required BuildContext context,
-    TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w400,
-    TextOverflow overflow = TextOverflow.ellipsis,
-  }) : super(
-          key: key,
-          data ?? '',
-          textAlign: align,
-          overflow: overflow,
-          maxLines: maxLines?.value,
-          style: context.textTheme.labelSmall?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
-            decoration: decoration,
-            fontSize: fontSize,
-            height: height,
-            color: color,
-          ),
-        );
-
-  ///``Medium TextStyle from labelSmall.``
-  ///
-  /// `Size: 11 Height: 16 Medium`
-  ///
-  /// * FontSize: 11
-  /// * FontWeight: Medium [w500]
-  /// * FontFamily: Poppins
-  /// * LineHeight: 16
-  AppText.labelSmallMedium(
-    String? data, {
-    Key? key,
-    Color? color,
-    double height = 16,
-    double fontSize = 11,
-    TextLineType? maxLines,
-    TextDecoration? decoration,
-    required BuildContext context,
-    TextAlign align = TextAlign.left,
-    FontWeight fontWeight = FontWeight.w500,
-    TextOverflow overflow = TextOverflow.ellipsis,
-  }) : super(
-          key: key,
-          data ?? '',
-          textAlign: align,
-          overflow: overflow,
-          maxLines: maxLines?.value,
-          style: context.textTheme.labelSmall?.copyWith(
-            fontFamily: FontFamily.poppins,
-            fontWeight: fontWeight,
-            decoration: decoration,
-            fontSize: fontSize,
-            height: height,
+            textTheme: context.textTheme,
             color: color,
           ),
         );

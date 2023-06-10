@@ -18,6 +18,7 @@ import '../../core/extensions/screen_util_extensions.dart';
 /// * prettyBig = 28
 /// * veryBig = 32
 /// * extraBig = 36
+/// * extraMoreBig = 40
 /// * ultraBig = 42
 /// * smallerThanLarge = 46
 /// * large = 48
@@ -137,6 +138,9 @@ enum Sizes {
 
   ///value = 36
   extraBig,
+
+  ///value = 40
+  extraMoreBig,
 
   ///value = 42
   ultraBig,
@@ -429,6 +433,10 @@ extension SizesExtension on Sizes {
       ///value =  36
       case Sizes.extraBig:
         return 36;
+
+      /// value = 36
+      case Sizes.extraMoreBig:
+        return 40;
 
       ///value =  42
       case Sizes.ultraBig:
