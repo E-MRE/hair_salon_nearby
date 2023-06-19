@@ -11,6 +11,7 @@ import '../../../../utils/decorations/empty_space.dart';
 import '../../../../utils/enum/onboarding_option.dart';
 import '../../../../utils/enum/sizes.dart';
 import '../../../../utils/enum/text_line_type.dart';
+import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/buttons/on_primary_outlined_button.dart';
 import '../../../widgets/buttons/rounded_elevated_button.dart';
 import '../../../widgets/texts/app_text.dart';

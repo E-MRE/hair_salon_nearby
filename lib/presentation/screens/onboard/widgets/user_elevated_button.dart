@@ -5,6 +5,11 @@ class _UserElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RoundedElevatedButton(text: LocaleKeys.onboarding_userLogin.tr());
+    return RoundedElevatedButton(
+      text: LocaleKeys.onboarding_userLogin.tr(),
+      onPressed: () {
+        context.router.replace(const UserLoginRoute());
+      },
+    );
   }
 }
