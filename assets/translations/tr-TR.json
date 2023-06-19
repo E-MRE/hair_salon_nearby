@@ -32,5 +32,15 @@
         "getError":"Token alınırken bir hata meydana geldi",
         "notFound":"Token bilgisi bulunamadı",
         "expired":"Tokenin geçerlilik süresi doldu"
+    },
+    "womenHairdressers":"kadın kuaförleri",
+    "menHairdressers":"erkek kuaförleri",
+    "beautyCentres":"güzellik merkezleri",
+    "onboarding":{
+        "womenHairdressersDescription":"Çevrendeki en popüler @:womenHairdressers bir tık uzağında!",
+        "menHairdressersDescription":"Çevrendeki en popüler @:menHairdressers bir tık uzağında!",
+        "beautyCentresDescription":"Çevrendeki en popüler @:beautyCentres bir tık uzağında!",
+        "hairdresserLogin":"Kuaför Girişi",
+        "userLogin":"Kullanıcı Girişi"
     }
 }

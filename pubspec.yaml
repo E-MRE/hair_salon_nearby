@@ -18,6 +18,10 @@ dependencies:
   http:
   dio: ^5.0.0
 
+  #onboarding
+  liquid_swipe: ^3.0.0
+  smooth_page_indicator: ^1.0.1
+
   #Cache & Storage
   flutter_secure_storage:
   hive_flutter:
