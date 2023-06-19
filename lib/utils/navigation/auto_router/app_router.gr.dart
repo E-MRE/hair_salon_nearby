@@ -21,6 +21,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
+    UserLoginRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const UserLoginPage(),
+      );
+    },
+    BusinessLoginRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const BusinessLoginPage(),
+      );
+    },
     OnboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -40,6 +52,34 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [UserLoginPage]
+class UserLoginRoute extends PageRouteInfo<void> {
+  const UserLoginRoute({List<PageRouteInfo>? children})
+      : super(
+          UserLoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UserLoginRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [BusinessLoginPage]
+class BusinessLoginRoute extends PageRouteInfo<void> {
+  const BusinessLoginRoute({List<PageRouteInfo>? children})
+      : super(
+          BusinessLoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BusinessLoginRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
