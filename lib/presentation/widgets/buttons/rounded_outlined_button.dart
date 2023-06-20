@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hair_salon_nearby/utils/enum/hair_salon_type.dart';
 
 import '../../../core/extensions/context_extensions.dart';
+import '../../../utils/enum/hair_salon_type.dart';
 import '../../../utils/enum/sizes.dart';
 import '../../../utils/mixins/light_color_generator_by_salon_mixin.dart';
 import '../texts/app_text.dart';
 
-class RoundedElevatedButton extends StatelessWidget with LightColorGeneratorBySalonMixin {
-  const RoundedElevatedButton({
+class RoundedOutlinedButton extends StatelessWidget with LightColorGeneratorBySalonMixin {
+  const RoundedOutlinedButton({
     super.key,
     this.text,
     this.child,
@@ -30,24 +30,26 @@ class RoundedElevatedButton extends StatelessWidget with LightColorGeneratorBySa
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: onPressed, style: _buildStyle(context), child: child ?? _buildText(context));
+    return OutlinedButton(onPressed: onPressed, style: _buildStyle(context), child: child ?? _buildText(context));
   }
 
   ButtonStyle _buildStyle(BuildContext context) {
-    return ElevatedButton.styleFrom(
+    return OutlinedButton.styleFrom(
       padding: padding,
-      foregroundColor: context.colorScheme.onPrimary.withOpacity(opacity),
-      backgroundColor: getPrimaryColor(context, salonType),
+      side: BorderSide(color: _getBorderColor(context)),
+      foregroundColor: getPrimaryColor(context, salonType),
       fixedSize: Size.fromHeight(height.value),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.value)),
     );
   }
 
   AppText _buildText(BuildContext context) {
-    return AppText.labelLargeSemiBold(
-      text,
-      context: context,
-      color: context.colorScheme.onPrimary.withOpacity(opacity),
-    );
+    return AppText.labelLargeSemiBold(text, context: context, color: _getPrimaryColor(context));
   }
+
+  Color _getBorderColor(BuildContext context) =>
+      onPressed == null ? context.colorScheme.surfaceVariant : context.colorScheme.outline;
+
+  Color _getPrimaryColor(BuildContext context) =>
+      onPressed == null ? context.colorScheme.surfaceVariant : getPrimaryColor(context, salonType);
 }

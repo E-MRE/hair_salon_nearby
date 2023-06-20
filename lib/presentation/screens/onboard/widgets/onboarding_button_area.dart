@@ -8,7 +8,7 @@ class _OnboardingButtonArea extends StatelessWidget {
     return Row(
       children: [
         const Expanded(child: _HairSalonOutlinedButton()),
-        EmptySpace.normalWidth(),
+        EmptySpace.mediumWidth(),
         const Expanded(child: _UserElevatedButton()),
       ],
     );

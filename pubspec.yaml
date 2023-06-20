@@ -136,7 +136,9 @@ flutter:
     - assets/images/png/ic_beauty_centre_background.png
     - assets/images/png/ic_men_logo_and_name.png
     - assets/images/png/ic_beauty_centre_logo_and_name.png
+    - assets/images/png/ic_primary_beauty_centre_logo_and_name.png
     - assets/images/png/ic_women_logo_and_name.png
+    - assets/images/png/ic_primary_women_logo_and_name.png
     - assets/images/jpg/
     - assets/fonts/
     - assets/translations/

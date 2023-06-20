@@ -156,6 +156,14 @@ class $AssetsImagesPngGen {
   /// File path: assets/images/png/ic_men_logo_and_name.png
   AssetGenImage get icMenLogoAndName => const AssetGenImage('assets/images/png/ic_men_logo_and_name.png');
 
+  /// File path: assets/images/png/ic_primary_beauty_centre_logo_and_name.png
+  AssetGenImage get icPrimaryBeautyCentreLogoAndName =>
+      const AssetGenImage('assets/images/png/ic_primary_beauty_centre_logo_and_name.png');
+
+  /// File path: assets/images/png/ic_primary_women_logo_and_name.png
+  AssetGenImage get icPrimaryWomenLogoAndName =>
+      const AssetGenImage('assets/images/png/ic_primary_women_logo_and_name.png');
+
   /// File path: assets/images/png/ic_women_hairdresser_background.png.png
   AssetGenImage get icWomenHairdresserBackgroundPng =>
       const AssetGenImage('assets/images/png/ic_women_hairdresser_background.png.png');
@@ -174,6 +182,8 @@ class $AssetsImagesPngGen {
         icLogoHorizontal,
         icMenHairdresserBackground,
         icMenLogoAndName,
+        icPrimaryBeautyCentreLogoAndName,
+        icPrimaryWomenLogoAndName,
         icWomenHairdresserBackgroundPng,
         icWomenLogoAndName,
         splash
