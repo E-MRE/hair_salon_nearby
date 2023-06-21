@@ -4,16 +4,17 @@ import '../../../core/extensions/context_extensions.dart';
 import '../../../utils/enum/hair_salon_type.dart';
 import '../../../utils/enum/sizes.dart';
 import '../../../utils/mixins/light_color_generator_by_salon_mixin.dart';
+import '../../../utils/extensions/build_context_extensions.dart';
 import '../texts/app_text.dart';
 
-class RoundedOutlinedButton extends StatelessWidget with LightColorGeneratorBySalonMixin {
-  const RoundedOutlinedButton({
+class PrimaryElevatedButton extends StatelessWidget with LightColorGeneratorBySalonMixin {
+  const PrimaryElevatedButton({
     super.key,
     this.text,
     this.child,
     this.onPressed,
     this.padding,
-    this.opacity = .66,
+    this.opacity = 1,
     this.radius = Sizes.small,
     this.height = Sizes.prettyLarge,
     this.salonType = HairSalonType.women,
@@ -30,26 +31,28 @@ class RoundedOutlinedButton extends StatelessWidget with LightColorGeneratorBySa
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: onPressed, style: _buildStyle(context), child: child ?? _buildText(context));
+    return ElevatedButton(onPressed: onPressed, style: _buildStyle(context), child: child ?? _buildText(context));
   }
 
   ButtonStyle _buildStyle(BuildContext context) {
-    return OutlinedButton.styleFrom(
+    final colorScheme = context.watchThemeService.theme.colorTheme.colorScheme;
+    final disableColor = colorScheme?.surfaceVariant;
+    return ElevatedButton.styleFrom(
       padding: padding,
-      side: BorderSide(color: _getBorderColor(context)),
-      foregroundColor: getPrimaryColor(context, salonType),
+      foregroundColor: onPressed == null ? disableColor : colorScheme?.onPrimary.withOpacity(opacity),
+      backgroundColor: onPressed == null ? disableColor : colorScheme?.primary.withOpacity(opacity),
+      disabledBackgroundColor: disableColor?.withOpacity(opacity),
+      disabledForegroundColor: colorScheme?.onPrimary.withOpacity(opacity),
       fixedSize: Size.fromHeight(height.value),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.value)),
     );
   }
 
   AppText _buildText(BuildContext context) {
-    return AppText.labelLargeSemiBold(text, context: context, color: _getPrimaryColor(context));
+    return AppText.labelLargeSemiBold(
+      text,
+      context: context,
+      color: context.colorScheme.onPrimary.withOpacity(opacity),
+    );
   }
-
-  Color _getBorderColor(BuildContext context) =>
-      onPressed == null ? context.colorScheme.surfaceVariant : context.colorScheme.outline;
-
-  Color _getPrimaryColor(BuildContext context) =>
-      onPressed == null ? context.colorScheme.surfaceVariant : getPrimaryColor(context, salonType);
 }

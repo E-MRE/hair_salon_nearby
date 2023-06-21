@@ -12,7 +12,7 @@ class _AppStart {
     _setDeviceOrientations();
   }
 
-  MultiProvider _setMultiProviderByChild({required List<Provider> providers, required Widget child}) {
+  MultiProvider _setMultiProviderByChild({required List<SingleChildWidget> providers, required Widget child}) {
     return MultiProvider(providers: providers, child: child);
   }
 

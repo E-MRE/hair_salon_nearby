@@ -6,6 +6,7 @@ class _HairSalonOutlinedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OnPrimaryOutlinedButton(
+      opacity: .66,
       text: LocaleKeys.onboarding_hairdresserLogin.tr(),
       onPressed: () {
         context.router.replace(const BusinessLoginRoute());
