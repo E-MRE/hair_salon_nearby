@@ -34,6 +34,7 @@ class OnPrimaryOutlinedButton extends StatelessWidget {
     return OutlinedButton.styleFrom(
       side: BorderSide(color: _getColor(context)),
       foregroundColor: _getColor(context),
+      disabledForegroundColor: _getColor(context),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.value)),
     );
   }

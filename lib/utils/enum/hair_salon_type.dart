@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:hair_salon_nearby/utils/constants/assets_constants.dart';
+
+import '../../presentation/theme/abstract/base_color_theme.dart';
+import '../../presentation/theme/concrete/color/beauty_centre_color_theme_light.dart';
+import '../../presentation/theme/concrete/color/men_color_theme_light.dart';
+import '../../presentation/theme/concrete/color/women_color_theme_light.dart';
+import '../constants/assets_constants.dart';
+import '../gen/colors.gen.dart';
 
 enum HairSalonType {
-  women,
-  men,
-  beautyCentre;
+  women(AppColors.primaryWomen),
+  men(AppColors.primaryMen),
+  beautyCentre(AppColors.primaryBeautyCentre);
+
+  final Color color;
+  const HairSalonType(this.color);
 }
 
 extension HairSalonTypeExtension on HairSalonType {
@@ -22,6 +31,14 @@ extension HairSalonTypeExtension on HairSalonType {
           height: height,
           width: width,
         ),
+    };
+  }
+
+  BaseColorTheme get getColorTheme {
+    return switch (this) {
+      HairSalonType.men => MenColorThemeLight(),
+      HairSalonType.women => WomenColorThemeLight(),
+      HairSalonType.beautyCentre => BeautyCentreColorThemeLight(),
     };
   }
 }

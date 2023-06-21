@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hair_salon_nearby/presentation/widgets/texts/app_text_style.dart';
-import 'package:hair_salon_nearby/utils/decorations/app_edge_insets.dart';
-import 'package:hair_salon_nearby/utils/decorations/rounded_border.dart';
 
+import '../../utils/decorations/app_edge_insets.dart';
+import '../../utils/decorations/rounded_border.dart';
 import '../../utils/enum/sizes.dart';
 import '../../utils/gen/colors.gen.dart';
 import '../../utils/gen/fonts.gen.dart';
-import 'abstract/base_theme.dart';
+import '../widgets/texts/app_text_style.dart';
 import 'abstract/theme_service.dart';
 
 class ThemeManager extends ThemeService {
-  ThemeManager({required BaseTheme theme}) : super(theme: theme);
+  ThemeManager({required super.theme});
 
   @override
   ThemeData get createTheme {
