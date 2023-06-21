@@ -20,19 +20,19 @@ class EmptySpace extends SizedBox {
       : this._scaledSize(key: key, height: Sizes.extraSmall, isScaledValue: isScaledValue);
 
   ///Vertical [8.0] creates an empty space.
-  EmptySpace.smallHeight({Key? key, bool isScaledValue = false})
+  EmptySpace.prettySmallHeight({Key? key, bool isScaledValue = false})
       : this._scaledSize(key: key, height: Sizes.prettySmall, isScaledValue: isScaledValue);
 
   ///Vertical [16.0] forms an empty space.
-  EmptySpace.normalHeight({Key? key, bool isScaledValue = false})
+  EmptySpace.mediumHeight({Key? key, bool isScaledValue = false})
       : this._scaledSize(key: key, height: Sizes.medium, isScaledValue: isScaledValue);
 
   ///It creates an free space [24.0] vertically.
-  EmptySpace.semiBigHeight({Key? key, bool isScaledValue = false})
+  EmptySpace.bigHeight({Key? key, bool isScaledValue = false})
       : this._scaledSize(key: key, height: Sizes.big, isScaledValue: isScaledValue);
 
   ///Vertical [32.0] creates an empty space.
-  EmptySpace.bigHeight({Key? key, bool isScaledValue = false})
+  EmptySpace.veryBigHeight({Key? key, bool isScaledValue = false})
       : this._scaledSize(key: key, height: Sizes.veryBig, isScaledValue: isScaledValue);
 
   ///Horizontal [4.0] creates an empty space.
@@ -40,15 +40,19 @@ class EmptySpace extends SizedBox {
       : this._scaledSize(key: key, width: Sizes.extraSmall, isScaledValue: isScaledValue);
 
   ///Horizontal [8.0] creates an empty space.
-  EmptySpace.smallWidth({Key? key, bool isScaledValue = false})
-      : this._scaledSize(key: key, width: Sizes.prettyBig, isScaledValue: isScaledValue);
+  EmptySpace.prettySmallWidth({Key? key, bool isScaledValue = false})
+      : this._scaledSize(key: key, width: Sizes.prettySmall, isScaledValue: isScaledValue);
 
   ///Horizontal [16.0] creates an empty space.
-  EmptySpace.normalWidth({Key? key, bool isScaledValue = false})
+  EmptySpace.mediumWidth({Key? key, bool isScaledValue = false})
       : this._scaledSize(key: key, width: Sizes.medium, isScaledValue: isScaledValue);
 
-  ///Horizontal [32.0] creates an empty space.
+  ///Horizontal [24.0] creates an empty space.
   EmptySpace.bigWidth({Key? key, bool isScaledValue = false})
+      : this._scaledSize(key: key, width: Sizes.big, isScaledValue: isScaledValue);
+
+  ///Horizontal [32.0] creates an empty space.
+  EmptySpace.veryBigWidth({Key? key, bool isScaledValue = false})
       : this._scaledSize(key: key, width: Sizes.veryBig, isScaledValue: isScaledValue);
 
   EmptySpace._scaledSize({Key? key, Sizes? height, Sizes? width, bool isScaledValue = false})
