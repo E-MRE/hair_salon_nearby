@@ -44,5 +44,16 @@ abstract class  LocaleKeys {
   static const authType_business = 'authType.business';
   static const authType_user = 'authType.user';
   static const authType = 'authType';
+  static const login_welcome = 'login.welcome';
+  static const login_niceToSeeYou = 'login.niceToSeeYou';
+  static const login_emailTitle = 'login.emailTitle';
+  static const login_emailHint = 'login.emailHint';
+  static const login_passwordTitle = 'login.passwordTitle';
+  static const login_passwordHint = 'login.passwordHint';
+  static const login_forgotPassword = 'login.forgotPassword';
+  static const login_signIn = 'login.signIn';
+  static const login_notHaveAccount = 'login.notHaveAccount';
+  static const login_register = 'login.register';
+  static const login = 'login';
 
 }

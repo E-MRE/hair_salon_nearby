@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hair_salon_nearby/utils/decorations/circular_border_radius.dart';
 
 import '../../utils/decorations/app_edge_insets.dart';
 import '../../utils/decorations/rounded_border.dart';
@@ -63,28 +64,34 @@ class ThemeManager extends ThemeService {
         contentPadding: AppEdgeInsets.symmetric(horizontal: Sizes.medium, vertical: Sizes.extraSmallerThanBig),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: theme.colorTheme.colorScheme?.primary ?? AppColors.primary),
+          borderRadius: CircularBorderRadius.small(),
           gapPadding: Sizes.small.value,
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: theme.colorTheme.colorScheme?.error ?? AppColors.error),
+          borderRadius: CircularBorderRadius.small(),
           gapPadding: Sizes.small.value,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: theme.colorTheme.colorScheme?.outline ?? AppColors.outline),
+          borderRadius: CircularBorderRadius.small(),
           gapPadding: Sizes.small.value,
         ),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: theme.colorTheme.colorScheme?.shadow ?? AppColors.shadow),
+          borderRadius: CircularBorderRadius.small(),
           gapPadding: Sizes.small.value,
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: theme.colorTheme.colorScheme?.tertiaryContainer ?? AppColors.primaryBeautyCentre,
           ),
+          borderRadius: CircularBorderRadius.small(),
           gapPadding: Sizes.small.value,
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(color: theme.colorTheme.colorScheme?.outline ?? AppColors.outline),
+          borderRadius: CircularBorderRadius.small(),
           gapPadding: Sizes.small.value,
         ),
       ),

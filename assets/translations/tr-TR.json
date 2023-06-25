@@ -46,5 +46,17 @@
     "authType":{
         "business":"İşletme Girişi",
         "user":"Kullanıcı Girişi"
+    },
+    "login":{
+        "welcome":"Hoşgeldin,",
+        "niceToSeeYou":"Geri döndüğünü görmek güzel!",
+        "emailTitle":"E-posta",
+        "emailHint":"E-posta bilginizi giriniz",
+        "passwordTitle":"Şifre",
+        "passwordHint":"Şifrenizi giriniz",
+        "forgotPassword":"Şifremi Unuttum",
+        "signIn":"Giriş Yap",
+        "notHaveAccount":"Bir hesabın yok mu?",
+        "register":"Kayıt Ol"
     }
 }
