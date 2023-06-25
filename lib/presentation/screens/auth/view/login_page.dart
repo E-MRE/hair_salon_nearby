@@ -1,16 +1,17 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
-import '../../../../utils/decorations/app_edge_insets.dart';
+import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/empty_space.dart';
 import '../../../../utils/enum/auth_type.dart';
-import '../../../../utils/enum/sizes.dart';
-import '../../../widgets/buttons/primary_elevated_button.dart';
-import '../../../widgets/buttons/primary_outlined_button.dart';
+import '../../../widgets/buttons/selectable_container.dart';
 import '../../../widgets/images/app_text_logo_image_view.dart';
 import '../../../widgets/scaffolds/safe_page_view.dart';
 import '../../../widgets/texts/app_text.dart';
+
+part '../widgets/auth_type_selector.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
@@ -23,6 +24,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late final _authType;
+  @override
+  void initState() {
+    super.initState();
+    _selectAuthType(widget.authType);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafePageView(
@@ -42,36 +50,14 @@ class _LoginPageState extends State<LoginPage> {
           color: context.colorScheme.secondary,
         ),
         EmptySpace.mediumHeight(),
-        Row(
-          children: [
-            Expanded(
-              child: PrimaryOutlinedButton(
-                onPressed: () {},
-                padding: AppEdgeInsets.symmetric(horizontal: Sizes.medium, vertical: Sizes.prettySmall),
-                height: Sizes.extraBig,
-                child: AppText.labelMediumSemiBold(
-                  'Kullanıcı Girişi',
-                  context: context,
-                  color: context.colorScheme.primary,
-                ),
-              ),
-            ),
-            EmptySpace.mediumWidth(),
-            Expanded(
-              child: PrimaryElevatedButton(
-                onPressed: () {},
-                padding: AppEdgeInsets.symmetric(horizontal: Sizes.medium, vertical: Sizes.prettySmall),
-                height: Sizes.extraBig,
-                child: AppText.labelMediumSemiBold(
-                  'İşletme Girişi',
-                  context: context,
-                  color: context.colorScheme.background,
-                ),
-              ),
-            ),
-          ],
-        )
+        _AuthTypeSelector(authType: _authType, selectAuthType: _selectAuthType)
       ],
     ));
+  }
+
+  void _selectAuthType(AuthType authType) {
+    setState(() {
+      _authType = authType;
+    });
   }
 }

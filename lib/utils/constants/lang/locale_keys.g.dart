@@ -41,5 +41,8 @@ abstract class  LocaleKeys {
   static const onboarding_hairdresserLogin = 'onboarding.hairdresserLogin';
   static const onboarding_userLogin = 'onboarding.userLogin';
   static const onboarding = 'onboarding';
+  static const authType_business = 'authType.business';
+  static const authType_user = 'authType.user';
+  static const authType = 'authType';
 
 }

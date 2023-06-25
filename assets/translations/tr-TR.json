@@ -42,5 +42,9 @@
         "beautyCentresDescription":"Çevrendeki en popüler @:beautyCentres bir tık uzağında!",
         "hairdresserLogin":"Kuaför Girişi",
         "userLogin":"Kullanıcı Girişi"
+    },
+    "authType":{
+        "business":"İşletme Girişi",
+        "user":"Kullanıcı Girişi"
     }
 }
