@@ -2,19 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/app_padding.dart';
 import '../../../../utils/decorations/empty_space.dart';
+import '../../../../utils/enum/auth_type.dart';
 import '../../../../utils/enum/onboarding_option.dart';
 import '../../../../utils/enum/sizes.dart';
 import '../../../../utils/enum/text_line_type.dart';
+import '../../../../utils/extensions/build_context_extensions.dart';
 import '../../../../utils/mixins/onboarding_option_to_salon_converter_mixin.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
-import '../../../theme/abstract/theme_service.dart';
 import '../../../widgets/buttons/on_primary_outlined_button.dart';
 import '../../../widgets/buttons/primary_elevated_button.dart';
 import '../../../widgets/texts/app_text.dart';
@@ -97,6 +97,6 @@ mixin _OnboardPageStateMixin on State<OnboardPage> implements OnboardingOptionTo
   }
 
   void _setThemeByOption(OnboardingOption option) {
-    context.read<ThemeService>().setSalonType(convertToSalon(option));
+    context.themeService.setSalonType(convertToSalon(option));
   }
 }

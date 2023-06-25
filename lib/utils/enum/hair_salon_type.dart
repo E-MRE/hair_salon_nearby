@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../presentation/theme/abstract/base_color_theme.dart';
+import '../../presentation/theme/abstract/base_theme.dart';
 import '../../presentation/theme/concrete/color/beauty_centre_color_theme_light.dart';
 import '../../presentation/theme/concrete/color/men_color_theme_light.dart';
 import '../../presentation/theme/concrete/color/women_color_theme_light.dart';
+import '../../presentation/theme/concrete/custom_theme/beauty_centre_app_theme.dart';
+import '../../presentation/theme/concrete/custom_theme/men_app_theme.dart';
+import '../../presentation/theme/concrete/custom_theme/women_app_theme.dart';
 import '../constants/assets_constants.dart';
 import '../gen/colors.gen.dart';
 
@@ -39,6 +43,14 @@ extension HairSalonTypeExtension on HairSalonType {
       HairSalonType.men => MenColorThemeLight(),
       HairSalonType.women => WomenColorThemeLight(),
       HairSalonType.beautyCentre => BeautyCentreColorThemeLight(),
+    };
+  }
+
+  BaseTheme get getTheme {
+    return switch (this) {
+      HairSalonType.men => MenAppTheme(),
+      HairSalonType.women => WomenAppTheme(),
+      HairSalonType.beautyCentre => BeautyCentreAppTheme(),
     };
   }
 }
