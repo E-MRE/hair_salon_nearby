@@ -21,22 +21,20 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
-    UserLoginRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const UserLoginPage(),
-      );
-    },
-    BusinessLoginRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const BusinessLoginPage(),
-      );
-    },
     OnboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const OnboardPage(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      final args = routeData.argsAs<LoginRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: LoginPage(
+          key: args.key,
+          authType: args.authType,
+        ),
       );
     },
   };
@@ -57,34 +55,6 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [UserLoginPage]
-class UserLoginRoute extends PageRouteInfo<void> {
-  const UserLoginRoute({List<PageRouteInfo>? children})
-      : super(
-          UserLoginRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'UserLoginRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [BusinessLoginPage]
-class BusinessLoginRoute extends PageRouteInfo<void> {
-  const BusinessLoginRoute({List<PageRouteInfo>? children})
-      : super(
-          BusinessLoginRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'BusinessLoginRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [OnboardPage]
 class OnboardRoute extends PageRouteInfo<void> {
   const OnboardRoute({List<PageRouteInfo>? children})
@@ -96,4 +66,41 @@ class OnboardRoute extends PageRouteInfo<void> {
   static const String name = 'OnboardRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LoginPage]
+class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({
+    Key? key,
+    required AuthType authType,
+    List<PageRouteInfo>? children,
+  }) : super(
+          LoginRoute.name,
+          args: LoginRouteArgs(
+            key: key,
+            authType: authType,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
+
+  static const PageInfo<LoginRouteArgs> page = PageInfo<LoginRouteArgs>(name);
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({
+    this.key,
+    required this.authType,
+  });
+
+  final Key? key;
+
+  final AuthType authType;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key, authType: $authType}';
+  }
 }

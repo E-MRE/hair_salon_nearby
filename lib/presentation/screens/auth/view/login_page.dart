@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:hair_salon_nearby/utils/extensions/build_context_extensions.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../utils/decorations/app_edge_insets.dart';
 import '../../../../utils/decorations/empty_space.dart';
+import '../../../../utils/enum/auth_type.dart';
 import '../../../../utils/enum/sizes.dart';
 import '../../../widgets/buttons/primary_elevated_button.dart';
 import '../../../widgets/buttons/primary_outlined_button.dart';
@@ -13,17 +13,18 @@ import '../../../widgets/scaffolds/safe_page_view.dart';
 import '../../../widgets/texts/app_text.dart';
 
 @RoutePage()
-class UserLoginPage extends StatefulWidget {
-  const UserLoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key, required this.authType});
+
+  final AuthType authType;
 
   @override
-  State<UserLoginPage> createState() => _UserLoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _UserLoginPageState extends State<UserLoginPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.watchThemeService.theme.colorTheme.colorScheme ?? context.colorScheme;
     return SafePageView(
         body: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -33,12 +34,12 @@ class _UserLoginPageState extends State<UserLoginPage> {
         AppText.headlineMediumSemiBold(
           'Hoşgeldin,',
           context: context,
-          color: colorScheme.secondary,
+          color: context.colorScheme.secondary,
         ),
         AppText.titleLargeRegular(
           'Geri döndüğünü görmek güzel!',
           context: context,
-          color: colorScheme.secondary,
+          color: context.colorScheme.secondary,
         ),
         EmptySpace.mediumHeight(),
         Row(
@@ -51,7 +52,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                 child: AppText.labelMediumSemiBold(
                   'Kullanıcı Girişi',
                   context: context,
-                  color: colorScheme.primary,
+                  color: context.colorScheme.primary,
                 ),
               ),
             ),
@@ -64,7 +65,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                 child: AppText.labelMediumSemiBold(
                   'İşletme Girişi',
                   context: context,
-                  color: colorScheme.background,
+                  color: context.colorScheme.background,
                 ),
               ),
             ),

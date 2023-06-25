@@ -6,7 +6,15 @@ abstract class BaseTheme {
   BaseTextTheme get textTheme;
   BaseColorTheme colorTheme;
 
-  BaseTheme(this.salonType) : colorTheme = salonType.getColorTheme;
+  BaseTheme(this.salonType) : colorTheme = salonType.getColorTheme {
+    setSalonType(salonType);
+  }
+
+  BaseTheme.men() : this(HairSalonType.men);
+
+  BaseTheme.women() : this(HairSalonType.women);
+
+  BaseTheme.beauty() : this(HairSalonType.beautyCentre);
 
   HairSalonType salonType;
 

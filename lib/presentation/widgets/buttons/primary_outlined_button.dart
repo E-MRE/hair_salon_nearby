@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hair_salon_nearby/core/extensions/context_extensions.dart';
 
-import '../../../utils/enum/hair_salon_type.dart';
 import '../../../utils/enum/sizes.dart';
-import '../../../utils/extensions/build_context_extensions.dart';
 import '../../../utils/mixins/light_color_generator_by_salon_mixin.dart';
 import '../texts/app_text.dart';
 
@@ -16,46 +15,43 @@ class PrimaryOutlinedButton extends StatelessWidget with LightColorGeneratorBySa
     this.opacity = 1,
     this.radius = Sizes.small,
     this.height = Sizes.prettyLarge,
-    this.salonType = HairSalonType.women,
   });
 
   final EdgeInsets? padding;
   final String? text;
   final Widget? child;
   final VoidCallback? onPressed;
-  final HairSalonType salonType;
   final double opacity;
   final Sizes radius;
   final Sizes height;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.watchThemeService.theme.colorTheme.colorScheme;
     return OutlinedButton(
       onPressed: onPressed,
-      style: _buildStyle(context, colorScheme),
-      child: child ?? _buildText(context, colorScheme),
+      style: _buildStyle(context),
+      child: child ?? _buildText(context),
     );
   }
 
-  ButtonStyle _buildStyle(BuildContext context, ColorScheme? colorScheme) {
+  ButtonStyle _buildStyle(BuildContext context) {
     return OutlinedButton.styleFrom(
       padding: padding,
-      side: BorderSide(color: (_getBorderColor(colorScheme) ?? Colors.transparent).withOpacity(opacity)),
-      foregroundColor: _getPrimaryColor(colorScheme),
-      disabledForegroundColor: colorScheme?.surfaceVariant,
+      side: BorderSide(color: (_getBorderColor(context) ?? Colors.transparent).withOpacity(opacity)),
+      foregroundColor: _getPrimaryColor(context),
+      disabledForegroundColor: context.colorScheme.surfaceVariant,
       fixedSize: Size.fromHeight(height.value),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.value)),
     );
   }
 
-  AppText _buildText(BuildContext context, ColorScheme? colorScheme) {
-    return AppText.labelLargeSemiBold(text, context: context, color: _getPrimaryColor(colorScheme));
+  AppText _buildText(BuildContext context) {
+    return AppText.labelLargeSemiBold(text, context: context, color: _getPrimaryColor(context));
   }
 
-  Color? _getBorderColor(ColorScheme? colorScheme) =>
-      onPressed == null ? colorScheme?.surfaceVariant : colorScheme?.outline;
+  Color? _getBorderColor(BuildContext context) =>
+      onPressed == null ? context.colorScheme.surfaceVariant : context.colorScheme.outline;
 
-  Color? _getPrimaryColor(ColorScheme? colorScheme) =>
-      onPressed == null ? colorScheme?.surfaceVariant : colorScheme?.primary;
+  Color? _getPrimaryColor(BuildContext context) =>
+      onPressed == null ? context.colorScheme.surfaceVariant : context.colorScheme.primary;
 }

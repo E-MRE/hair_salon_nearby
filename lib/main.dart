@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 import 'presentation/theme/abstract/theme_service.dart';
-import 'presentation/theme/concrete/custom_theme/app_theme_light.dart';
 import 'presentation/theme/theme_manager.dart';
 import 'utils/constants/app_constants.dart';
 import 'utils/enum/localization_locales.dart';
@@ -29,7 +28,7 @@ void main() async {
       enabled: AppConstants.getDevicePreviewEnable(),
       builder: (context) => _appStart._setMultiProviderByChild(
         providers: [
-          ChangeNotifierProvider<ThemeService>(create: (_) => ThemeManager(theme: AppThemeLight(HairSalonType.women)))
+          ChangeNotifierProvider<ThemeService>(create: (_) => ThemeManager(theme: HairSalonType.women.getTheme))
         ],
         child: MyAppByAutoRoute(appRouter: _appRouter),
       ),

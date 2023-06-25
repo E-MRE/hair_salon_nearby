@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hair_salon_nearby/utils/extensions/build_context_extensions.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 extension DeviceExtension on BuildContext {
@@ -18,9 +19,9 @@ extension ContextExtension on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
   TextTheme get primaryTextTheme => Theme.of(this).primaryTextTheme;
 
-  ColorScheme get colorScheme => Theme.of(this).colorScheme;
+  ColorScheme get colorScheme => watchThemeService.theme.colorTheme.colorScheme ?? Theme.of(this).colorScheme;
 
-  ThemeData get appTheme => Theme.of(this);
+  ThemeData get appTheme => watchThemeService.createTheme;
 
   bool get isKeyBoardOpen => MediaQuery.of(this).viewInsets.bottom > 0;
   Brightness get appBrightness => MediaQuery.of(this).platformBrightness;
@@ -47,7 +48,7 @@ extension DeviceOSExtension on BuildContext {
   bool get isIOSDevice => Platform.isIOS;
   bool get isWindowsDevice => Platform.isWindows;
   bool get isLinuxDevice => Platform.isLinux;
-  bool get isMacOSDevicec => Platform.isMacOS;
+  bool get isMacOSDevice => Platform.isMacOS;
 }
 
 //Device Screen Type By Width(300-600-900)
@@ -86,7 +87,7 @@ extension PaddingExtension on BuildContext {
 extension RadiusExtension on BuildContext {
   Radius get lowRadius => Radius.circular(width * 0.02);
   Radius get normalRadius => Radius.circular(width * 0.05);
-  Radius get highadius => Radius.circular(width * 0.1);
+  Radius get highRadius => Radius.circular(width * 0.1);
 }
 
 extension BorderExtension on BuildContext {
