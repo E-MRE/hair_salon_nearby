@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/extensions/context_extensions.dart';
+import '../../../utils/decorations/empty_space.dart';
 import '../../../utils/enum/sizes.dart';
 import '../../../utils/mixins/light_color_generator_by_salon_mixin.dart';
 import '../texts/app_text.dart';
@@ -13,21 +14,29 @@ class PrimaryElevatedButton extends StatelessWidget with LightColorGeneratorBySa
     this.onPressed,
     this.padding,
     this.opacity = 1,
+    this.icon,
     this.radius = Sizes.small,
     this.height = Sizes.prettyLarge,
+    this.spaceBetweenTextAndIcon = Sizes.small,
   });
 
   final EdgeInsets? padding;
   final String? text;
   final Widget? child;
+  final Widget? icon;
   final VoidCallback? onPressed;
   final double opacity;
   final Sizes radius;
   final Sizes height;
+  final Sizes spaceBetweenTextAndIcon;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: onPressed, style: _buildStyle(context), child: child ?? _buildText(context));
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: _buildStyle(context),
+      child: child ?? (icon == null ? _buildText(context) : _buildTextAndIcon(context)),
+    );
   }
 
   ButtonStyle _buildStyle(BuildContext context) {
@@ -48,6 +57,17 @@ class PrimaryElevatedButton extends StatelessWidget with LightColorGeneratorBySa
       text,
       context: context,
       color: context.colorScheme.onPrimary.withOpacity(opacity),
+    );
+  }
+
+  Widget _buildTextAndIcon(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildText(context),
+        EmptySpace(width: spaceBetweenTextAndIcon),
+        icon ?? const SizedBox.shrink(),
+      ],
     );
   }
 }

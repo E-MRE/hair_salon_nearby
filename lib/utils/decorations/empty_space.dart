@@ -35,6 +35,10 @@ class EmptySpace extends SizedBox {
   EmptySpace.veryBigHeight({Key? key, bool isScaledValue = false})
       : this._scaledSize(key: key, height: Sizes.veryBig, isScaledValue: isScaledValue);
 
+  ///Vertical [48.0] creates an empty space.
+  EmptySpace.extraBigHeight({Key? key, bool isScaledValue = false})
+      : this._scaledSize(key: key, height: Sizes.extraLarge, isScaledValue: isScaledValue);
+
   ///Horizontal [4.0] creates an empty space.
   EmptySpace.extraSmallWidth({Key? key, bool isScaledValue = false})
       : this._scaledSize(key: key, width: Sizes.extraSmall, isScaledValue: isScaledValue);
