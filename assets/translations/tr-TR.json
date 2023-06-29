@@ -47,16 +47,39 @@
         "business":"İşletme Girişi",
         "user":"Kullanıcı Girişi"
     },
+    "gender":{
+        "value":"Cinsiyet",
+        "man":"Erkek",
+        "woman":"Kadın",
+        "choose":"Lütfen cinsiyetinizi seçin"
+    },
     "login":{
         "welcome":"Hoşgeldin,",
         "niceToSeeYou":"Geri döndüğünü görmek güzel!",
-        "emailTitle":"E-posta",
-        "emailHint":"E-posta bilginizi giriniz",
-        "passwordTitle":"Şifre",
-        "passwordHint":"Şifrenizi giriniz",
         "forgotPassword":"Şifremi Unuttum",
         "signIn":"Giriş Yap",
         "notHaveAccount":"Bir hesabın yok mu?",
         "register":"Kayıt Ol"
+    },
+    "register":{
+        "value":"Kayıt Ol",
+        "createAccount":"Hesap Oluştur",
+        "createAccountDescription":"Hesabınızı oluşturmanıza yardımcı olalım,  bu işlem uzun sürmeyecek.",
+        "user":"Kullanıcı Kayıt",
+        "business":"İşletme Kayıt"
+    },
+    "commonForm":{
+        "emailTitle":"E-posta",
+        "emailHint":"E-posta bilginizi giriniz",
+        "passwordTitle":"Şifre",
+        "passwordHint":"Şifrenizi giriniz"
+    },
+    "registerForm":{
+        "nameSurnameTitle":"Ad Soyad",
+        "nameSurnameHint":"Adınızı ve soyadınızı girin.",
+        "businessNameTitle":"İşletme Adı",
+        "businessNameHint":"İşletme adınızı giriniz",
+        "address":"Adres",
+        "addressHint":"Adres bilginizi yazın."
     }
 }

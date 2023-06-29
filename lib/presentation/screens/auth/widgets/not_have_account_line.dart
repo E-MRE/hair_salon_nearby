@@ -1,7 +1,9 @@
 part of '../view/login_page.dart';
 
 class _NotHaveAccountLine extends StatelessWidget {
-  const _NotHaveAccountLine();
+  const _NotHaveAccountLine(this.authType);
+
+  final AuthType authType;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class _NotHaveAccountLine extends StatelessWidget {
           color: context.colorScheme.onBackground,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => _navigateRegister(context),
           child: AppText.labelLargeSemiBold(
             LocaleKeys.login_register.tr(),
             context: context,
@@ -24,5 +26,9 @@ class _NotHaveAccountLine extends StatelessWidget {
         )
       ],
     );
+  }
+
+  void _navigateRegister(BuildContext context) {
+    context.router.navigate(RegisterRoute(authType: authType));
   }
 }

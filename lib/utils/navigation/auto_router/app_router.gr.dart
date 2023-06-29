@@ -37,6 +37,22 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    RegisterRoute.name: (routeData) {
+      final args = routeData.argsAs<RegisterRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RegisterPage(
+          key: args.key,
+          authType: args.authType,
+        ),
+      );
+    },
+    MenuRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MenuPage(),
+      );
+    },
   };
 }
 
@@ -103,4 +119,56 @@ class LoginRouteArgs {
   String toString() {
     return 'LoginRouteArgs{key: $key, authType: $authType}';
   }
+}
+
+/// generated route for
+/// [RegisterPage]
+class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
+  RegisterRoute({
+    Key? key,
+    required AuthType authType,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RegisterRoute.name,
+          args: RegisterRouteArgs(
+            key: key,
+            authType: authType,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RegisterRoute';
+
+  static const PageInfo<RegisterRouteArgs> page =
+      PageInfo<RegisterRouteArgs>(name);
+}
+
+class RegisterRouteArgs {
+  const RegisterRouteArgs({
+    this.key,
+    required this.authType,
+  });
+
+  final Key? key;
+
+  final AuthType authType;
+
+  @override
+  String toString() {
+    return 'RegisterRouteArgs{key: $key, authType: $authType}';
+  }
+}
+
+/// generated route for
+/// [MenuPage]
+class MenuRoute extends PageRouteInfo<void> {
+  const MenuRoute({List<PageRouteInfo>? children})
+      : super(
+          MenuRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MenuRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

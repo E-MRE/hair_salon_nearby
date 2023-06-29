@@ -6,28 +6,29 @@ import '../../../../core/extensions/context_extensions.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/empty_space.dart';
 import '../../../../utils/enum/auth_type.dart';
+import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/buttons/big_primary_elevated_button.dart';
 import '../../../widgets/buttons/selectable_container.dart';
 import '../../../widgets/images/app_text_logo_image_view.dart';
 import '../../../widgets/scaffolds/safe_page_view.dart';
 import '../../../widgets/text_fields/title_text_form_field.dart';
 import '../../../widgets/texts/app_text.dart';
+import '../utils/auth_page.dart';
+import '../utils/auth_type_state_operation.dart';
 
 part '../widgets/auth_type_selector.dart';
 part '../widgets/login_form_area.dart';
 part '../widgets/not_have_account_line.dart';
 
 @RoutePage()
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.authType});
-
-  final AuthType authType;
+class LoginPage extends AuthStatefulPage {
+  const LoginPage({super.key, required super.authType});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with _LoginPageStateMixin {
+class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin {
   @override
   Widget build(BuildContext context) {
     return SafePageView(
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> with _LoginPageStateMixin {
             _buildTitle(context),
             _buildSubTitle(context),
             EmptySpace.bigHeight(),
-            _AuthTypeSelector(authType: _authType, selectAuthType: _selectAuthType),
+            _AuthTypeSelector(authType: authType, selectAuthType: selectAuthType),
             EmptySpace.bigHeight(),
             const _LoginFormArea(),
             EmptySpace.mediumHeight(),
@@ -48,7 +49,7 @@ class _LoginPageState extends State<LoginPage> with _LoginPageStateMixin {
             EmptySpace.extraBigHeight(),
             _buildSignInButton(context),
             EmptySpace.extraBigHeight(),
-            const _NotHaveAccountLine(),
+            _NotHaveAccountLine(authType),
           ],
         ),
       ),
@@ -92,20 +93,5 @@ class _LoginPageState extends State<LoginPage> with _LoginPageStateMixin {
       text: LocaleKeys.login_signIn.tr(),
       icon: Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary),
     );
-  }
-}
-
-mixin _LoginPageStateMixin on State<LoginPage> {
-  late AuthType _authType;
-  @override
-  void initState() {
-    super.initState();
-    _selectAuthType(widget.authType);
-  }
-
-  void _selectAuthType(AuthType authType) {
-    setState(() {
-      _authType = authType;
-    });
   }
 }
