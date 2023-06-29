@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../utils/decorations/empty_space.dart';
+import '../../../utils/enum/text_line_type.dart';
 import '../texts/app_text.dart';
 
 class TitleTextFormField extends StatefulWidget {
@@ -13,12 +14,16 @@ class TitleTextFormField extends StatefulWidget {
     this.isObscureText = false,
     this.controller,
     this.focusNode,
+    this.minLines,
+    this.maxLines,
   });
 
   final String title;
   final String? hintText;
   final String? initialValue;
 
+  final int? minLines;
+  final int? maxLines;
   final bool isObscureText;
 
   final TextEditingController? controller;
@@ -50,6 +55,11 @@ class _TitleTextFormFieldState extends State<TitleTextFormField> {
           initialValue: widget.initialValue,
           focusNode: widget.focusNode,
           controller: widget.controller,
+          minLines: widget.minLines,
+          maxLines: widget.isObscureText
+              ? TextLineType.loose.value
+              : (widget.minLines != null ? widget.maxLines ?? widget.minLines : widget.maxLines),
+          keyboardType: widget.minLines != null ? TextInputType.multiline : null,
           decoration: InputDecoration(
             hintText: widget.hintText,
             suffixIcon: widget.isObscureText ? _buildObscureIconButton() : null,

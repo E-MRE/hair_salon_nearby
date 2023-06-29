@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../presentation/screens/auth/view/login_page.dart';
 import '../../../presentation/screens/auth/view/register_page.dart';
+import '../../../presentation/screens/menu/view/menu_page.dart';
 import '../../../presentation/screens/onboard/view/onboard_page.dart';
 import '../../../presentation/screens/splash/view/splash_page.dart';
 import '../../constants/router_name_constants.dart';
@@ -18,5 +19,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: OnboardRoute.page, path: RouterPathConstants.onboard),
         AutoRoute(page: LoginRoute.page, path: RouterPathConstants.login),
         AutoRoute(page: RegisterRoute.page, path: RouterPathConstants.register),
+        AutoRoute(page: MenuRoute.page, path: RouterPathConstants.menu),
       ];
 }

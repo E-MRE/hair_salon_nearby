@@ -47,6 +47,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    MenuRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MenuPage(),
+      );
+    },
   };
 }
 
@@ -151,4 +157,18 @@ class RegisterRouteArgs {
   String toString() {
     return 'RegisterRouteArgs{key: $key, authType: $authType}';
   }
+}
+
+/// generated route for
+/// [MenuPage]
+class MenuRoute extends PageRouteInfo<void> {
+  const MenuRoute({List<PageRouteInfo>? children})
+      : super(
+          MenuRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MenuRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
