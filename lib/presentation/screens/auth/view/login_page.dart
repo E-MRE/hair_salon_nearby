@@ -89,9 +89,14 @@ class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin 
 
   BigPrimaryElevatedButton _buildSignInButton(BuildContext context) {
     return BigPrimaryElevatedButton(
-      onPressed: () {},
+      onPressed: _login,
       text: LocaleKeys.login_signIn.tr(),
       icon: Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary),
     );
+  }
+
+  void _login() {
+    //TODO: add login operations
+    context.router.replace(const MenuRoute());
   }
 }
