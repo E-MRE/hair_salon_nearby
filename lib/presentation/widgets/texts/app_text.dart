@@ -59,7 +59,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -89,7 +89,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -119,7 +119,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -149,7 +149,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -179,7 +179,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -209,7 +209,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -239,7 +239,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -269,7 +269,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -299,7 +299,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -332,7 +332,7 @@ class AppText extends Text {
     required BuildContext context,
     TextAlign align = TextAlign.left,
     FontWeight fontWeight = FontWeight.w400,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -362,7 +362,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -392,7 +392,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',
@@ -422,7 +422,7 @@ class AppText extends Text {
     TextDecoration? decoration,
     required BuildContext context,
     TextAlign align = TextAlign.left,
-    TextOverflow overflow = TextOverflow.ellipsis,
+    TextOverflow? overflow,
   }) : super(
           key: key,
           data ?? '',

@@ -37,6 +37,16 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    RegisterRoute.name: (routeData) {
+      final args = routeData.argsAs<RegisterRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RegisterPage(
+          key: args.key,
+          authType: args.authType,
+        ),
+      );
+    },
   };
 }
 
@@ -102,5 +112,43 @@ class LoginRouteArgs {
   @override
   String toString() {
     return 'LoginRouteArgs{key: $key, authType: $authType}';
+  }
+}
+
+/// generated route for
+/// [RegisterPage]
+class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
+  RegisterRoute({
+    Key? key,
+    required AuthType authType,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RegisterRoute.name,
+          args: RegisterRouteArgs(
+            key: key,
+            authType: authType,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RegisterRoute';
+
+  static const PageInfo<RegisterRouteArgs> page =
+      PageInfo<RegisterRouteArgs>(name);
+}
+
+class RegisterRouteArgs {
+  const RegisterRouteArgs({
+    this.key,
+    required this.authType,
+  });
+
+  final Key? key;
+
+  final AuthType authType;
+
+  @override
+  String toString() {
+    return 'RegisterRouteArgs{key: $key, authType: $authType}';
   }
 }
