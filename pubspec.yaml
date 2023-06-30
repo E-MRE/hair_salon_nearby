@@ -28,6 +28,8 @@ dependencies:
 
   #Image Operations
   flutter_svg:
+  cached_network_image: ^3.2.3
+  like_button: ^2.0.5
 
   #Input
   mask_input_formatter:
@@ -54,6 +56,7 @@ dependencies:
   
   #Navigation
   auto_route: ^7.1.0
+  stylish_bottom_bar: ^1.0.3
 
   #Version compare
   version_comparator: ^1.0.0
@@ -62,7 +65,7 @@ dependencies:
   responsive_framework: ^1.0.0
   responsive_builder:
   flutter_screenutil: ^5.6.0
-  flutter_native_splash: ^2.2.18
+  flutter_native_splash: ^2.3.1
 
   #Device
   device_preview:
@@ -139,6 +142,7 @@ flutter:
     - assets/images/png/ic_primary_beauty_centre_logo_and_name.png
     - assets/images/png/ic_women_logo_and_name.png
     - assets/images/png/ic_primary_women_logo_and_name.png
+    - assets/images/png/ic_advertisement_area.png
     - assets/images/jpg/
     - assets/fonts/
     - assets/translations/

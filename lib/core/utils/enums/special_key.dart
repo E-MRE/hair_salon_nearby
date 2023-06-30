@@ -3,6 +3,8 @@ enum SpecialKey {
   space(' '),
   dash('-'),
   dot('.'),
+  centeredDot('·'),
+  flame('🔥'),
   slash('/'),
   backSlash('\\'),
   underDash('_');
