@@ -135,6 +135,9 @@ class $AssetsImagesJpgGen {
 class $AssetsImagesPngGen {
   const $AssetsImagesPngGen();
 
+  /// File path: assets/images/png/ic_advertisement_area.png
+  AssetGenImage get icAdvertisementArea => const AssetGenImage('assets/images/png/ic_advertisement_area.png');
+
   /// File path: assets/images/png/ic_beauty_centre_background.png
   AssetGenImage get icBeautyCentreBackground =>
       const AssetGenImage('assets/images/png/ic_beauty_centre_background.png');
@@ -176,6 +179,7 @@ class $AssetsImagesPngGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        icAdvertisementArea,
         icBeautyCentreBackground,
         icBeautyCentreLogoAndName,
         icLogo,
@@ -193,11 +197,49 @@ class $AssetsImagesPngGen {
 class $AssetsImagesSvgGen {
   const $AssetsImagesSvgGen();
 
+  /// File path: assets/images/svg/ic_bookmark.svg
+  SvgGenImage get icBookmark => const SvgGenImage('assets/images/svg/ic_bookmark.svg');
+
+  /// File path: assets/images/svg/ic_explore.svg
+  SvgGenImage get icExplore => const SvgGenImage('assets/images/svg/ic_explore.svg');
+
+  /// File path: assets/images/svg/ic_filter_settings.svg
+  SvgGenImage get icFilterSettings => const SvgGenImage('assets/images/svg/ic_filter_settings.svg');
+
+  /// File path: assets/images/svg/ic_home.svg
+  SvgGenImage get icHome => const SvgGenImage('assets/images/svg/ic_home.svg');
+
+  /// File path: assets/images/svg/ic_mapping.svg
+  SvgGenImage get icMapping => const SvgGenImage('assets/images/svg/ic_mapping.svg');
+
+  /// File path: assets/images/svg/ic_play_video.svg
+  SvgGenImage get icPlayVideo => const SvgGenImage('assets/images/svg/ic_play_video.svg');
+
+  /// File path: assets/images/svg/ic_profile.svg
+  SvgGenImage get icProfile => const SvgGenImage('assets/images/svg/ic_profile.svg');
+
   /// File path: assets/images/svg/ic_rounded_square.svg
   SvgGenImage get icRoundedSquare => const SvgGenImage('assets/images/svg/ic_rounded_square.svg');
 
+  /// File path: assets/images/svg/ic_search.svg
+  SvgGenImage get icSearch => const SvgGenImage('assets/images/svg/ic_search.svg');
+
+  /// File path: assets/images/svg/ic_start.svg
+  SvgGenImage get icStart => const SvgGenImage('assets/images/svg/ic_start.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [icRoundedSquare];
+  List<SvgGenImage> get values => [
+        icBookmark,
+        icExplore,
+        icFilterSettings,
+        icHome,
+        icMapping,
+        icPlayVideo,
+        icProfile,
+        icRoundedSquare,
+        icSearch,
+        icStart
+      ];
 }
 
 class Assets {

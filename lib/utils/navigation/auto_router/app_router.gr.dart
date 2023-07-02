@@ -21,10 +21,14 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
-    OnboardRoute.name: (routeData) {
+    RegisterRoute.name: (routeData) {
+      final args = routeData.argsAs<RegisterRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const OnboardPage(),
+        child: RegisterPage(
+          key: args.key,
+          authType: args.authType,
+        ),
       );
     },
     LoginRoute.name: (routeData) {
@@ -37,14 +41,10 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    RegisterRoute.name: (routeData) {
-      final args = routeData.argsAs<RegisterRouteArgs>();
+    OnboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: RegisterPage(
-          key: args.key,
-          authType: args.authType,
-        ),
+        child: const OnboardPage(),
       );
     },
     MenuRoute.name: (routeData) {
@@ -71,17 +71,41 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [OnboardPage]
-class OnboardRoute extends PageRouteInfo<void> {
-  const OnboardRoute({List<PageRouteInfo>? children})
-      : super(
-          OnboardRoute.name,
+/// [RegisterPage]
+class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
+  RegisterRoute({
+    Key? key,
+    required AuthType authType,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RegisterRoute.name,
+          args: RegisterRouteArgs(
+            key: key,
+            authType: authType,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'OnboardRoute';
+  static const String name = 'RegisterRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<RegisterRouteArgs> page =
+      PageInfo<RegisterRouteArgs>(name);
+}
+
+class RegisterRouteArgs {
+  const RegisterRouteArgs({
+    this.key,
+    required this.authType,
+  });
+
+  final Key? key;
+
+  final AuthType authType;
+
+  @override
+  String toString() {
+    return 'RegisterRouteArgs{key: $key, authType: $authType}';
+  }
 }
 
 /// generated route for
@@ -122,41 +146,17 @@ class LoginRouteArgs {
 }
 
 /// generated route for
-/// [RegisterPage]
-class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
-  RegisterRoute({
-    Key? key,
-    required AuthType authType,
-    List<PageRouteInfo>? children,
-  }) : super(
-          RegisterRoute.name,
-          args: RegisterRouteArgs(
-            key: key,
-            authType: authType,
-          ),
+/// [OnboardPage]
+class OnboardRoute extends PageRouteInfo<void> {
+  const OnboardRoute({List<PageRouteInfo>? children})
+      : super(
+          OnboardRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'RegisterRoute';
+  static const String name = 'OnboardRoute';
 
-  static const PageInfo<RegisterRouteArgs> page =
-      PageInfo<RegisterRouteArgs>(name);
-}
-
-class RegisterRouteArgs {
-  const RegisterRouteArgs({
-    this.key,
-    required this.authType,
-  });
-
-  final Key? key;
-
-  final AuthType authType;
-
-  @override
-  String toString() {
-    return 'RegisterRouteArgs{key: $key, authType: $authType}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

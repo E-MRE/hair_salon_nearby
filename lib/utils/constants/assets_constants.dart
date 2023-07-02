@@ -14,8 +14,8 @@ class AssetsConstants {
 
   AssetsConstants._init();
 
-  //TODO: Check and set asset getters. Then remove this comment.
   $AssetsFontsGen get getFonts => Assets.fonts;
   $AssetsImagesPngGen get getPngImages => Assets.images.png;
+  $AssetsImagesSvgGen get getSvgImages => Assets.images.svg;
   $AssetsTranslationsGen get getTranslations => Assets.translations;
 }
