@@ -25,6 +25,7 @@ dependencies:
   #Cache & Storage
   flutter_secure_storage:
   hive_flutter:
+  get_it: ^7.6.0
 
   #Image Operations
   flutter_svg:
