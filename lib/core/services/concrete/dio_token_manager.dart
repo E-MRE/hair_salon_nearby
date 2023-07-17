@@ -8,19 +8,20 @@ import '../abstract/dio_remote_data_service.dart';
 import '../abstract/token_service.dart';
 import '../models/token_model.dart';
 import '../models/token_request_model.dart';
+import 'dio_remote_data_manager.dart';
 import 'hive_cache_manager.dart';
 
 class DioTokenManager extends TokenService {
   final CacheService _cacheService;
   CacheService get cacheService => _cacheService;
 
-  DioRemoteDataService? _networkService;
+  DioRemoteDataService _networkService;
 
   final String _getTokenError = LocaleKeys.token_getError.tr();
 
   DioTokenManager({DioRemoteDataService? networkService, CacheService? cacheService})
       : _cacheService = cacheService ?? HiveCacheManager.instance,
-        _networkService = networkService;
+        _networkService = networkService ?? DioRemoteDataManager.byDefault();
 
   void setService(DioRemoteDataService service) => _networkService = service;
 
@@ -39,7 +40,7 @@ class DioTokenManager extends TokenService {
       if (response.success && response.data != null) {
         setConstValuesByModel(response.data!);
         await saveTokenToLocale(response.data!);
-        _networkService?.addBearerTokenToHeader(response.data!.accessToken ?? '');
+        _networkService.addBearerTokenToHeader(response.data!.accessToken ?? '');
         return DataResult.success(data: response.data);
       }
 
