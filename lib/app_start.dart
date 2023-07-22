@@ -1,6 +1,5 @@
 part of 'main.dart';
 
-//TODO: check this class. it calls before app start.
 class _AppStart {
   final String _localizationAssetPath = 'assets/translations';
   Future<void> init() async {
@@ -10,6 +9,7 @@ class _AppStart {
     await _environmentLoad();
     await EasyLocalization.ensureInitialized();
     _setDeviceOrientations();
+    GetItInjectionContainer.instance.register();
   }
 
   MultiProvider _setMultiProviderByChild({required List<SingleChildWidget> providers, required Widget child}) {
