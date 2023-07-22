@@ -4,12 +4,12 @@ class ApiTokenContext extends TokenContext {
   ApiTokenContext() : super();
 
   @override
-  DateTime convertStringToDateTime(String? dateString) {
+  DateTime convertStringToDateTime(String? dateString, {DateTime? defaultDate, int defaultYear = 1}) {
     try {
-      final date = DateTime.parse(dateString ?? tokenDateFormat);
+      final date = DateTime.parse(dateString ?? '');
       return date;
     } catch (_) {
-      return DateTime(1);
+      return defaultDate ?? DateTime(defaultYear);
     }
   }
 }

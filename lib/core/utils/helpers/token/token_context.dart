@@ -20,7 +20,7 @@ abstract class TokenContext {
         _tokenExpirationDate = DateTime(1),
         _refreshTokenExpirationDate = DateTime(1);
 
-  DateTime convertStringToDateTime(String? dateString);
+  DateTime convertStringToDateTime(String? dateString, {DateTime? defaultDate, int defaultYear = 1});
 
   set token(String token) {
     _token = _complicateText(token);
