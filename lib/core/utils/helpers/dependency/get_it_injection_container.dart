@@ -14,7 +14,9 @@ class GetItInjectionContainer extends InjectionContainer {
 
   @override
   void register({RegisterDependenciesFunction? customInjections}) {
-    injector.registerLazySingleton<TokenContext>(() => ApiTokenContext());
+    if (!injector.isRegistered<TokenContext>()) {
+      injector.registerLazySingleton<TokenContext>(() => ApiTokenContext());
+    }
 
     customInjections?.call(injector);
   }

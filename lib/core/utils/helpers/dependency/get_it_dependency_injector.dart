@@ -40,7 +40,12 @@ class GetItDependencyInjector implements DependencyInjector {
     bool? signalsReady,
     DisposingFunc<T>? dispose,
   }) {
-    return registerSingleton<T>(instance, instanceName: instanceName, signalsReady: signalsReady, dispose: dispose);
+    return _injector.registerSingleton<T>(
+      instance,
+      instanceName: instanceName,
+      signalsReady: signalsReady,
+      dispose: dispose,
+    );
   }
 
   @override
@@ -54,7 +59,11 @@ class GetItDependencyInjector implements DependencyInjector {
     String? instanceName,
     FutureOr Function(T p1)? disposingFunction,
   }) {
-    return resetLazySingleton<T>(instance: instance, instanceName: instanceName, disposingFunction: disposingFunction);
+    return _injector.resetLazySingleton<T>(
+      instance: instance,
+      instanceName: instanceName,
+      disposingFunction: disposingFunction,
+    );
   }
 
   @override
@@ -63,6 +72,10 @@ class GetItDependencyInjector implements DependencyInjector {
     String? instanceName,
     FutureOr Function(T p1)? disposingFunction,
   }) {
-    return unregister<T>(instance: instance, instanceName: instanceName, disposingFunction: disposingFunction);
+    return _injector.unregister<T>(
+      instance: instance,
+      instanceName: instanceName,
+      disposingFunction: disposingFunction,
+    );
   }
 }
