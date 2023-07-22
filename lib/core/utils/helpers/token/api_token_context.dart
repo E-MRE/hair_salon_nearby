@@ -1,7 +1,7 @@
-import 'token_controller.dart';
+import 'token_context.dart';
 
-class ApiTokenController extends TokenController {
-  ApiTokenController() : super();
+class ApiTokenContext extends TokenContext {
+  ApiTokenContext() : super();
 
   @override
   DateTime convertStringToDateTime(String? dateString) {

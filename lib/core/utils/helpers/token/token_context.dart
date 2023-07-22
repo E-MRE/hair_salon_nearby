@@ -1,7 +1,7 @@
 const String _secretKey = '**=?=**';
 const String _kEmpty = '';
 
-abstract class TokenController {
+abstract class TokenContext {
   String _token;
   String _refreshToken;
   DateTime _tokenExpirationDate;
@@ -14,7 +14,7 @@ abstract class TokenController {
 
   final String tokenDateFormat;
 
-  TokenController({this.tokenDateFormat = '0001-01-01T01:01:01.0000000+00:00'})
+  TokenContext({this.tokenDateFormat = '0001-01-01T01:01:01.0000000+00:00'})
       : _token = _kEmpty,
         _refreshToken = _kEmpty,
         _tokenExpirationDate = DateTime(1),
