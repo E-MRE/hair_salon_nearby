@@ -49,4 +49,12 @@ abstract class TokenContext {
     var simpleText = text.replaceAll(_secretKey, _kEmpty);
     return simpleText.split(_kEmpty).reversed.join();
   }
+
+  bool isTokenAvailable({int delaySeconds = 10}) {
+    if (token.isEmpty) return false;
+
+    var difference = DateTime.now().difference(tokenExpirationDate).inSeconds;
+
+    return difference < delaySeconds;
+  }
 }

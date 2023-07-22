@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 import '../../../utils/constants/endpoint_constants.dart';
+import '../../utils/helpers/dependency/core_dependencies.dart';
 import '../abstract/token_service.dart';
-import '../constants/api_constants.dart';
 
 class TokenExpirationInterceptor<TRemote> extends Interceptor {
   final TokenService tokenService;
@@ -32,8 +32,8 @@ class TokenExpirationInterceptor<TRemote> extends Interceptor {
   }
 
   Future<String> _checkExpirationAndGetToken() async {
-    if (ApiConstants.token.isNotEmpty && tokenService.isTokenAvailable(ApiConstants.tokenExpirationDate)) {
-      return ApiConstants.token;
+    if (kTokenContext.isTokenAvailable()) {
+      return kTokenContext.token;
     }
 
     final result = await tokenService.getTokenAny(remoteRequest: remoteTokenRequest);
