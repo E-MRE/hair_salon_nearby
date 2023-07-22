@@ -1,38 +1,48 @@
 import 'package:dio/dio.dart';
 
+import '../../utils/enums/process_status.dart';
 import 'api_response.dart';
+import 'friendly_message_model.dart';
 
 abstract class DioApiResponse<TResponse> extends Response<TResponse> implements ApiResponse<TResponse> {
-  @override
-  Object? get error;
+  final DioErrorType? dioError;
 
-  DioErrorType? get dioError;
-
-  StackTrace? get stackTrace;
-
-  @override
-  bool get isSuccessAndDataExists => success && data != null;
+  final StackTrace? stackTrace;
 
   @override
   bool get isNotSuccessOrDataNotExists => !isSuccessAndDataExists;
 
   @override
+  final String message;
+
+  @override
+  final FriendlyMessageModel? friendlyMessage;
+
+  @override
   bool get isNotSuccess => !success;
 
   @override
-  String get message => statusMessage ?? '';
+  bool get isSuccessAndDataExists => success && data != null;
+
   @override
-  final bool success;
+  final ProcessStatus? processStatus;
+
+  @override
+  bool get success => (processStatus ?? ProcessStatus.undefined) == ProcessStatus.success;
 
   DioApiResponse({
     required super.requestOptions,
-    required String message,
-    required this.success,
-    super.data,
-    super.extra,
-    super.headers,
+    String? statusMessage,
+    this.friendlyMessage,
+    this.processStatus,
     super.isRedirect,
-    super.redirects,
     super.statusCode,
-  }) : super(statusMessage: message);
+    super.redirects,
+    this.stackTrace,
+    super.headers,
+    this.dioError,
+    super.extra,
+    super.data,
+  })  : message = friendlyMessage?.message ?? statusMessage ?? '',
+        super(statusMessage: friendlyMessage?.message ?? statusMessage ?? '');
 }

@@ -1,34 +1,28 @@
+import 'package:hair_salon_nearby/core/services/models/friendly_message_model.dart';
+
+import '../../utils/enums/process_status.dart';
 import '../../utils/results/data_result.dart';
 
 abstract class ApiResponse<TResponse> extends DataResult<TResponse> {
   @override
-  TResponse? get data;
+  String get message => friendlyMessage?.message ?? '';
+
+  final FriendlyMessageModel? friendlyMessage;
+
   @override
-  int? get statusCode;
-  @override
-  String get message;
-  @override
-  bool get success;
+  bool get success => (processStatus ?? ProcessStatus.undefined) == ProcessStatus.success;
 
-  Object? get error;
+  final ProcessStatus? processStatus;
 
-  ApiResponse.success({super.data, super.statusCode, super.message}) : super.success();
-
-  ApiResponse.error({required super.message, super.data, super.statusCode}) : super.error();
-
-  ApiResponse({
-    required super.data,
-    required super.message,
-    required super.statusCode,
-    required super.success,
-  }) : super();
+  ApiResponse({super.data, this.friendlyMessage, this.processStatus})
+      : super(
+          message: friendlyMessage?.message ?? '',
+          success: (processStatus ?? ProcessStatus.undefined) == ProcessStatus.success,
+        );
 }
 
-//TODO-INITIAL-PROJECT: Check Response json keys & update with yours.
 mixin ApiResponseJsonKeyMixin<TResponse> on ApiResponse<TResponse> {
-  static const String dataKey = 'data';
-  static const String messageKey = 'message';
-  static const String successKey = 'success';
-  static const String errorKey = 'error';
-  static const String statusCodeKey = 'statusCode';
+  static const String dataKey = 'payload';
+  static const String messageKey = 'friendlyMessage';
+  static const String statusKey = 'processStatus';
 }

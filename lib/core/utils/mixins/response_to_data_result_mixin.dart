@@ -7,7 +7,6 @@ class ResponseToDataResultMixin {
       success: apiResponse.success,
       data: apiResponse.data,
       message: apiResponse.message,
-      statusCode: apiResponse.statusCode,
     );
   }
 }

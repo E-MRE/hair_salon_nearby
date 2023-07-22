@@ -2,7 +2,10 @@ import 'package:dio/dio.dart';
 
 import '../../utils/enums/duration_types.dart';
 import '../../utils/enums/environment/dot_environment_type.dart';
+import '../../utils/enums/global_error_key.dart';
+import '../../utils/enums/process_status.dart';
 import '../../utils/enums/request_type.dart';
+import '../../utils/helpers/converters/dio_api_response_json_converter.dart';
 import '../../utils/mixins/http_status_code_controller_mixin.dart';
 import '../../utils/results/data_result.dart';
 import '../abstract/dio_remote_data_service.dart';
@@ -14,6 +17,8 @@ import '../models/api_cancel_token.dart';
 import '../models/api_request_model.dart';
 import '../models/dio_api_response.dart';
 import '../models/dio_api_response_model.dart';
+import '../models/friendly_message_model.dart';
+import '../models/parameters/dio_api_response_convert_parameter_model.dart';
 import '../models/token_model.dart';
 import 'dio_token_manager.dart';
 
@@ -120,6 +125,8 @@ class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeContr
     Options? options,
     dynamic data,
   }) async {
+    final responseJsonConverter = DioApiResponseJsonConverter<T, DioApiResponseConvertParameterModel<T>>();
+
     try {
       setOptions((options ?? getOptions).copyWith(method: requestType.value));
 
@@ -133,23 +140,29 @@ class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeContr
         path,
       );
 
-      final statusCodeResult = checkStatusCode(response.statusCode ?? -1);
-
-      if (statusCodeResult.success && response.data != null) {
-        if (!isResponseSaltData(response.data)) {
-          final isSuccess = statusCodeResult.success && response.data != null;
-          return DioApiResponseModel.fromResponse(response, isSuccess);
-        }
-
-        final model = fromMap?.call(response.data);
-        response.data = model;
-      }
-
-      return DioApiResponseModel.fromResponse(response, statusCodeResult.success);
+      return responseJsonConverter.fromJson<DioApiResponseConvertParameterModel<T>>(
+        DioApiResponseConvertParameterModel<T>(response: response, parser: (json) => fromMap?.call(json)),
+      );
     } on DioError catch (error) {
-      return DioApiResponseModel.fromDioError(error);
+      return responseJsonConverter.fromJson<DioApiResponseConvertParameterModel<T>>(
+        DioApiResponseConvertParameterModel<T>(
+          response: error.response ?? Response(requestOptions: error.requestOptions),
+          parser: (json) => fromMap?.call(json),
+          defaultMessage: error.message,
+          stackTrace: error.stackTrace,
+          dioErrorType: error.type,
+        ),
+      );
     } catch (exception) {
-      return DioApiResponseModel.fromException(exception);
+      return DioApiResponseModel<T>(
+        friendlyMessage: FriendlyMessageModel(message: exception.toString()),
+        statusCode: GlobalErrorKey.networkException.value,
+        processStatus: ProcessStatus.undefined,
+        statusMessage: exception.toString(),
+        requestOptions: RequestOptions(),
+        dioError: DioErrorType.unknown,
+        stackTrace: StackTrace.empty,
+      );
     }
   }
 
