@@ -14,19 +14,18 @@ import 'result.dart';
 ///```
 class DataResult<TData> extends Result {
   final TData? data;
-  final int? statusCode;
 
   bool get isSuccessAndDataExists => success && data != null;
 
   bool get isNotSuccessOrDataNotExists => !isSuccessAndDataExists;
 
-  DataResult({required super.success, this.data, required super.message, this.statusCode}) : super();
+  DataResult({required super.success, this.data, required super.message}) : super();
 
-  DataResult.success({required this.data, super.message, this.statusCode}) : super.success();
+  DataResult.success({required this.data, super.message}) : super.success();
 
-  DataResult.successByMessage({required this.data, required super.message, this.statusCode}) : super.successByMessage();
+  DataResult.successByMessage({required this.data, required super.message}) : super.successByMessage();
 
-  DataResult.error({this.data, required super.message, this.statusCode}) : super.error();
+  DataResult.error({this.data, required super.message}) : super.error();
 
-  DataResult.errorByEmpty({this.data, super.message, this.statusCode}) : super.errorByEmpty();
+  DataResult.errorByEmpty({this.data, super.message}) : super.errorByEmpty();
 }
