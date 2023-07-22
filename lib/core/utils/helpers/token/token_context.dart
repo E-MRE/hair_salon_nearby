@@ -1,7 +1,7 @@
 const String _secretKey = '**=?=**';
 const String _kEmpty = '';
 
-abstract class TokenController {
+abstract class TokenContext {
   String _token;
   String _refreshToken;
   DateTime _tokenExpirationDate;
@@ -14,13 +14,13 @@ abstract class TokenController {
 
   final String tokenDateFormat;
 
-  TokenController({this.tokenDateFormat = '0001-01-01T01:01:01.0000000+00:00'})
+  TokenContext({this.tokenDateFormat = '0001-01-01T01:01:01.0000000+00:00'})
       : _token = _kEmpty,
         _refreshToken = _kEmpty,
         _tokenExpirationDate = DateTime(1),
         _refreshTokenExpirationDate = DateTime(1);
 
-  DateTime convertStringToDateTime(String? dateString);
+  DateTime convertStringToDateTime(String? dateString, {DateTime? defaultDate, int defaultYear = 1});
 
   set token(String token) {
     _token = _complicateText(token);
@@ -48,5 +48,13 @@ abstract class TokenController {
   String _simplificationText(String text) {
     var simpleText = text.replaceAll(_secretKey, _kEmpty);
     return simpleText.split(_kEmpty).reversed.join();
+  }
+
+  bool isTokenAvailable({int delaySeconds = 10}) {
+    if (token.isEmpty) return false;
+
+    var difference = DateTime.now().difference(tokenExpirationDate).inSeconds;
+
+    return difference < delaySeconds;
   }
 }

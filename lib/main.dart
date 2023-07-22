@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:hair_salon_nearby/utils/enum/hair_salon_type.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
+import 'core/utils/helpers/dependency/get_it_injection_container.dart';
 import 'presentation/theme/abstract/theme_service.dart';
 import 'presentation/theme/theme_manager.dart';
 import 'utils/constants/app_constants.dart';
+import 'utils/enum/hair_salon_type.dart';
 import 'utils/enum/localization_locales.dart';
 import 'utils/helpers/cache_service_factory.dart';
 import 'utils/helpers/custom_responsive_wrapper.dart';

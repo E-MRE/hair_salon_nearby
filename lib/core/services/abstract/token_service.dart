@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
 
 import '../../../utils/constants/lang/locale_keys.g.dart';
 import '../../utils/enums/caching_keys.dart';
-import '../constants/api_constants.dart';
 import '../models/token_request_model.dart';
 import '/core/services/models/token_model.dart';
 import '/core/utils/results/data_result.dart';
@@ -26,10 +26,8 @@ abstract class TokenService {
   });
 
   Future<DataResult<String>> getTokenLocale() async {
-    if (ApiConstants.token.isNotEmpty) {
-      if (isTokenAvailable(ApiConstants.tokenExpirationDate)) {
-        return DataResult.success(data: ApiConstants.token);
-      }
+    if (kTokenContext.isTokenAvailable()) {
+      return DataResult.success(data: kTokenContext.token);
     }
 
     final token = await cacheService.getValue<TokenModel>(CachingKeys.token);
@@ -77,7 +75,8 @@ abstract class TokenService {
   }
 
   void setConstValuesByModel(TokenModel tokenModel) {
-    ApiConstants.token = tokenModel.accessToken ?? '';
-    ApiConstants.tokenExpirationDate = tokenModel.getExpirationDate();
+    //TODO: set by mixin
+    kTokenContext.token = tokenModel.accessToken ?? '';
+    kTokenContext.setTokenExpirationDate(tokenModel.acceptTokenExpiration);
   }
 }
