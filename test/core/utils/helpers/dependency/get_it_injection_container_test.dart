@@ -23,6 +23,26 @@ void main() {
 
     expect(GetItInjectionContainer.instance.injector.isRegistered<MockRegisterClass>(), true);
   });
+
+  test('When instance called generates new value test', () async {
+    GetItInjectionContainer.instance.register(
+      customInjections: (injector) {
+        injector.registerFactory<TestDateTimeGetterEveryCall>(() => TestDateTimeGetterEveryCall());
+      },
+    );
+
+    final date1 = GetItInjectionContainer.instance.injector.get<TestDateTimeGetterEveryCall>().date;
+    await Future.delayed(const Duration(seconds: 1));
+    final date2 = GetItInjectionContainer.instance.injector.get<TestDateTimeGetterEveryCall>().date;
+
+    expect(date1.millisecondsSinceEpoch != date2.millisecondsSinceEpoch, true);
+  });
 }
 
 class MockRegisterClass {}
+
+class TestDateTimeGetterEveryCall {
+  final DateTime date;
+
+  TestDateTimeGetterEveryCall() : date = DateTime.now();
+}
