@@ -2,8 +2,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../../extensions/string_to_bool_extension.dart';
 
-//TODO: Check keys and delete unused of them. After controls remove this comment.
-
 /**
  * That enum using for access to the value of environments. 
  * For get value just choose a enum and call `[read]` method.

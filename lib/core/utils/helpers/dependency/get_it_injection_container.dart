@@ -1,4 +1,6 @@
 import '../../../services/abstract/cache_service.dart';
+import '../../../services/abstract/dio_remote_data_service.dart';
+import '../../../services/concrete/dio_remote_data_manager.dart';
 import '../../../services/concrete/hive_cache_manager.dart';
 import '../token/api_token_context.dart';
 import '../token/token_context.dart';
@@ -22,6 +24,10 @@ class GetItInjectionContainer extends InjectionContainer {
 
     if (!injector.isRegistered<CacheService>()) {
       injector.registerLazySingleton<CacheService>(() => HiveCacheManager());
+    }
+
+    if (!injector.isRegistered<DioRemoteDataService>()) {
+      injector.registerLazySingleton<DioRemoteDataService>(() => DioRemoteDataManager.byDefault());
     }
 
     customInjections?.call(injector);

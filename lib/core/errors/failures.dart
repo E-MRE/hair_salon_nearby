@@ -13,8 +13,8 @@ class ServerFailure extends Failure {
     String? message,
     String? failureCode,
   }) : super(
-          message: message ?? "",
-          failureCode: failureCode ?? "",
+          message: message ?? '',
+          failureCode: failureCode ?? '',
         );
 }
 
@@ -23,7 +23,7 @@ class CacheFailure extends Failure {
     String? message,
     String? failureCode,
   }) : super(
-          message: message ?? "",
-          failureCode: failureCode ?? "",
+          message: message ?? '',
+          failureCode: failureCode ?? '',
         );
 }

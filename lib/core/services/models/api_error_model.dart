@@ -5,7 +5,6 @@ import 'entity_model.dart';
 part 'api_error_model.g.dart';
 
 @JsonSerializable()
-//TODO: Check your api error response model..
 class ApiErrorModel extends EntityModel<ApiErrorModel> {
   late List<String>? errors;
 
