@@ -4,19 +4,10 @@ import '../../utils/enums/caching_keys.dart';
 import '../abstract/cache_service.dart';
 
 class HiveCacheManager implements CacheService {
-  static HiveCacheManager? _instance;
-
-  static HiveCacheManager get instance {
-    _instance ??= HiveCacheManager._init();
-    return _instance!;
-  }
-
   @override
   Future<void> init() async {
     await Hive.initFlutter('document');
   }
-
-  HiveCacheManager._init();
 
   @override
   Future<T?> getValue<T>(

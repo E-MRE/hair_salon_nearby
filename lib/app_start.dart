@@ -5,7 +5,7 @@ class _AppStart {
   Future<void> init() async {
     final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-    await CacheServiceFactory.instance.initialize();
+    await kCacheService.init();
     await _environmentLoad();
     await EasyLocalization.ensureInitialized();
     _setDeviceOrientations();

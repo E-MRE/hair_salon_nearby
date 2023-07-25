@@ -1,3 +1,5 @@
+import '../../../services/abstract/cache_service.dart';
+import '../../../services/concrete/hive_cache_manager.dart';
 import '../token/api_token_context.dart';
 import '../token/token_context.dart';
 import 'get_it_dependency_injector.dart';
@@ -16,6 +18,10 @@ class GetItInjectionContainer extends InjectionContainer {
   void register({RegisterDependenciesFunction? customInjections}) {
     if (!injector.isRegistered<TokenContext>()) {
       injector.registerLazySingleton<TokenContext>(() => ApiTokenContext());
+    }
+
+    if (!injector.isRegistered<CacheService>()) {
+      injector.registerLazySingleton<CacheService>(() => HiveCacheManager());
     }
 
     customInjections?.call(injector);

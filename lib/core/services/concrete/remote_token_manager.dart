@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 
 import '../../../utils/constants/endpoint_constants.dart';
 import '../../../utils/constants/lang/locale_keys.g.dart';
+import '../../utils/helpers/dependency/core_dependencies.dart';
 import '../../utils/results/data_result.dart';
 import '../abstract/cache_service.dart';
 import '../abstract/remote_data_service.dart';
 import '../abstract/token_service.dart';
 import '../models/token_model.dart';
 import '../models/token_request_model.dart';
-import 'hive_cache_manager.dart';
 
 class RemoteTokenManager extends TokenService {
   @override
@@ -18,8 +18,7 @@ class RemoteTokenManager extends TokenService {
 
   final String _getTokenError = LocaleKeys.token_getError.tr();
 
-  RemoteTokenManager({CacheService? cacheService, this.dataService})
-      : cacheService = cacheService ?? HiveCacheManager.instance;
+  RemoteTokenManager({CacheService? cacheService, this.dataService}) : cacheService = cacheService ?? kCacheService;
 
   @override
   Future<DataResult<TokenModel>> getTokenRemote({
