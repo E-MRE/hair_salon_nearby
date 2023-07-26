@@ -1,6 +1,4 @@
 import '../../core/services/abstract/remote_data_service.dart';
-import '../../core/services/concrete/dio_remote_data_manager.dart';
-import '../../core/utils/enums/environment/dot_environment_type.dart';
 import '../../core/utils/results/data_result.dart';
 import '../../core/utils/results/result.dart';
 import '../../models/entity/example_model.dart';
@@ -11,8 +9,7 @@ class MockExampleRepository extends ExampleRepository {
 
   Future get _getDelay => Future.delayed(const Duration(seconds: 2));
 
-  MockExampleRepository({RemoteDataService? dataService})
-      : super.remote(dataService: dataService ?? DioRemoteDataManager(baseUrl: DotEnvironmentType.baseUrl.read())) {
+  MockExampleRepository({RemoteDataService? dataService}) : super.remote() {
     _examples = [
       ExampleModel(id: 1, name: 'Test'),
       ExampleModel(id: 2, name: 'Emre'),

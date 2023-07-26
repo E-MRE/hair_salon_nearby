@@ -6,7 +6,7 @@ import '../../models/entity/example_model.dart';
 import '../abstract/example_repository.dart';
 
 class MockRemoteRepository extends ExampleRepository with ErrorMessageByApiResponseMixin {
-  MockRemoteRepository({required super.dataService}) : super.remote();
+  MockRemoteRepository() : super.remote();
 
   @override
   Future<Result> add(ExampleModel data) async {
