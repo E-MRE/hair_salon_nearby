@@ -1,6 +1,6 @@
 part of 'main.dart';
 
-class _AppStart {
+class _AppStart with HiveRegisterAdaptersMixin {
   final String _localizationAssetPath = 'assets/translations';
   Future<void> init() async {
     final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -10,6 +10,7 @@ class _AppStart {
     await EasyLocalization.ensureInitialized();
     _setDeviceOrientations();
     GetItInjectionContainer.instance.register();
+    registerAdapters();
   }
 
   MultiProvider _setMultiProviderByChild({required List<SingleChildWidget> providers, required Widget child}) {

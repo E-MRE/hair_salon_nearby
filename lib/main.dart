@@ -15,6 +15,7 @@ import 'utils/constants/app_constants.dart';
 import 'utils/enum/hair_salon_type.dart';
 import 'utils/enum/localization_locales.dart';
 import 'utils/helpers/custom_responsive_wrapper.dart';
+import 'utils/mixins/hive_register_adapters_mixin.dart';
 import 'utils/navigation/auto_router/app_router.dart';
 
 part './app_start.dart';

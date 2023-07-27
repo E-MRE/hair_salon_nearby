@@ -16,12 +16,26 @@ class TokenModelAdapter extends TypeAdapter<TokenModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TokenModel();
+    return TokenModel(
+      token: fields[0] as String?,
+      refreshToken: fields[1] as String?,
+      expirationDate: fields[2] as String?,
+      refreshExpirationDate: fields[3] as String?,
+    );
   }
 
   @override
   void write(BinaryWriter writer, TokenModel obj) {
-    writer.writeByte(0);
+    writer
+      ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.token)
+      ..writeByte(1)
+      ..write(obj.refreshToken)
+      ..writeByte(2)
+      ..write(obj.expirationDate)
+      ..writeByte(3)
+      ..write(obj.refreshExpirationDate);
   }
 
   @override
@@ -40,12 +54,16 @@ class TokenModelAdapter extends TypeAdapter<TokenModel> {
 // **************************************************************************
 
 TokenModel _$TokenModelFromJson(Map<String, dynamic> json) => TokenModel(
-      accessToken: json['accessToken'] as String?,
-      acceptTokenExpiration: json['acceptTokenExpiration'] as String?,
+      token: json['token'] as String?,
+      refreshToken: json['refreshToken'] as String?,
+      expirationDate: json['expirationDate'] as String?,
+      refreshExpirationDate: json['refreshExpirationDate'] as String?,
     );
 
 Map<String, dynamic> _$TokenModelToJson(TokenModel instance) =>
     <String, dynamic>{
-      'accessToken': instance.accessToken,
-      'acceptTokenExpiration': instance.acceptTokenExpiration,
+      'token': instance.token,
+      'refreshToken': instance.refreshToken,
+      'expirationDate': instance.expirationDate,
+      'refreshExpirationDate': instance.refreshExpirationDate,
     };

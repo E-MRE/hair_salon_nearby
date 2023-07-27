@@ -1,33 +1,32 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
 
-import '../../../utils/constants/lang/locale_keys.g.dart';
-import '../../utils/enums/caching_keys.dart';
-import '../models/token_request_model.dart';
+import '../../utils/helpers/token/token_context_helper_mixin.dart';
 import '/core/services/models/token_model.dart';
 import '/core/utils/results/data_result.dart';
+import '../../../utils/constants/lang/locale_keys.g.dart';
+import '../../utils/enums/caching_keys.dart';
+import '../../utils/helpers/token/token_context.dart';
+import '../models/api_response.dart';
+import '../models/refresh_token_request_model.dart';
 import 'cache_service.dart';
+import 'remote_data_service.dart';
 
-typedef RemoteTokenCallback = Future<DataResult<TokenModel>> Function({
-  required String path,
-  required TokenRequestModel request,
-  required TokenModel Function(Map<String, dynamic> json) jsonParser,
-});
-
-abstract class TokenService {
+abstract class TokenService with TokenContextHelperMixin {
   final String _tokenNotFound = LocaleKeys.token_notFound.tr();
   final String _tokenExpired = LocaleKeys.token_expired.tr();
 
+  String get refreshTokenEndpoint => 'api/Login/RefreshToken';
+
   CacheService get cacheService;
 
-  Future<DataResult<TokenModel>> getTokenRemote({
-    required RemoteTokenCallback remoteRequest,
-    Map<String, dynamic>? body,
-  });
+  TokenContext get tokenContext;
 
-  Future<DataResult<String>> getTokenLocale() async {
-    if (kTokenContext.isTokenAvailable()) {
-      return DataResult.success(data: kTokenContext.token);
+  Future<DataResult<TokenModel>> getTokenRemote({Map<String, dynamic>? body}) async => DataResult.errorByEmpty();
+
+  Future<DataResult<TokenModel>> getTokenLocale() async {
+    if (tokenContext.isTokenAvailable()) {
+      return DataResult.success(data: getTokenModelByContext(tokenContext));
     }
 
     final token = await cacheService.getValue<TokenModel>(CachingKeys.token);
@@ -36,47 +35,42 @@ abstract class TokenService {
       return DataResult.error(message: _tokenNotFound);
     }
 
-    final tokenAvailable = isTokenAvailable(token.getExpirationDate());
-
-    if (tokenAvailable) {
-      setConstValuesByModel(token);
-      return DataResult.success(data: token.accessToken);
+    if (isDateExpired(dateString: token.refreshExpirationDate)) {
+      saveByTokenModel(tokenContext, token);
+      return DataResult.success(data: token);
     }
 
     return DataResult.error(message: _tokenExpired);
   }
 
-  Future<void> saveTokenToLocale(TokenModel tokenModel) async {
+  Future<void> saveTokenToCache(TokenModel tokenModel) async {
     await cacheService.setValue<TokenModel>(CachingKeys.token, tokenModel);
   }
 
-  Future<DataResult<String>> getTokenAny({required RemoteTokenCallback remoteRequest}) async {
+  Future<DataResult<TokenModel>> getTokenAny({RemoteDataService? dataService}) async {
     final localeResult = await getTokenLocale();
 
-    if (localeResult.success && (localeResult.data?.isNotEmpty ?? false)) {
+    if (localeResult.success && (localeResult.data?.token?.isNotEmpty ?? false)) {
       return DataResult.success(data: localeResult.data);
     }
 
-    final remoteResult = await getTokenRemote(remoteRequest: remoteRequest);
+    return await getRefreshToken(dataService: dataService);
+  }
 
-    return DataResult(
-      success: remoteResult.success,
-      message: remoteResult.message,
-      data: remoteResult.data?.accessToken,
+  Future<ApiResponse<TokenModel>> getRefreshToken({RemoteDataService? dataService}) async {
+    final request = RefreshTokenRequestModel.byTokenContext(tokenContext: tokenContext);
+
+    final response = await (dataService ?? kRemoteDataService).postData<TokenModel>(
+      fromMap: (json) => TokenModel.fromJson(json),
+      endpoint: refreshTokenEndpoint,
+      request: request,
     );
-  }
 
-  Future<String> getRefreshToken() async => '';
+    if (response.success && response.data != null) {
+      saveByTokenModel(tokenContext, response.data!);
+      await saveTokenToCache(response.data!);
+    }
 
-  bool isTokenAvailable(DateTime expirationDate) {
-    var difference = DateTime.now().toUtc().difference(expirationDate).inSeconds;
-
-    return difference < 0;
-  }
-
-  void setConstValuesByModel(TokenModel tokenModel) {
-    //TODO: set by mixin
-    kTokenContext.token = tokenModel.accessToken ?? '';
-    kTokenContext.setTokenExpirationDate(tokenModel.acceptTokenExpiration);
+    return response;
   }
 }

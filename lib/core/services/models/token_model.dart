@@ -9,12 +9,16 @@ part 'token_model.g.dart';
 @JsonSerializable()
 @HiveType(typeId: HiveConstants.token)
 class TokenModel extends EntityModel<TokenModel> {
-  final String? accessToken;
-  final String? acceptTokenExpiration;
+  @HiveField(0)
+  final String? token;
+  @HiveField(1)
+  final String? refreshToken;
+  @HiveField(2)
+  final String? expirationDate;
+  @HiveField(3)
+  final String? refreshExpirationDate;
 
-  final String _iso8601Date = '0001-01-01T01:01:01.0000000+00:00';
-
-  TokenModel({this.accessToken, this.acceptTokenExpiration});
+  TokenModel({this.token, this.refreshToken, this.expirationDate, this.refreshExpirationDate});
 
   factory TokenModel.fromJson(Map<String, dynamic> json) => _$TokenModelFromJson(json);
 
@@ -22,13 +26,4 @@ class TokenModel extends EntityModel<TokenModel> {
   TokenModel fromJson(Map<String, dynamic> json) => _$TokenModelFromJson(json);
 
   Map<String, dynamic>? toJson() => _$TokenModelToJson(this);
-
-  DateTime getExpirationDate({bool isUtcToLocal = false, int defaultYear = 1}) {
-    try {
-      final date = DateTime.parse(acceptTokenExpiration ?? _iso8601Date);
-      return isUtcToLocal ? date.toLocal() : date;
-    } catch (_) {
-      return DateTime(defaultYear);
-    }
-  }
 }

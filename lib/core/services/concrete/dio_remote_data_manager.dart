@@ -7,7 +7,6 @@ import '../../utils/enums/process_status.dart';
 import '../../utils/enums/request_type.dart';
 import '../../utils/helpers/converters/dio_api_response_json_converter.dart';
 import '../../utils/mixins/http_status_code_controller_mixin.dart';
-import '../../utils/results/data_result.dart';
 import '../abstract/dio_remote_data_service.dart';
 import '../abstract/remote_data_service.dart';
 import '../abstract/token_service.dart';
@@ -19,8 +18,6 @@ import '../models/dio_api_response.dart';
 import '../models/dio_api_response_model.dart';
 import '../models/friendly_message_model.dart';
 import '../models/parameters/dio_api_response_convert_parameter_model.dart';
-import '../models/token_model.dart';
-import 'dio_token_manager.dart';
 
 class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeControllerMixin {
   DioRemoteDataManager.byOptions({
@@ -167,18 +164,7 @@ class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeContr
   }
 
   void _addTokenInterceptor(TokenService? tokenService) {
-    getInterceptors.add(TokenExpirationInterceptor(
-      tokenService: tokenService ?? DioTokenManager(),
-      remoteTokenRequest: ({required jsonParser, required path, required request}) async {
-        final result = await postData<TokenModel>(
-          fromMap: (json) => jsonParser(json),
-          request: request,
-          endpoint: path,
-        );
-
-        return DataResult(success: result.success, message: result.message, data: result.data);
-      },
-    ));
+    getInterceptors.add(TokenExpirationInterceptor(tokenService: tokenService));
   }
 
   Options _createOptions({DurationTypes? timeout, Map<String, String>? headers}) {
