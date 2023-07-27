@@ -1,5 +1,3 @@
-//TODO: Check profiles location and delete unused profiles. Then just remove this comment.
-
 /**
  * There are environment profiles. When project initialize load some of them.
  * After the load operation you can access the environment values using `[DotEnvironmentType]` enums.

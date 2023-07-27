@@ -53,7 +53,17 @@ abstract class TokenContext {
   bool isTokenAvailable({int delaySeconds = 10}) {
     if (token.isEmpty) return false;
 
-    var difference = DateTime.now().difference(tokenExpirationDate).inSeconds;
+    return _isDateNotExpires(date: tokenExpirationDate, delaySeconds: delaySeconds);
+  }
+
+  bool isRefreshTokenAvailable({int delaySeconds = 10}) {
+    if (refreshToken.isEmpty) return false;
+
+    return _isDateNotExpires(date: refreshTokenExpirationDate, delaySeconds: delaySeconds);
+  }
+
+  bool _isDateNotExpires({required DateTime date, int delaySeconds = 10}) {
+    var difference = DateTime.now().difference(date).inSeconds;
 
     return difference < delaySeconds;
   }
