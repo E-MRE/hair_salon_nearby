@@ -2,11 +2,13 @@
 ///
 ///* zero = 0 seconds
 ///
+///* oneSecond = 1 second
+///
 ///* eightSeconds = 8 seconds
 ///
 /// * sixteenSeconds = 16 seconds
 ///
-/// * thirtytwoSeconds =  32 seconds
+/// * thirtyTwoSeconds =  32 seconds
 ///
 /// * sixtySeconds = 60 seconds
 ///
@@ -28,6 +30,9 @@ enum DurationTypes {
   /// value = 0 seconds
   zero,
 
+  /// value = 1 second
+  oneSecond,
+
   /// value = 8 seconds
   eightSeconds,
 
@@ -35,7 +40,7 @@ enum DurationTypes {
   sixteenSeconds,
 
   /// value = 32 seconds
-  thirtytwoSeconds,
+  thirtyTwoSeconds,
 
   /// value = 60 seconds
   sixtySeconds,
@@ -67,11 +72,13 @@ extension DurationTypesExtension on DurationTypes {
     switch (this) {
       case DurationTypes.zero:
         return const Duration(seconds: 0);
+      case DurationTypes.oneSecond:
+        return const Duration(seconds: 1);
       case DurationTypes.eightSeconds:
         return const Duration(seconds: 8);
       case DurationTypes.sixteenSeconds:
         return const Duration(seconds: 16);
-      case DurationTypes.thirtytwoSeconds:
+      case DurationTypes.thirtyTwoSeconds:
         return const Duration(seconds: 32);
       case DurationTypes.sixtySeconds:
         return const Duration(seconds: 60);
