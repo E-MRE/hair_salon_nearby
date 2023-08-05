@@ -10,4 +10,6 @@ class AuthModel extends TokenModel implements EntityModel<TokenModel> {
   AuthModel({super.expirationDate, super.refreshExpirationDate, super.refreshToken, super.token});
   @override
   AuthModel fromJson(Map<String, dynamic> json) => _$AuthModelFromJson(json);
+
+  factory AuthModel.fromJson(Map<String, dynamic> json) => _$AuthModelFromJson(json);
 }
