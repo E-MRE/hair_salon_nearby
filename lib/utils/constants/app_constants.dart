@@ -7,7 +7,6 @@ import '../../core/utils/enums/environment/environment_profile.dart';
 class AppConstants {
   static bool getDevicePreviewEnable([bool showDebugMode = false]) => showDebugMode ? kDebugMode : false;
 
-  //TODO: Set your profile for using environment values. After setup just remove this comment.
   static const EnvironmentProfile environmentProfile = EnvironmentProfile.test;
   static const String appName = 'AppName';
 
@@ -21,6 +20,5 @@ class AppConstants {
     const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
   ];
 
-  //TODO: Check Page width and height from Figma or Zeplin and change it. After setup just remove this comment.
   static const Size designSize = Size(375, 812);
 }

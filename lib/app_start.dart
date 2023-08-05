@@ -5,12 +5,12 @@ class _AppStart with HiveRegisterAdaptersMixin {
   Future<void> init() async {
     final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-    await kCacheService.init();
     await _environmentLoad();
     await EasyLocalization.ensureInitialized();
     _setDeviceOrientations();
     GetItInjectionContainer.instance.register();
     registerAdapters();
+    await kCacheService.init();
   }
 
   MultiProvider _setMultiProviderByChild({required List<SingleChildWidget> providers, required Widget child}) {
