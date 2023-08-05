@@ -13,7 +13,7 @@ class DioLoginRepository extends BaseRemoteRepository implements LoginRepository
 
   @override
   Future<ApiResponse<AuthModel>> login(LoginRequestModel request) async {
-    return await dataService.postData(
+    return await dataService.postData<AuthModel>(
       endpoint: EndpointConstants.login.login,
       fromMap: (json) => AuthModel.fromJson(json),
       request: request,
