@@ -6,6 +6,8 @@ import 'package:hair_salon_nearby/core/utils/enums/process_status.dart';
 import 'package:hair_salon_nearby/models/entity/user_model.dart';
 import 'package:hair_salon_nearby/models/request/register_request_model.dart';
 import 'package:hair_salon_nearby/repositories/abstracts/register_repository.dart';
+import 'package:hair_salon_nearby/utils/enum/gender.dart';
+import 'package:hair_salon_nearby/utils/enum/platform_type.dart';
 
 class MockDioRegisterRepository implements RegisterRepository {
   @override
@@ -44,12 +46,12 @@ void main() {
     final request = RegisterRequestModel(
       name: 'My name',
       surname: 'My surname',
-      gender: 0,
+      gender: Gender.man,
       city: 'My city',
       county: 'My county',
       latitude: '42.56744',
       longitude: '34.34534',
-      platform: 0,
+      platform: PlatformType.android,
       version: '1.0.0',
       notificationId: 'notification',
       phone: '543221212312',
@@ -69,12 +71,12 @@ void main() {
     final request = RegisterRequestModel(
       name: '',
       surname: '',
-      gender: 0,
+      gender: Gender.man,
       city: 'My city',
       county: 'My county',
       latitude: '42.56744',
       longitude: '34.34534',
-      platform: 0,
+      platform: PlatformType.android,
       version: '1.0.0',
       notificationId: 'notification',
       phone: '543221212312',
