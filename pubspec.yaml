@@ -65,7 +65,6 @@ dependencies:
   #Responsive Design
   responsive_framework: ^1.0.0
   responsive_builder:
-  flutter_screenutil: ^5.6.0
   flutter_native_splash: ^2.3.1
 
   #Device
