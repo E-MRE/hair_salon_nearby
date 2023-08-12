@@ -9,6 +9,7 @@ void main() {
 
     expect(dataResult.success, true);
     expect(dataResult.isSuccessAndDataExists, true);
+    expect(dataResult.isNotSuccessOrDataNotExists, false);
     expect(dataResult.isNotSuccess, false);
     expect(dataResult.message, isEmpty);
     expect(dataResult.data, isNotNull);
@@ -22,6 +23,7 @@ void main() {
 
     expect(dataResult.success, true);
     expect(dataResult.isSuccessAndDataExists, true);
+    expect(dataResult.isNotSuccessOrDataNotExists, false);
     expect(dataResult.isNotSuccess, false);
     expect(dataResult.message, isNotEmpty);
     expect(dataResult.data, isNotNull);
@@ -35,6 +37,7 @@ void main() {
 
     expect(dataResult.success, true);
     expect(dataResult.isSuccessAndDataExists, false);
+    expect(dataResult.isNotSuccessOrDataNotExists, true);
     expect(dataResult.isNotSuccess, false);
     expect(dataResult.message, isNotEmpty);
     expect(dataResult.data, isNull);
@@ -46,6 +49,7 @@ void main() {
 
     expect(dataResult.success, false);
     expect(dataResult.isSuccessAndDataExists, false);
+    expect(dataResult.isNotSuccessOrDataNotExists, true);
     expect(dataResult.isNotSuccess, true);
     expect(dataResult.message, isNotEmpty);
     expect(dataResult.data, isNull);
@@ -57,6 +61,7 @@ void main() {
 
     expect(dataResult.success, false);
     expect(dataResult.isSuccessAndDataExists, false);
+    expect(dataResult.isNotSuccessOrDataNotExists, true);
     expect(dataResult.isNotSuccess, true);
     expect(dataResult.message, isEmpty);
     expect(dataResult.data, isNull);

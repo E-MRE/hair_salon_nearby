@@ -38,8 +38,8 @@ class MockRemoteDataService extends Mock implements DioRemoteDataService {
       return DioApiResponseModel(
         requestOptions: RequestOptions(),
         data: model,
-        processStatus: model != null ? ProcessStatus.success : ProcessStatus.error,
-        statusCode: model != null ? 200 : 400,
+        processStatus: isSuccess ? ProcessStatus.success : ProcessStatus.error,
+        statusCode: isSuccess ? 200 : 400,
       );
     }
 

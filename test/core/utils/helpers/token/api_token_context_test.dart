@@ -13,6 +13,7 @@ void main() {
     expect(kTokenContext.refreshToken.isEmpty, true);
     expect(kTokenContext.tokenExpirationDate, DateTime(1));
     expect(kTokenContext.refreshTokenExpirationDate, DateTime(1));
+    expect(kTokenContext.isRefreshTokenAvailable(), false);
   });
 
   test('Set all variables test', () {
@@ -31,6 +32,7 @@ void main() {
     expect(kTokenContext.refreshToken, refreshToken);
     expect(kTokenContext.tokenExpirationDate.year, tokenExpirationDate.year);
     expect(kTokenContext.refreshTokenExpirationDate.year, refreshTokenExpirationDate.year);
+    expect(kTokenContext.isRefreshTokenAvailable(), true);
   });
 
   test('convert iso 9601 string to date time test', () {

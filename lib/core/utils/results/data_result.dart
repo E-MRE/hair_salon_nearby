@@ -17,7 +17,7 @@ class DataResult<TData> extends Result {
 
   bool get isSuccessAndDataExists => success && data != null;
 
-  bool get isNotSuccessOrDataNotExists => !isSuccessAndDataExists;
+  bool get isNotSuccessOrDataNotExists => !success || data == null;
 
   DataResult({required super.success, this.data, required super.message}) : super();
 
