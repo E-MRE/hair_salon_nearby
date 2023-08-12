@@ -1,5 +1,3 @@
-import '../../core/extensions/screen_util_extensions.dart';
-
 ///Standard width is used to give height.
 /// * none = 0
 /// * ultraSmall = 2
@@ -348,21 +346,6 @@ enum Sizes {
 }
 
 extension SizesExtension on Sizes {
-  ///It returns double value after scaled with radius
-  double getRadiusScale() {
-    return this.value.radiusScale;
-  }
-
-  ///It returns double value after scaled with screen & design height
-  double getHeightScale() {
-    return this.value.radiusScale;
-  }
-
-  ///It returns double value after scaled with screen & design width
-  double getWidthScale() {
-    return this.value.radiusScale;
-  }
-
   ///It returns double value of [Sizes]
   double get value {
     switch (this) {
