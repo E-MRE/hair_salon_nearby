@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:hair_salon_nearby/core/services/abstract/dio_remote_data_service.dart';
 import 'package:hair_salon_nearby/core/services/abstract/remote_data_service.dart';
+import 'package:hair_salon_nearby/core/services/constants/api_constants.dart';
 import 'package:hair_salon_nearby/core/services/interceptors/unauthorized_interceptor.dart';
 import 'package:hair_salon_nearby/core/services/models/api_cancel_token.dart';
 import 'package:hair_salon_nearby/core/services/models/api_request_model.dart';
@@ -118,7 +119,7 @@ class MockRemoteDataService extends Mock implements DioRemoteDataService {
   Dio get getService => Dio();
 
   @override
-  Duration get getTimeout => Duration.zero;
+  Duration get getTimeout => ApiConstants.defaultTimeout;
 
   @override
   bool get isLoggerEnable => true;

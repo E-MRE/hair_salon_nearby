@@ -73,8 +73,8 @@ void main() {
   });
 
   test('Test login operation with verified account and default remote service', () async {
-    GetItInjectionContainer.instance.injector.registerLazySingleton<DioRemoteDataService>(
-      () => MockRemoteDataService(responseData: authJson, isSuccess: true),
+    GetItInjectionContainer.instance.injector.registerSingleton<DioRemoteDataService>(
+      MockRemoteDataService(responseData: authJson, isSuccess: true),
     );
 
     final request = LoginRequestModel(email: 'email@gmail.com', password: 'password');
@@ -82,6 +82,7 @@ void main() {
     loginRepository = DioLoginRepository.defaultRemote();
 
     final response = await loginRepository.login(request);
+    GetItInjectionContainer.instance.injector.unregister<DioRemoteDataService>();
 
     expect(response.success, true);
     expect(response.isNotSuccess, false);
