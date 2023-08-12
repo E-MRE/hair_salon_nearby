@@ -12,9 +12,7 @@ class UserModel extends EntityModel<UserModel> {
   UserModel({this.name, this.surname});
 
   @override
-  UserModel fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError();
-  }
+  UserModel fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 }
