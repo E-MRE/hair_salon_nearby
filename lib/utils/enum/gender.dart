@@ -6,9 +6,12 @@ import '../constants/lang/locale_keys.g.dart';
 @JsonEnum(valueField: 'gender')
 enum Gender {
   @JsonValue(0)
-  man,
+  man(0),
   @JsonValue(1)
-  woman;
+  woman(1);
+
+  final int value;
+  const Gender(this.value);
 }
 
 extension GenderExtension on Gender {

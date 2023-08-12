@@ -1,6 +1,8 @@
-import '../../core/services/models/api_request_model.dart';
-
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../core/services/models/api_request_model.dart';
+import '../../utils/enum/gender.dart';
+import '../../utils/enum/platform_type.dart';
 
 part 'register_request_model.g.dart';
 
@@ -26,15 +28,16 @@ class RegisterRequestModel extends ApiRequestModel {
     required this.password,
     required this.email,
     required this.phone,
-    required this.gender,
+    required Gender gender,
     required this.city,
     required this.county,
     required this.latitude,
     required this.longitude,
-    required this.platform,
+    required PlatformType platform,
     required this.version,
     required this.notificationId,
-  });
+  })  : gender = gender.value,
+        platform = platform.value;
 
   @override
   Map<String, dynamic> toJson() => _$RegisterRequestModelToJson(this);
