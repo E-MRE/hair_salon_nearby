@@ -77,6 +77,9 @@ void main() {
     final response = await loginRepository.login(request);
 
     expect(response.success, true);
+    expect(response.isNotSuccess, false);
+    expect(response.isSuccessAndDataExists, true);
+    expect(response.isNotSuccessOrDataNotExists, false);
     expect(response.data, isNotNull);
     expect(response.data, isA<AuthModel>());
     expect(response.processStatus, ProcessStatus.success);
