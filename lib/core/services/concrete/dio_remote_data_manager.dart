@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../../utils/constants/core_app_constants.dart';
 import '../../utils/enums/duration_types.dart';
-import '../../utils/enums/environment/dot_environment_type.dart';
 import '../../utils/enums/global_error_key.dart';
 import '../../utils/enums/process_status.dart';
 import '../../utils/enums/request_type.dart';
@@ -53,7 +53,7 @@ class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeContr
     super.interceptors,
     TokenService? tokenService,
   }) : super(
-          baseUrl: DotEnvironmentType.baseUrl.read(),
+          baseUrl: kEnvironment.baseUrl,
           connectTimeout: ApiConstants.defaultTimeout,
           receiveTimeOut: ApiConstants.defaultTimeout,
           sendTimeout: ApiConstants.defaultTimeout,

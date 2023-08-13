@@ -1,11 +1,19 @@
-/**
- * There are environment profiles. When project initialize load some of them.
- * After the load operation you can access the environment values using `[DotEnvironmentType]` enums.
- */
-enum EnvironmentProfile {
-  test('assets/envs/test_environment.env'),
-  product('assets/envs/test_environment.env');
+import '../../envs/app_environment.dart';
+import '../../envs/dev_env.dart';
+import '../../envs/release_env.dart';
 
-  final String path;
-  const EnvironmentProfile(this.path);
+enum EnvironmentProfile {
+  development,
+  release;
+}
+
+extension EnvironmentProfileExtension on EnvironmentProfile {
+  AppEnvironment toEnvironment() {
+    switch (this) {
+      case EnvironmentProfile.release:
+        return ReleaseEnv();
+      case EnvironmentProfile.development:
+        return DevEnv();
+    }
+  }
 }

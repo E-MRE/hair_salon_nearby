@@ -5,7 +5,6 @@ class _AppStart with HiveRegisterAdaptersMixin {
   Future<void> init() async {
     final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-    await _environmentLoad();
     await EasyLocalization.ensureInitialized();
     _setDeviceOrientations();
     GetItInjectionContainer.instance.register();
@@ -19,9 +18,5 @@ class _AppStart with HiveRegisterAdaptersMixin {
 
   void _setDeviceOrientations() {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  }
-
-  Future<void> _environmentLoad() async {
-    await dotenv.load(fileName: AppConstants.environmentProfile.path);
   }
 }

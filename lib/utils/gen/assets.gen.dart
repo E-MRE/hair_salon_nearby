@@ -14,14 +14,14 @@ import 'package:flutter/services.dart';
 class $AssetsEnvsGen {
   const $AssetsEnvsGen();
 
-  /// File path: assets/envs/product_environment.env
-  String get productEnvironment => 'assets/envs/product_environment.env';
+  /// File path: assets/envs/development.env
+  String get development => 'assets/envs/development.env';
 
-  /// File path: assets/envs/test_environment.env
-  String get testEnvironment => 'assets/envs/test_environment.env';
+  /// File path: assets/envs/release.env
+  String get release => 'assets/envs/release.env';
 
   /// List of all assets
-  List<String> get values => [productEnvironment, testEnvironment];
+  List<String> get values => [development, release];
 }
 
 class $AssetsFontsGen {
