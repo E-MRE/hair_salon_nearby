@@ -45,8 +45,8 @@ class CustomResponsiveWrapper extends StatelessWidget {
       child: Builder(builder: (context) {
         return ResponsiveScaledBox(
           width: ResponsiveValue<double>(context, conditionalValues: [
-            const Condition.equals(name: MOBILE, value: 450),
-            const Condition.between(start: 800, end: 1100, value: 800),
+            Condition.equals(name: MOBILE, value: 450),
+            Condition.between(start: 800, end: 1100, value: 800),
             Condition.between(start: 1000, end: AppConstants.maxScreenWidth.toInt(), value: 1000),
             // There are no conditions for width over 1200
             // because the `maxWidth` is set to 1200 via the MaxWidthBox.
