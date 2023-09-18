@@ -9,7 +9,7 @@ class _UserElevatedButton extends StatelessWidget {
       opacity: .66,
       text: LocaleKeys.onboarding_userLogin.tr(),
       onPressed: () {
-        context.router.replace(LoginRoute(authType: AuthType.user));
+        context.router.replace(LoginRoute(authType: AuthType.user, onAuthResult: (_) {}));
       },
     );
   }

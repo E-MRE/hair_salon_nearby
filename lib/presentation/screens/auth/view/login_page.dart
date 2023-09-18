@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
@@ -22,7 +23,9 @@ part '../widgets/not_have_account_line.dart';
 
 @RoutePage()
 class LoginPage extends AuthStatefulPage {
-  const LoginPage({super.key, required super.authType});
+  const LoginPage({super.key, required super.authType, required this.onAuthResult});
+
+  final void Function(bool isSuccess) onAuthResult;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -77,7 +80,10 @@ class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin 
       alignment: Alignment.topLeft,
       child: TextButton(
         style: const ButtonStyle(padding: MaterialStatePropertyAll(EdgeInsets.zero)),
-        onPressed: () {},
+        onPressed: () {
+          //TODO: remove it
+          widget.onAuthResult.call(false);
+        },
         child: AppText.bodySmallRegular(
           LocaleKeys.login_forgotPassword.tr(),
           context: context,
@@ -97,6 +103,13 @@ class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin 
 
   void _login() {
     //TODO: add login operations
+    //TODO: after login then call this
+    kTokenContext.setTokenExpirationDate(DateTime.now().add(const Duration(hours: 1)).toIso8601String());
+    kTokenContext.setRefreshTokenExpirationDate(DateTime.now().add(const Duration(hours: 1)).toIso8601String());
+    kTokenContext.token = 'ASDasdasdasDQWeqweqdas';
+    kTokenContext.refreshToken = 'ASDasdasdasDQWeqweqdas';
+
+    widget.onAuthResult.call(true);
     context.router.replace(const MenuRoute());
   }
 }
