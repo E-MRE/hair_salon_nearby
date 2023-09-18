@@ -42,9 +42,7 @@ void main() async {
 }
 
 class MyAppByAutoRoute extends StatelessWidget {
-  MyAppByAutoRoute({Key? key, required this.appRouter}) : super(key: key) {
-    FlutterNativeSplash.remove();
-  }
+  const MyAppByAutoRoute({Key? key, required this.appRouter}) : super(key: key);
 
   final AppRouter appRouter;
 

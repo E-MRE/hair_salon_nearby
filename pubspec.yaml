@@ -145,6 +145,9 @@ flutter:
     - assets/images/png/ic_women_logo_and_name.png
     - assets/images/png/ic_primary_women_logo_and_name.png
     - assets/images/png/ic_advertisement_area.png
+    - assets/images/png/ic_splash_background.png
+    - assets/images/png/ic_splash_logo.png
+    - assets/images/png/ic_logo.png
     - assets/images/jpg/
     - assets/fonts/
     - assets/translations/
