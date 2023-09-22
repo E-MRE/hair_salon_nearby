@@ -5,6 +5,10 @@ class _OnboardingButtonArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return _old();
+  }
+
+  Row _old() {
     return Row(
       children: [
         const Expanded(child: _HairSalonOutlinedButton()),
