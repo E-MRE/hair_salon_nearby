@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hair_salon_nearby/core/services/abstract/cache_service.dart';
 import 'package:hair_salon_nearby/core/services/abstract/remote_data_service.dart';
@@ -10,7 +9,6 @@ import 'package:hair_salon_nearby/core/services/models/api_response.dart';
 import 'package:hair_salon_nearby/core/services/models/dio_api_response_model.dart';
 import 'package:hair_salon_nearby/core/services/models/token_model.dart';
 import 'package:hair_salon_nearby/core/utils/enums/caching_keys.dart';
-import 'package:hair_salon_nearby/core/utils/enums/environment/environment_profile.dart';
 import 'package:hair_salon_nearby/core/utils/enums/process_status.dart';
 import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
 import 'package:hair_salon_nearby/core/utils/helpers/dependency/get_it_injection_container.dart';
@@ -78,16 +76,12 @@ void main() {
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
     Hive.init('database');
-    await dotenv.load(fileName: EnvironmentProfile.test.path);
     GetItInjectionContainer.instance.register();
     tokenService = DioTokenManager();
 
     if (!Hive.isAdapterRegistered(HiveConstants.token)) {
       Hive.registerAdapter<TokenModel>(TokenModelAdapter());
     }
-  });
-  tearDown(() {
-    dotenv.clean();
   });
 
   test('Get Error result when call remote token method test', () async {

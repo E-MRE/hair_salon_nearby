@@ -2,19 +2,17 @@ import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import 'core/utils/helpers/dependency/core_dependencies.dart';
-import 'core/utils/helpers/dependency/get_it_injection_container.dart';
 import 'presentation/theme/abstract/theme_service.dart';
 import 'presentation/theme/theme_manager.dart';
 import 'utils/constants/app_constants.dart';
 import 'utils/enum/hair_salon_type.dart';
 import 'utils/enum/localization_locales.dart';
 import 'utils/helpers/custom_responsive_wrapper.dart';
-import 'utils/mixins/hive_register_adapters_mixin.dart';
+import 'utils/helpers/initializers/app_start_initializer.dart';
+import 'utils/mixins/app_start_initializer_generator_mixin.dart';
 import 'utils/navigation/auto_router/app_router.dart';
 
 part './app_start.dart';
