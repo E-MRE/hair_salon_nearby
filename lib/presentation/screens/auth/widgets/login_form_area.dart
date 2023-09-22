@@ -10,6 +10,7 @@ class _LoginFormArea extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TitleTextFormField(
+            inputType: TextInputType.emailAddress,
             title: LocaleKeys.commonForm_emailTitle.tr(),
             hintText: LocaleKeys.commonForm_emailHint.tr(),
           ),

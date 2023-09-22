@@ -16,6 +16,7 @@ class TitleTextFormField extends StatefulWidget {
     this.focusNode,
     this.minLines,
     this.maxLines,
+    this.inputType,
   });
 
   final String title;
@@ -25,6 +26,7 @@ class TitleTextFormField extends StatefulWidget {
   final int? minLines;
   final int? maxLines;
   final bool isObscureText;
+  final TextInputType? inputType;
 
   final TextEditingController? controller;
   final FocusNode? focusNode;
@@ -59,8 +61,10 @@ class _TitleTextFormFieldState extends State<TitleTextFormField> {
           maxLines: widget.isObscureText
               ? TextLineType.loose.value
               : (widget.minLines != null ? widget.maxLines ?? widget.minLines : widget.maxLines),
-          keyboardType: widget.minLines != null ? TextInputType.multiline : null,
+          keyboardType: widget.inputType ?? (widget.minLines != null ? TextInputType.multiline : null),
           decoration: InputDecoration(
+            fillColor: context.colorScheme.background,
+            filled: true,
             hintText: widget.hintText,
             suffixIcon: widget.isObscureText ? _buildObscureIconButton() : null,
           ),

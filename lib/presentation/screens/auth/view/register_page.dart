@@ -14,7 +14,7 @@ import '../../../widgets/buttons/big_primary_elevated_button.dart';
 import '../../../widgets/buttons/selectable_container.dart';
 import '../../../widgets/columns/column_by_divider.dart';
 import '../../../widgets/dropdowns/gender_dropdown.dart';
-import '../../../widgets/scaffolds/safe_page_view.dart';
+import '../../../widgets/scaffolds/safe_background_page_view.dart';
 import '../../../widgets/text_fields/title_text_form_field.dart';
 import '../../../widgets/texts/app_text.dart';
 
@@ -33,7 +33,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return SafePageView(
+    return SafeBackgroundPageView(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.max,

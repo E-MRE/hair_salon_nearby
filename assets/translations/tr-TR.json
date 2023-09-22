@@ -62,7 +62,8 @@
         "forgotPassword":"Şifremi Unuttum",
         "signIn":"Giriş Yap",
         "notHaveAccount":"Bir hesabın yok mu?",
-        "register":"Kayıt Ol"
+        "register":"Kayıt Ol",
+        "continueWithoutRegister":"Kayıt Olmadan Devam Et"
     },
     "register":{
         "value":"Kayıt Ol",

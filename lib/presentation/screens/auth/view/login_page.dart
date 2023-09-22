@@ -8,8 +8,9 @@ import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/empty_space.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/buttons/big_primary_elevated_button.dart';
+import '../../../widgets/buttons/big_primary_outlined_button.dart';
 import '../../../widgets/images/app_text_logo_image_view.dart';
-import '../../../widgets/scaffolds/safe_page_view.dart';
+import '../../../widgets/scaffolds/safe_background_page_view.dart';
 import '../../../widgets/text_fields/title_text_form_field.dart';
 import '../../../widgets/texts/app_text.dart';
 
@@ -29,27 +30,41 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return SafePageView(
+    return SafeBackgroundPageView(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Align(alignment: Alignment.centerLeft, child: AppTextLogoImageView()),
-            EmptySpace.bigHeight(),
-            _buildTitle(context),
-            _buildSubTitle(context),
-            EmptySpace.bigHeight(),
+            _buildTitleAndSubTitle(context),
             EmptySpace.bigHeight(),
             const _LoginFormArea(),
             EmptySpace.mediumHeight(),
             _buildForgetPassword(context),
             EmptySpace.extraBigHeight(),
             _buildSignInButton(context),
+            EmptySpace.bigHeight(),
+            _buildWithoutSignInButton(context),
             EmptySpace.extraBigHeight(),
             const _NotHaveAccountLine(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildTitleAndSubTitle(BuildContext context) {
+    if (context.isKeyBoardOpen) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        EmptySpace.bigHeight(),
+        _buildTitle(context),
+        _buildSubTitle(context),
+        EmptySpace.bigHeight(),
+      ],
     );
   }
 
@@ -74,10 +89,7 @@ class _LoginPageState extends State<LoginPage> {
       alignment: Alignment.topLeft,
       child: TextButton(
         style: const ButtonStyle(padding: MaterialStatePropertyAll(EdgeInsets.zero)),
-        onPressed: () {
-          //TODO: remove it
-          widget.onAuthResult?.call(false);
-        },
+        onPressed: () {},
         child: AppText.bodySmallRegular(
           LocaleKeys.login_forgotPassword.tr(),
           context: context,
@@ -91,6 +103,14 @@ class _LoginPageState extends State<LoginPage> {
     return BigPrimaryElevatedButton(
       onPressed: _login,
       text: LocaleKeys.login_signIn.tr(),
+      icon: Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary),
+    );
+  }
+
+  Widget _buildWithoutSignInButton(BuildContext context) {
+    return BigPrimaryOutlinedButton(
+      onPressed: _login,
+      text: LocaleKeys.login_continueWithoutRegister.tr(),
       icon: Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary),
     );
   }

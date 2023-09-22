@@ -58,6 +58,7 @@ abstract class  LocaleKeys {
   static const login_signIn = 'login.signIn';
   static const login_notHaveAccount = 'login.notHaveAccount';
   static const login_register = 'login.register';
+  static const login_continueWithoutRegister = 'login.continueWithoutRegister';
   static const login = 'login';
   static const register_value = 'register.value';
   static const register_createAccount = 'register.createAccount';
