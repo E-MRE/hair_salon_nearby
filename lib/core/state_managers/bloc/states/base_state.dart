@@ -12,6 +12,8 @@ abstract class BaseState {
     required this.infoMessage,
   });
 
+  bool get isSuccess => status == StateStatus.success;
+
   BaseState.initial()
       : status = StateStatus.initial,
         errorMessage = SpecialKey.empty.value,

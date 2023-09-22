@@ -19,20 +19,25 @@ class _OnboardPageState extends State<OnboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => OnboardCubit(),
-      child: BlocBuilder<OnboardCubit, OnboardState>(
-        builder: (context, state) {
-          return Scaffold(
-            body: Stack(
-              children: [
-                _OnboardLiquidSwipeView(controller: _liquidController),
-                _OnboardPageViewIndicators(controller: _liquidController),
-              ],
-            ),
-          );
-        },
-      ),
+    return BaseBlocProviderView<OnboardCubit, OnboardState>(
+      create: (_) => OnboardCubit(),
+      listener: _buildListener,
+      initialChildBuilder: (_, __) {
+        return Scaffold(
+          body: Stack(
+            children: [
+              _OnboardLiquidSwipeView(controller: _liquidController),
+              _OnboardPageViewIndicators(controller: _liquidController),
+            ],
+          ),
+        );
+      },
     );
+  }
+
+  void _buildListener(BuildContext context, OnboardState state) {
+    if (state.isSuccess) {
+      context.router.replace(LoginRoute());
+    }
   }
 }

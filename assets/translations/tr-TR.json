@@ -41,7 +41,10 @@
         "menHairdressersDescription":"Çevrendeki en popüler @:menHairdressers bir tık uzağında!",
         "beautyCentresDescription":"Çevrendeki en popüler @:beautyCentres bir tık uzağında!",
         "hairdresserLogin":"Kuaför Girişi",
-        "userLogin":"Kullanıcı Girişi"
+        "userLogin":"Kullanıcı Girişi",
+        "next":"İleri",
+        "skip":"Atla",
+        "discoverApp":"Uygulamayı Keşfet"
     },
     "authType":{
         "business":"İşletme Girişi",

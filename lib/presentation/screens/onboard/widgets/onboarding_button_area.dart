@@ -5,15 +5,25 @@ class _OnboardingButtonArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _old();
+    return BaseBlocBuilderView<OnboardCubit, OnboardState>(
+      initialChildBuilder: (context, state) {
+        if (state.isLastPage) {
+          return const _OnboardElevatedButton();
+        }
+
+        return _buttonRow(context);
+      },
+    );
   }
 
-  Row _old() {
+  Row _buttonRow(BuildContext context) {
     return Row(
       children: [
-        const Expanded(child: _HairSalonOutlinedButton()),
+        Expanded(
+          child: _OnboardSkipOutlinedButton(onPressed: () => context.read<OnboardCubit>().completeOnboarding()),
+        ),
         EmptySpace.mediumWidth(),
-        const Expanded(child: _UserElevatedButton()),
+        const Expanded(child: _OnboardElevatedButton()),
       ],
     );
   }

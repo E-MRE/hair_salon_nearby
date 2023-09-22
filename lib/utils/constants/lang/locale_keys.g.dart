@@ -40,6 +40,9 @@ abstract class  LocaleKeys {
   static const onboarding_beautyCentresDescription = 'onboarding.beautyCentresDescription';
   static const onboarding_hairdresserLogin = 'onboarding.hairdresserLogin';
   static const onboarding_userLogin = 'onboarding.userLogin';
+  static const onboarding_next = 'onboarding.next';
+  static const onboarding_skip = 'onboarding.skip';
+  static const onboarding_discoverApp = 'onboarding.discoverApp';
   static const onboarding = 'onboarding';
   static const authType_business = 'authType.business';
   static const authType_user = 'authType.user';

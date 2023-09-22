@@ -9,6 +9,8 @@ class OnboardState extends BaseState {
 
   List<OnboardingOption> get pages => OnboardingOption.values;
 
+  bool get isLastPage => pageIndex == pages.length - 1;
+
   OnboardState({
     this.pageIndex = 0,
     required super.status,

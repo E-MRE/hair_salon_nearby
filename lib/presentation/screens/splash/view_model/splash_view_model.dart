@@ -12,7 +12,7 @@ class SplashViewModel {
   SplashViewModel({required this.tokenContext, required this.cacheService});
 
   Future<PageRouteInfo> getRouteInfo() async {
-    final onboardRequired = await cacheService.getValue<bool>(CachingKeys.onboarding);
+    final onboardRequired = await cacheService.getValue<bool>(CachingKeys.onboarding, defaultValue: true);
     if (onboardRequired ?? true) {
       return const OnboardRoute();
     }
