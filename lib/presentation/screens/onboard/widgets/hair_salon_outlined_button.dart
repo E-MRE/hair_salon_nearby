@@ -8,9 +8,7 @@ class _HairSalonOutlinedButton extends StatelessWidget {
     return OnPrimaryOutlinedButton(
       opacity: .66,
       text: LocaleKeys.onboarding_hairdresserLogin.tr(),
-      onPressed: () {
-        context.router.replace(LoginRoute(authType: AuthType.business, onAuthResult: (_) {}));
-      },
+      onPressed: () => context.router.replace(LoginRoute()),
     );
   }
 }

@@ -16,12 +16,12 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     LoginRoute.name: (routeData) {
-      final args = routeData.argsAs<LoginRouteArgs>();
+      final args = routeData.argsAs<LoginRouteArgs>(
+          orElse: () => const LoginRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: LoginPage(
           key: args.key,
-          authType: args.authType,
           onAuthResult: args.onAuthResult,
         ),
       );
@@ -39,13 +39,9 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     RegisterRoute.name: (routeData) {
-      final args = routeData.argsAs<RegisterRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: RegisterPage(
-          key: args.key,
-          authType: args.authType,
-        ),
+        child: const RegisterPage(),
       );
     },
     SplashRoute.name: (routeData) {
@@ -62,14 +58,12 @@ abstract class _$AppRouter extends RootStackRouter {
 class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
   LoginRoute({
     Key? key,
-    required AuthType authType,
-    required void Function(bool) onAuthResult,
+    void Function(bool)? onAuthResult,
     List<PageRouteInfo>? children,
   }) : super(
           LoginRoute.name,
           args: LoginRouteArgs(
             key: key,
-            authType: authType,
             onAuthResult: onAuthResult,
           ),
           initialChildren: children,
@@ -83,19 +77,16 @@ class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
 class LoginRouteArgs {
   const LoginRouteArgs({
     this.key,
-    required this.authType,
-    required this.onAuthResult,
+    this.onAuthResult,
   });
 
   final Key? key;
 
-  final AuthType authType;
-
-  final void Function(bool) onAuthResult;
+  final void Function(bool)? onAuthResult;
 
   @override
   String toString() {
-    return 'LoginRouteArgs{key: $key, authType: $authType, onAuthResult: $onAuthResult}';
+    return 'LoginRouteArgs{key: $key, onAuthResult: $onAuthResult}';
   }
 }
 
@@ -129,40 +120,16 @@ class OnboardRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [RegisterPage]
-class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
-  RegisterRoute({
-    Key? key,
-    required AuthType authType,
-    List<PageRouteInfo>? children,
-  }) : super(
+class RegisterRoute extends PageRouteInfo<void> {
+  const RegisterRoute({List<PageRouteInfo>? children})
+      : super(
           RegisterRoute.name,
-          args: RegisterRouteArgs(
-            key: key,
-            authType: authType,
-          ),
           initialChildren: children,
         );
 
   static const String name = 'RegisterRoute';
 
-  static const PageInfo<RegisterRouteArgs> page =
-      PageInfo<RegisterRouteArgs>(name);
-}
-
-class RegisterRouteArgs {
-  const RegisterRouteArgs({
-    this.key,
-    required this.authType,
-  });
-
-  final Key? key;
-
-  final AuthType authType;
-
-  @override
-  String toString() {
-    return 'RegisterRouteArgs{key: $key, authType: $authType}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

@@ -8,7 +8,6 @@ import '../../../../core/extensions/context_extensions.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/app_padding.dart';
 import '../../../../utils/decorations/empty_space.dart';
-import '../../../../utils/enum/auth_type.dart';
 import '../../../../utils/enum/onboarding_option.dart';
 import '../../../../utils/enum/sizes.dart';
 import '../../../../utils/enum/text_line_type.dart';

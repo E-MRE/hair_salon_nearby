@@ -1,9 +1,7 @@
 part of '../view/login_page.dart';
 
 class _NotHaveAccountLine extends StatelessWidget {
-  const _NotHaveAccountLine(this.authType);
-
-  final AuthType authType;
+  const _NotHaveAccountLine();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +27,6 @@ class _NotHaveAccountLine extends StatelessWidget {
   }
 
   void _navigateRegister(BuildContext context) {
-    context.router.navigate(RegisterRoute(authType: authType));
+    context.router.navigate(const RegisterRoute());
   }
 }

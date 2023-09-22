@@ -1,37 +1,32 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/empty_space.dart';
-import '../../../../utils/enum/auth_type.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/buttons/big_primary_elevated_button.dart';
-import '../../../widgets/buttons/selectable_container.dart';
 import '../../../widgets/images/app_text_logo_image_view.dart';
 import '../../../widgets/scaffolds/safe_page_view.dart';
 import '../../../widgets/text_fields/title_text_form_field.dart';
 import '../../../widgets/texts/app_text.dart';
-import '../utils/auth_page.dart';
-import '../utils/auth_type_state_operation.dart';
 
-part '../widgets/auth_type_selector.dart';
 part '../widgets/login_form_area.dart';
 part '../widgets/not_have_account_line.dart';
 
 @RoutePage()
-class LoginPage extends AuthStatefulPage {
-  const LoginPage({super.key, required super.authType, required this.onAuthResult});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key, this.onAuthResult});
 
-  final void Function(bool isSuccess) onAuthResult;
+  final void Function(bool isSuccess)? onAuthResult;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return SafePageView(
@@ -44,7 +39,6 @@ class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin 
             _buildTitle(context),
             _buildSubTitle(context),
             EmptySpace.bigHeight(),
-            _AuthTypeSelector(authType: authType, selectAuthType: selectAuthType),
             EmptySpace.bigHeight(),
             const _LoginFormArea(),
             EmptySpace.mediumHeight(),
@@ -52,7 +46,7 @@ class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin 
             EmptySpace.extraBigHeight(),
             _buildSignInButton(context),
             EmptySpace.extraBigHeight(),
-            _NotHaveAccountLine(authType),
+            const _NotHaveAccountLine(),
           ],
         ),
       ),
@@ -82,7 +76,7 @@ class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin 
         style: const ButtonStyle(padding: MaterialStatePropertyAll(EdgeInsets.zero)),
         onPressed: () {
           //TODO: remove it
-          widget.onAuthResult.call(false);
+          widget.onAuthResult?.call(false);
         },
         child: AppText.bodySmallRegular(
           LocaleKeys.login_forgotPassword.tr(),
@@ -109,7 +103,7 @@ class _LoginPageState extends State<LoginPage> with AuthTypeStateOperationMixin 
     kTokenContext.token = 'ASDasdasdasDQWeqweqdas';
     kTokenContext.refreshToken = 'ASDasdasdasDQWeqweqdas';
 
-    widget.onAuthResult.call(true);
+    widget.onAuthResult?.call(true);
     context.router.replace(const MenuRoute());
   }
 }

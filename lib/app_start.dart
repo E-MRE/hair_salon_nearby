@@ -10,6 +10,7 @@ class _AppStart with HiveRegisterAdaptersMixin {
     GetItInjectionContainer.instance.register();
     registerAdapters();
     await kCacheService.init();
+    //TODO: Add token to the token coontext
   }
 
   MultiProvider _setMultiProviderByChild({required List<SingleChildWidget> providers, required Widget child}) {

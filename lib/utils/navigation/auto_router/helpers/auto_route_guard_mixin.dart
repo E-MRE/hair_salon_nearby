@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
 import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
-import '../../../enum/auth_type.dart';
 import '../app_router.dart';
 
 mixin AuthRouteGuardMixin implements AutoRouteGuard {
@@ -15,7 +14,7 @@ mixin AuthRouteGuardMixin implements AutoRouteGuard {
     final authExpired = !kTokenContext.isTokenAvailable() && !kTokenContext.isRefreshTokenAvailable();
 
     if (authExpired) {
-      resolver.redirect(LoginRoute(authType: AuthType.user, onAuthResult: (isSuccess) => resolver.next(isSuccess)));
+      resolver.redirect(LoginRoute(onAuthResult: (isSuccess) => resolver.next(isSuccess)));
     } else {
       resolver.next();
     }

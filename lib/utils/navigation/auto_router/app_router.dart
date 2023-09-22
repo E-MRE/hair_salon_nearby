@@ -7,7 +7,6 @@ import '../../../presentation/screens/menu/view/menu_page.dart';
 import '../../../presentation/screens/onboard/view/onboard_page.dart';
 import '../../../presentation/screens/splash/view/splash_page.dart';
 import '../../constants/router_name_constants.dart';
-import '../../enum/auth_type.dart';
 import 'helpers/auto_route_guard_mixin.dart';
 import 'routers/fade_transition_route.dart';
 import 'routers/scale_transition_route.dart';
