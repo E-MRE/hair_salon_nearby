@@ -13,6 +13,7 @@ class _OnboardLiquidSwipeView extends StatelessWidget {
       builder: (context, state) {
         return LiquidSwipe(
           liquidController: controller,
+          onPageChangeCallback: (activePageIndex) => context.read<OnboardCubit>().changeIndex(activePageIndex),
           fullTransitionValue: fullTransitionValue,
           pages: state.pages.map((option) => _PageView(option: option)).toList(),
         );

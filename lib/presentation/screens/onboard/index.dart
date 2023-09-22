@@ -12,6 +12,7 @@ import '../../../../utils/decorations/empty_space.dart';
 import '../../../../utils/enum/onboarding_option.dart';
 import '../../../../utils/enum/sizes.dart';
 import '../../../../utils/enum/text_line_type.dart';
+import '../../../core/utils/enums/duration_types.dart';
 import '../../../utils/navigation/auto_router/app_router.dart';
 import '../../widgets/bloc/base_bloc_builder_view.dart';
 import '../../widgets/bloc/base_bloc_provider_view.dart';

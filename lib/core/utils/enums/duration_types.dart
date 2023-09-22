@@ -2,6 +2,8 @@
 ///
 ///* zero = 0 seconds
 ///
+///* halfSeconds = 0.5 seconds
+///
 ///* oneSecond = 1 second
 ///
 ///* eightSeconds = 8 seconds
@@ -29,6 +31,9 @@
 enum DurationTypes {
   /// value = 0 seconds
   zero,
+
+  /// value = 0.5 seconds
+  halfSeconds,
 
   /// value = 1 second
   oneSecond,
@@ -72,6 +77,8 @@ extension DurationTypesExtension on DurationTypes {
     switch (this) {
       case DurationTypes.zero:
         return const Duration(seconds: 0);
+      case DurationTypes.halfSeconds:
+        return const Duration(milliseconds: 500);
       case DurationTypes.oneSecond:
         return const Duration(seconds: 1);
       case DurationTypes.eightSeconds:

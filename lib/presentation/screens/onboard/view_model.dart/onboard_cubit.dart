@@ -14,14 +14,14 @@ class OnboardCubit extends BaseCubit<OnboardState> {
 
   void changeIndex(int index) {
     int fixedIndex = index < 0 ? 0 : index;
-    fixedIndex = fixedIndex >= state.pages.length - 1 ? 0 : fixedIndex;
+    fixedIndex = fixedIndex >= state.pages.length ? 0 : fixedIndex;
 
     safeEmit(state.copyWith(pageIndex: fixedIndex));
   }
 
   Future<void> completeOnboarding() async {
     safeEmit(state.copyWith(status: StateStatus.loading));
-    final result = await _cacheService.setValue<bool>(CachingKeys.onboarding, true);
+    final result = await _cacheService.setValue<bool>(CachingKeys.onboarding, false);
 
     if (result) {
       safeEmit(state.copyWith(status: StateStatus.success));
