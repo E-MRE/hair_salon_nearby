@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../presentation/screens/auth/view/login_page.dart';
 import '../../../presentation/screens/auth/view/register_page.dart';
 import '../../../presentation/screens/menu/view/menu_page.dart';
-import '../../../presentation/screens/onboard/view/onboard_page.dart';
+import '../../../presentation/screens/onboard/index.dart';
 import '../../../presentation/screens/splash/view/splash_page.dart';
 import '../../constants/router_name_constants.dart';
 import 'helpers/auto_route_guard_mixin.dart';

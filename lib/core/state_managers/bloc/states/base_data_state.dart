@@ -11,8 +11,8 @@ abstract class BaseDataState<TData> extends BaseState {
     required super.infoMessage,
   }) : super();
 
-  BaseDataState.initial()
-      : data = null,
+  BaseDataState.initial({TData? data})
+      : data = data,
         super.initial();
 
   bool get isDataNull => data == null;

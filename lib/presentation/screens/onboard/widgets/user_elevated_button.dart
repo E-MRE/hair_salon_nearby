@@ -1,4 +1,4 @@
-part of '../view/onboard_page.dart';
+part of '../index.dart';
 
 class _UserElevatedButton extends StatelessWidget {
   const _UserElevatedButton();

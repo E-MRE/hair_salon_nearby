@@ -1,4 +1,4 @@
-part of 'onboard_page.dart';
+part of '../index.dart';
 
 class _PageView extends StatelessWidget {
   const _PageView({Key? key, required this.option})

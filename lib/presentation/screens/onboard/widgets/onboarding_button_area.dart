@@ -1,4 +1,4 @@
-part of '../view/onboard_page.dart';
+part of '../index.dart';
 
 class _OnboardingButtonArea extends StatelessWidget {
   const _OnboardingButtonArea({Key? key}) : super(key: key);
