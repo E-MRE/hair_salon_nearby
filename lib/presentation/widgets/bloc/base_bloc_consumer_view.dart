@@ -11,6 +11,7 @@ class BaseBlocConsumerView<TCubit extends BaseCubit<TState>, TState extends Base
     super.key,
     this.listener,
     super.customBuilder,
+    super.defaultBuilder,
     super.errorChildBuilder,
     super.successChildBuilder,
     super.initialChildBuilder,

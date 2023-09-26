@@ -1,14 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/utils/display_messages/snack_bar/display_snack_bar.dart';
-import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
+import '../../../../core/utils/enums/state_status.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/empty_space.dart';
 import '../../../../utils/mixins/validators/login_validator_mixin.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
+import '../../../widgets/bloc/base_bloc_builder_view.dart';
 import '../../../widgets/bloc/base_bloc_provider_view.dart';
 import '../../../widgets/buttons/big_primary_elevated_button.dart';
 import '../../../widgets/buttons/big_primary_outlined_button.dart';
@@ -42,22 +44,20 @@ class _LoginPageState extends State<LoginPage> with _LoginStateMixin {
     return SafeBackgroundPageView(
       body: SingleChildScrollView(
         child: BaseBlocProviderView<LoginCubit, LoginState>(
-          create: (context) => LoginCubit(),
+          create: (_) => LoginCubit(),
           listener: _buildListener,
-          initialChildBuilder: _buildPage,
-          successChildBuilder: _buildPage,
-          errorChildBuilder: _buildPage,
+          defaultBuilder: (builderContext, state) => _buildPage(builderContext, state, context.isKeyBoardOpen),
         ),
       ),
     );
   }
 
-  Column _buildPage(BuildContext context, LoginState state) {
+  Column _buildPage(BuildContext context, LoginState state, bool isKeyBoardOpen) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Align(alignment: Alignment.centerLeft, child: AppTextLogoImageView()),
-        _LoginTitleArea(isVisible: context.isKeyBoardOpen),
+        _LoginTitleArea(isVisible: !isKeyBoardOpen),
         EmptySpace.bigHeight(),
         _LoginFormArea(
           formKey: _formKey,
@@ -67,7 +67,10 @@ class _LoginPageState extends State<LoginPage> with _LoginStateMixin {
         EmptySpace.mediumHeight(),
         const _LoginForgetButton(),
         EmptySpace.extraBigHeight(),
-        _LoginSignInButton(onAuthResult: widget.onAuthResult),
+        _LoginSignInButton(
+          checkInputsValid: () => _formKey.currentState?.validate() ?? false,
+          signIn: () async => await context.read<LoginCubit>().login(_emailController.text, _passwordController.text),
+        ),
         EmptySpace.bigHeight(),
         const _LoginWithoutSignInButton(),
         EmptySpace.extraBigHeight(),
@@ -77,8 +80,10 @@ class _LoginPageState extends State<LoginPage> with _LoginStateMixin {
   }
 
   void _buildListener(BuildContext context, LoginState state) {
-    if (!state.isSuccess) {
+    if (state.status == StateStatus.error) {
       DisplaySnackBar(context).errorMessage(state.errorMessage);
+    } else if (state.isSuccess) {
+      widget.onAuthResult == null ? context.router.replace(const MenuRoute()) : widget.onAuthResult?.call(true);
     }
   }
 }

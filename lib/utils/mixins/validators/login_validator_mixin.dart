@@ -11,11 +11,11 @@ mixin LoginValidatorMixin {
     return 'Lütfen geçerli bir e-posta giriniz.';
   }
 
-  String? validatePassword(String? value, {int minimumLength = 8}) {
+  String? validatePassword(String? value, {int minimumLength = 6}) {
     if (value == null || value.isEmpty) return 'Şifre alanı boş bırakılmamalıdır.';
 
     if (value.length < minimumLength) {
-      return 'Girilen şifre en az 8 karakter olmalıdır.';
+      return 'Girilen şifre en az $minimumLength karakter olmalıdır.';
     }
 
     return null;

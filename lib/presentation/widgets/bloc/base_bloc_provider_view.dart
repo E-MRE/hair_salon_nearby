@@ -11,6 +11,7 @@ class BaseBlocProviderView<TCubit extends BaseCubit<TState>, TState extends Base
     super.key,
     this.listener,
     this.customBuilder,
+    this.defaultBuilder,
     required this.create,
     this.errorChildBuilder,
     this.successChildBuilder,
@@ -21,6 +22,7 @@ class BaseBlocProviderView<TCubit extends BaseCubit<TState>, TState extends Base
   final TCubit Function(BuildContext context) create;
   final BlocWidgetListener<TState>? listener;
   final BlocWidgetBuilder<TState>? customBuilder;
+  final BlocWidgetBuilder<TState>? defaultBuilder;
 
   final BlocWidgetBuilder<TState>? initialChildBuilder;
   final BlocWidgetBuilder<TState>? loadingChildBuilder;
@@ -35,6 +37,7 @@ class BaseBlocProviderView<TCubit extends BaseCubit<TState>, TState extends Base
           ? BaseBlocConsumerView<TCubit, TState>(
               listener: listener,
               customBuilder: customBuilder,
+              defaultBuilder: defaultBuilder,
               initialChildBuilder: initialChildBuilder,
               loadingChildBuilder: loadingChildBuilder,
               successChildBuilder: successChildBuilder,
@@ -42,6 +45,7 @@ class BaseBlocProviderView<TCubit extends BaseCubit<TState>, TState extends Base
             )
           : BaseBlocBuilderView<TCubit, TState>(
               customBuilder: customBuilder,
+              defaultBuilder: defaultBuilder,
               initialChildBuilder: initialChildBuilder,
               loadingChildBuilder: loadingChildBuilder,
               successChildBuilder: successChildBuilder,

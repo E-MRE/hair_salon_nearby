@@ -1,28 +1,33 @@
 part of '../view/login_page.dart';
 
 class _LoginSignInButton extends StatelessWidget {
-  const _LoginSignInButton({Key? key, this.onAuthResult}) : super(key: key);
+  const _LoginSignInButton({Key? key, required this.checkInputsValid, required this.signIn}) : super(key: key);
 
-  final void Function(bool isSuccess)? onAuthResult;
+  final bool Function() checkInputsValid;
+  final Future<void> Function() signIn;
 
   @override
   Widget build(BuildContext context) {
-    return BigPrimaryElevatedButton(
-      onPressed: () => _login(context),
-      text: LocaleKeys.login_signIn.tr(),
-      icon: Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary),
+    return BaseBlocBuilderView<LoginCubit, LoginState>(
+      defaultBuilder: (context, state) {
+        return BigPrimaryElevatedButton(
+          onPressed: () => _login(context, state.status == StateStatus.loading),
+          text: LocaleKeys.login_signIn.tr(),
+          icon: _buildIconByStatus(context, state.status == StateStatus.loading),
+        );
+      },
     );
   }
 
-  void _login(BuildContext context) {
-    //TODO: add login operations
-    //TODO: after login then call this
-    kTokenContext.setTokenExpirationDate(DateTime.now().add(const Duration(hours: 1)).toIso8601String());
-    kTokenContext.setRefreshTokenExpirationDate(DateTime.now().add(const Duration(hours: 1)).toIso8601String());
-    kTokenContext.token = 'ASDasdasdasDQWeqweqdas';
-    kTokenContext.refreshToken = 'ASDasdasdasDQWeqweqdas';
+  Widget _buildIconByStatus(BuildContext context, bool isLoading) {
+    return isLoading
+        ? CircularProgressIndicator(color: context.colorScheme.onPrimary)
+        : Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary);
+  }
 
-    onAuthResult?.call(true);
-    context.router.replace(const MenuRoute());
+  Future<void> _login(BuildContext context, bool isLoading) async {
+    if (isLoading || !checkInputsValid()) return;
+
+    await signIn();
   }
 }

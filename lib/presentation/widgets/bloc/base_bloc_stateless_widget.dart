@@ -8,6 +8,7 @@ import '../../../core/utils/enums/state_status.dart';
 abstract class BaseBlocStatelessWidget<TCubit extends BaseCubit<TState>, TState extends BaseState>
     extends StatelessWidget {
   final BlocWidgetBuilder<TState>? customBuilder;
+  final BlocWidgetBuilder<TState>? defaultBuilder;
 
   final BlocWidgetBuilder<TState>? initialChildBuilder;
   final BlocWidgetBuilder<TState>? loadingChildBuilder;
@@ -17,6 +18,7 @@ abstract class BaseBlocStatelessWidget<TCubit extends BaseCubit<TState>, TState 
   const BaseBlocStatelessWidget({
     Key? key,
     this.customBuilder,
+    this.defaultBuilder,
     this.initialChildBuilder,
     this.loadingChildBuilder,
     this.successChildBuilder,
@@ -26,13 +28,19 @@ abstract class BaseBlocStatelessWidget<TCubit extends BaseCubit<TState>, TState 
   Widget buildBody(BuildContext context, TState state) {
     switch (state.status) {
       case StateStatus.initial:
-        return initialChildBuilder?.call(context, state) ?? const SizedBox.shrink();
-      case StateStatus.loading:
-        return loadingChildBuilder?.call(context, state) ?? const Center(child: CircularProgressIndicator());
+        return _buildWidgetByDefault(initialChildBuilder?.call(context, state) ?? defaultBuilder?.call(context, state));
       case StateStatus.success:
-        return successChildBuilder?.call(context, state) ?? const SizedBox.shrink();
+        return _buildWidgetByDefault(successChildBuilder?.call(context, state) ?? defaultBuilder?.call(context, state));
       case StateStatus.error:
-        return errorChildBuilder?.call(context, state) ?? const SizedBox.shrink();
+        return _buildWidgetByDefault(errorChildBuilder?.call(context, state) ?? defaultBuilder?.call(context, state));
+      case StateStatus.loading:
+        return loadingChildBuilder?.call(context, state) ??
+            defaultBuilder?.call(context, state) ??
+            const Center(child: CircularProgressIndicator());
     }
+  }
+
+  Widget _buildWidgetByDefault(Widget? builder) {
+    return builder ?? const SizedBox.shrink();
   }
 }

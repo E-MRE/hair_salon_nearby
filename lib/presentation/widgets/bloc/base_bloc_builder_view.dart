@@ -12,6 +12,7 @@ class BaseBlocBuilderView<TCubit extends BaseCubit<TState>, TState extends BaseS
   const BaseBlocBuilderView({
     Key? key,
     super.customBuilder,
+    super.defaultBuilder,
     super.errorChildBuilder,
     super.successChildBuilder,
     super.initialChildBuilder,
