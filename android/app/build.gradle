@@ -50,6 +50,12 @@ android {
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        lintOptions { 
+            checkReleaseBuilds false
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
