@@ -6,6 +6,8 @@
 ///
 ///* oneSecond = 1 second
 ///
+///* twoSeconds = 2 seconds
+///
 ///* eightSeconds = 8 seconds
 ///
 /// * sixteenSeconds = 16 seconds
@@ -37,6 +39,9 @@ enum DurationTypes {
 
   /// value = 1 second
   oneSecond,
+
+  /// value = 2 second
+  twoSeconds,
 
   /// value = 8 seconds
   eightSeconds,
@@ -81,6 +86,8 @@ extension DurationTypesExtension on DurationTypes {
         return const Duration(milliseconds: 500);
       case DurationTypes.oneSecond:
         return const Duration(seconds: 1);
+      case DurationTypes.twoSeconds:
+        return const Duration(seconds: 2);
       case DurationTypes.eightSeconds:
         return const Duration(seconds: 8);
       case DurationTypes.sixteenSeconds:

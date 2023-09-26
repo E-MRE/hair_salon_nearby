@@ -7,6 +7,13 @@ typedef FactoryFunc<T> = T Function();
 /// because closures like `(x){}` have a return type of Null we don't use `FutureOr<void>`
 typedef DisposingFunc<T> = FutureOr Function(T param);
 
+/// For Factories that expect up to two parameters if you need only one use `void` for the one
+/// you don't use
+typedef FactoryFuncParam<T, P1, P2> = T Function(
+  P1 param1,
+  P2 param2,
+);
+
 abstract interface class DependencyInjector {
   /// retrieves or creates an instance of a registered type [T] depending on the registration
   /// function used for this type or based on a name.
@@ -31,6 +38,48 @@ abstract interface class DependencyInjector {
     FactoryFunc<T> factoryFunc, {
     String? instanceName,
   });
+
+  void safeRegisterFactory<T extends Object>(
+    FactoryFunc<T> factoryFunc, {
+    String? instanceName,
+  }) {
+    if (!isRegistered<T>()) {
+      registerFactory<T>(factoryFunc, instanceName: instanceName);
+    }
+  }
+
+  /// registers a type so that a new instance will be created on each call of [get] on that type
+  /// based on up to two parameters provided to [get()]
+  /// [T] type to register
+  /// [P1] type of param1
+  /// [P2] type of param2
+  /// if you use only one parameter pass void here
+  /// [factoryFunc] factory function for this type that accepts two parameters
+  /// [instanceName] if you provide a value here your factory gets registered with that
+  /// name instead of a type. This should only be necessary if you need to register more
+  /// than one instance of one type.
+  ///
+  /// example:
+  ///    getIt.registerFactoryParam<TestClassParam,String,int>((s,i)
+  ///        => TestClassParam(param1:s, param2: i));
+  ///
+  /// if you only use one parameter:
+  ///
+  ///    getIt.registerFactoryParam<TestClassParam,String,void>((s,_)
+  ///        => TestClassParam(param1:s);
+  void registerFactoryParam<T extends Object, P1, P2>(
+    FactoryFuncParam<T, P1, P2> factoryFunc, {
+    String? instanceName,
+  });
+
+  void safeRegisterFactoryParam<T extends Object, P1, P2>(
+    FactoryFuncParam<T, P1, P2> factoryFunc, {
+    String? instanceName,
+  }) {
+    if (!isRegistered<T>()) {
+      registerFactoryParam<T, P1, P2>(factoryFunc, instanceName: instanceName);
+    }
+  }
 
   /// registers a type as Singleton by passing an [instance] of that type
   /// that will be returned on each call of [get] on that type

@@ -8,3 +8,19 @@ TokenService get kTokenService => GetItInjectionContainer.instance.injector.get<
 TokenContext get kTokenContext => GetItInjectionContainer.instance.injector.get<TokenContext>();
 CacheService get kCacheService => GetItInjectionContainer.instance.injector.get<CacheService>();
 DioRemoteDataService get kRemoteDataService => GetItInjectionContainer.instance.injector.get<DioRemoteDataService>();
+
+class CoreDependencies {
+  static T getDependency<T extends Object>({
+    String? instanceName,
+    dynamic param1,
+    dynamic param2,
+    Type? type,
+  }) {
+    return GetItInjectionContainer.instance.injector.get<T>(
+      instanceName: instanceName,
+      param1: param1,
+      param2: param2,
+      type: type,
+    );
+  }
+}

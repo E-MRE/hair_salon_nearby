@@ -33,6 +33,13 @@ class GetItDependencyInjector implements DependencyInjector {
     _injector.registerLazySingleton<T>(factoryFunc, instanceName: instanceName, dispose: dispose);
   }
 
+  void registerFactoryParam<T extends Object, P1, P2>(
+    FactoryFuncParam<T, P1, P2> factoryFunc, {
+    String? instanceName,
+  }) {
+    _injector.registerFactoryParam<T, P1, P2>(factoryFunc, instanceName: instanceName);
+  }
+
   @override
   T registerSingleton<T extends Object>(
     T instance, {
@@ -77,5 +84,20 @@ class GetItDependencyInjector implements DependencyInjector {
       instanceName: instanceName,
       disposingFunction: disposingFunction,
     );
+  }
+
+  @override
+  void safeRegisterFactory<T extends Object>(FactoryFunc<T> factoryFunc, {String? instanceName}) {
+    if (!isRegistered<T>()) {
+      registerFactory(factoryFunc, instanceName: instanceName);
+    }
+  }
+
+  @override
+  void safeRegisterFactoryParam<T extends Object, P1, P2>(FactoryFuncParam<T, P1, P2> factoryFunc,
+      {String? instanceName}) {
+    if (!isRegistered<T>()) {
+      registerFactoryParam<T, P1, P2>(factoryFunc, instanceName: instanceName);
+    }
   }
 }
