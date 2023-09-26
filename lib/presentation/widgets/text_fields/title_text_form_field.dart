@@ -12,6 +12,7 @@ class TitleTextFormField extends StatefulWidget {
     this.initialValue,
     this.hintText,
     this.isObscureText = false,
+    this.validator,
     this.controller,
     this.focusNode,
     this.minLines,
@@ -29,6 +30,7 @@ class TitleTextFormField extends StatefulWidget {
   final TextInputType? inputType;
 
   final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
   final FocusNode? focusNode;
 
   @override
@@ -58,6 +60,7 @@ class _TitleTextFormFieldState extends State<TitleTextFormField> {
           focusNode: widget.focusNode,
           controller: widget.controller,
           minLines: widget.minLines,
+          validator: widget.validator,
           maxLines: widget.isObscureText
               ? TextLineType.loose.value
               : (widget.minLines != null ? widget.maxLines ?? widget.minLines : widget.maxLines),

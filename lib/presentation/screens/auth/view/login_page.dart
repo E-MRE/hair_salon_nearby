@@ -6,6 +6,7 @@ import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/empty_space.dart';
+import '../../../../utils/mixins/validators/login_validator_mixin.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/buttons/big_primary_elevated_button.dart';
 import '../../../widgets/buttons/big_primary_outlined_button.dart';
@@ -16,6 +17,10 @@ import '../../../widgets/texts/app_text.dart';
 
 part '../widgets/login_form_area.dart';
 part '../widgets/not_have_account_line.dart';
+part 'login_title_area.dart';
+part '../widgets/login_forget_button.dart';
+part '../widgets/login_sign_in_button.dart';
+part '../widgets/login_without_sign_in_button.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
@@ -27,7 +32,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with _LoginStateMixin {
   @override
   Widget build(BuildContext context) {
     return SafeBackgroundPageView(
@@ -36,15 +41,19 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Align(alignment: Alignment.centerLeft, child: AppTextLogoImageView()),
-            _buildTitleAndSubTitle(context),
+            _LoginTitleArea(isVisible: context.isKeyBoardOpen),
             EmptySpace.bigHeight(),
-            const _LoginFormArea(),
+            _LoginFormArea(
+              formKey: _formKey,
+              emailController: _emailController,
+              passwordController: _passwordController,
+            ),
             EmptySpace.mediumHeight(),
-            _buildForgetPassword(context),
+            const _LoginForgetButton(),
             EmptySpace.extraBigHeight(),
-            _buildSignInButton(context),
+            _LoginSignInButton(onAuthResult: widget.onAuthResult),
             EmptySpace.bigHeight(),
-            _buildWithoutSignInButton(context),
+            const _LoginWithoutSignInButton(),
             EmptySpace.extraBigHeight(),
             const _NotHaveAccountLine(),
           ],
@@ -52,78 +61,18 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
 
-  Widget _buildTitleAndSubTitle(BuildContext context) {
-    if (context.isKeyBoardOpen) return const SizedBox.shrink();
+mixin _LoginStateMixin on State<LoginPage> {
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+  late GlobalKey<FormState> _formKey;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        EmptySpace.bigHeight(),
-        _buildTitle(context),
-        _buildSubTitle(context),
-        EmptySpace.bigHeight(),
-      ],
-    );
-  }
-
-  AppText _buildTitle(BuildContext context) {
-    return AppText.headlineMediumSemiBold(
-      LocaleKeys.login_welcome.tr(),
-      context: context,
-      color: context.colorScheme.secondary,
-    );
-  }
-
-  AppText _buildSubTitle(BuildContext context) {
-    return AppText.titleLargeRegular(
-      LocaleKeys.login_niceToSeeYou.tr(),
-      context: context,
-      color: context.colorScheme.secondary,
-    );
-  }
-
-  Align _buildForgetPassword(BuildContext context) {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: TextButton(
-        style: const ButtonStyle(padding: MaterialStatePropertyAll(EdgeInsets.zero)),
-        onPressed: () {},
-        child: AppText.bodySmallRegular(
-          LocaleKeys.login_forgotPassword.tr(),
-          context: context,
-          color: context.colorScheme.primary,
-        ),
-      ),
-    );
-  }
-
-  BigPrimaryElevatedButton _buildSignInButton(BuildContext context) {
-    return BigPrimaryElevatedButton(
-      onPressed: _login,
-      text: LocaleKeys.login_signIn.tr(),
-      icon: Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary),
-    );
-  }
-
-  Widget _buildWithoutSignInButton(BuildContext context) {
-    return BigPrimaryOutlinedButton(
-      onPressed: _login,
-      text: LocaleKeys.login_continueWithoutRegister.tr(),
-      icon: Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary),
-    );
-  }
-
-  void _login() {
-    //TODO: add login operations
-    //TODO: after login then call this
-    kTokenContext.setTokenExpirationDate(DateTime.now().add(const Duration(hours: 1)).toIso8601String());
-    kTokenContext.setRefreshTokenExpirationDate(DateTime.now().add(const Duration(hours: 1)).toIso8601String());
-    kTokenContext.token = 'ASDasdasdasDQWeqweqdas';
-    kTokenContext.refreshToken = 'ASDasdasdasDQWeqweqdas';
-
-    widget.onAuthResult?.call(true);
-    context.router.replace(const MenuRoute());
+  @override
+  void initState() {
+    super.initState();
+    _formKey = GlobalKey();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
   }
 }
