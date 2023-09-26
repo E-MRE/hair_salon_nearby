@@ -7,7 +7,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.0.0 <3.7.3"
+  sdk: ">=3.1.0 <4.0.0"
 
 
 dependencies:
@@ -15,85 +15,80 @@ dependencies:
     sdk: flutter
 
   #API Connection  
-  http:
-  dio: ^5.0.0
+  http: ^1.1.0
+  dio: ^5.3.3
 
   #onboarding
-  liquid_swipe: ^3.0.0
-  smooth_page_indicator: ^1.0.1
+  liquid_swipe: ^3.1.0
+  smooth_page_indicator: ^1.1.0
 
   #Cache & Storage
-  flutter_secure_storage:
-  hive_flutter:
-  get_it: ^7.6.0
+  hive_flutter: ^1.1.0
+  get_it: ^7.6.4
 
   #Image Operations
   flutter_svg: ^2.0.7
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.0
   like_button: ^2.0.5
 
   #Input
-  mask_input_formatter:
+  mask_input_formatter: ^0.0.3
 
   #State Management
-  provider:
-  flutter_bloc:
+  provider: ^6.0.5
+  flutter_bloc: ^8.1.3
 
   #localization
-  easy_localization:
+  easy_localization: ^3.0.3
 
   #Json Operations
-  json_annotation:
+  json_annotation: ^4.8.1
 
   ################
-  collection:
-  intl:
+  intl: ^0.18.1
 
   #File Operations
-  better_open_file:
+  better_open_file: ^3.6.4
 
   #Cryptology
-  cryptography:
+  cryptography: ^2.7.0
   
   #Navigation
-  auto_route: ^7.1.0
+  auto_route: ^7.8.3
   stylish_bottom_bar: ^1.0.3
 
   #Version compare
-  version_comparator: ^1.0.0
+  version_comparator: ^1.0.2
 
   #Responsive Design
-  responsive_framework: ^1.0.0
-  responsive_builder:
-  flutter_native_splash: ^2.3.1
+  responsive_framework: ^1.1.1
+  responsive_builder: ^0.7.0
+  flutter_native_splash: ^2.3.2
 
   #Device
-  device_preview:
-
-  #Launch Url, Phone or Mail
-  url_launcher:
+  device_preview: ^1.1.0
 
   #env
   envied: ^0.3.0+3
 
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito:
+  mockito: ^5.4.2
     
-  build_runner:
-  hive_generator:
-  auto_route_generator: ^7.0.0
-  flutter_gen_runner:
+  build_runner: ^2.4.6
+  hive_generator: ^2.0.1
+  auto_route_generator: ^7.3.1
+  flutter_gen_runner: ^5.3.2
   envied_generator: ^0.3.0+3
 
   #Json Operation
-  json_serializable:
+  json_serializable: ^6.7.1
 
-  flutter_launcher_icons:
+  flutter_launcher_icons: ^0.13.1
 
 flutter_icons:
   image_path: "assets/images/png/ic_logo.png"
@@ -102,7 +97,7 @@ flutter_icons:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. 
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.3
 
 flutter_gen:
   output: lib/utils/gen/
