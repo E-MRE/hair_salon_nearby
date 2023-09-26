@@ -1,23 +1,30 @@
-import 'package:hair_salon_nearby/utils/mixins/regexp_mixin.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import '../../constants/lang/locale_keys.g.dart';
+import '../regexp_mixin.dart';
 
 mixin LoginValidatorMixin {
   String? validateEmail(String? value) {
-    if (value == null || value.isEmpty) return 'Email alanı boş bırakılmamalıdır.';
+    if (value == null || value.isEmpty) return _emptyField(LocaleKeys.validators_email);
 
     if (RegExpMixin.emailRegexp.hasMatch(value)) {
       return null;
     }
 
-    return 'Lütfen geçerli bir e-posta giriniz.';
+    return LocaleKeys.validators_invalidEmailError.tr();
   }
 
   String? validatePassword(String? value, {int minimumLength = 6}) {
-    if (value == null || value.isEmpty) return 'Şifre alanı boş bırakılmamalıdır.';
+    if (value == null || value.isEmpty) return _emptyField(LocaleKeys.validators_password);
 
     if (value.length < minimumLength) {
-      return 'Girilen şifre en az $minimumLength karakter olmalıdır.';
+      return LocaleKeys.validators_lessLengthPassword.tr(args: [minimumLength.toString()]);
     }
 
     return null;
+  }
+
+  String _emptyField(String key) {
+    return LocaleKeys.validators_fieldEmptyError.tr(args: [key.tr()]);
   }
 }

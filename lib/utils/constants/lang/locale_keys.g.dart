@@ -77,6 +77,16 @@ abstract class  LocaleKeys {
   static const registerForm_businessNameHint = 'registerForm.businessNameHint';
   static const registerForm_address = 'registerForm.address';
   static const registerForm_addressHint = 'registerForm.addressHint';
+  static const registerForm_cityTitle = 'registerForm.cityTitle';
+  static const registerForm_cityHint = 'registerForm.cityHint';
+  static const registerForm_countyTitle = 'registerForm.countyTitle';
+  static const registerForm_countyHint = 'registerForm.countyHint';
   static const registerForm = 'registerForm';
+  static const validators_email = 'validators.email';
+  static const validators_password = 'validators.password';
+  static const validators_fieldEmptyError = 'validators.fieldEmptyError';
+  static const validators_invalidEmailError = 'validators.invalidEmailError';
+  static const validators_lessLengthPassword = 'validators.lessLengthPassword';
+  static const validators = 'validators';
 
 }

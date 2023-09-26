@@ -84,6 +84,17 @@
         "businessNameTitle":"İşletme Adı",
         "businessNameHint":"İşletme adınızı giriniz",
         "address":"Adres",
-        "addressHint":"Adres bilginizi yazın."
+        "addressHint":"Adres bilginizi yazın.",
+        "cityTitle":"İl",
+        "cityHint":"Bir şehir seçin",
+        "countyTitle":"İlçe",
+        "countyHint":"Bir ilçe seçin"
+    },
+    "validators":{
+        "email":"E-posta",
+        "password":"Şifre",
+        "fieldEmptyError": "{} alanı boş bırakılmamalıdır.",
+        "invalidEmailError":"Lütfen geçerli bir e-posta adresi girin",
+        "lessLengthPassword":"Girilen şifre en az {} karakter olmalıdır."
     }
 }
