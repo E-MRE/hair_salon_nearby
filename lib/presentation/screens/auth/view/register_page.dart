@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/extensions/context_extensions.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/app_padding.dart';
 import '../../../../utils/decorations/empty_space.dart';
@@ -13,7 +12,9 @@ import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/buttons/big_primary_elevated_button.dart';
 import '../../../widgets/buttons/selectable_container.dart';
 import '../../../widgets/columns/column_by_divider.dart';
-import '../../../widgets/dropdowns/gender_dropdown.dart';
+import '../../../widgets/dropdowns/city_dropdown_by_title.dart';
+import '../../../widgets/dropdowns/county_dropdown_by_title.dart';
+import '../../../widgets/dropdowns/gender_dropdown_by_title.dart';
 import '../../../widgets/scaffolds/safe_background_page_view.dart';
 import '../../../widgets/text_fields/title_text_form_field.dart';
 import '../../../widgets/texts/app_text.dart';

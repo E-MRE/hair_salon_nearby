@@ -22,24 +22,15 @@ class _RegisterUserFormView extends StatelessWidget {
             title: LocaleKeys.commonForm_passwordTitle.tr(),
             hintText: LocaleKeys.commonForm_passwordHint.tr(),
           ),
-          _buildTitleDropdown(context)
+          const GenderDropdownByTitle(),
+          Row(children: [
+            const Expanded(child: CityDropdownByTitle()),
+            EmptySpace.mediumWidth(),
+            const Expanded(child: CountyDropdownByTitle()),
+          ]),
+          EmptySpace.mediumHeight(),
         ],
       ),
-    );
-  }
-
-  Column _buildTitleDropdown(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        AppText.bodySmallRegular(
-          LocaleKeys.gender_value.tr(),
-          context: context,
-          color: context.colorScheme.onBackground,
-        ),
-        EmptySpace.extraSmallHeight(),
-        const GenderDropdown(),
-      ],
     );
   }
 }
