@@ -3,24 +3,28 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/utils/display_messages/snack_bar/display_snack_bar.dart';
 import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/empty_space.dart';
 import '../../../../utils/mixins/validators/login_validator_mixin.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
+import '../../../widgets/bloc/base_bloc_provider_view.dart';
 import '../../../widgets/buttons/big_primary_elevated_button.dart';
 import '../../../widgets/buttons/big_primary_outlined_button.dart';
 import '../../../widgets/images/app_text_logo_image_view.dart';
 import '../../../widgets/scaffolds/safe_background_page_view.dart';
 import '../../../widgets/text_fields/title_text_form_field.dart';
 import '../../../widgets/texts/app_text.dart';
+import '../cubit/login_cubit.dart';
+import '../cubit/login_state.dart';
 
-part '../widgets/login_form_area.dart';
-part '../widgets/not_have_account_line.dart';
-part 'login_title_area.dart';
 part '../widgets/login_forget_button.dart';
+part '../widgets/login_form_area.dart';
 part '../widgets/login_sign_in_button.dart';
 part '../widgets/login_without_sign_in_button.dart';
+part '../widgets/not_have_account_line.dart';
+part 'login_title_area.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
@@ -37,29 +41,45 @@ class _LoginPageState extends State<LoginPage> with _LoginStateMixin {
   Widget build(BuildContext context) {
     return SafeBackgroundPageView(
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Align(alignment: Alignment.centerLeft, child: AppTextLogoImageView()),
-            _LoginTitleArea(isVisible: context.isKeyBoardOpen),
-            EmptySpace.bigHeight(),
-            _LoginFormArea(
-              formKey: _formKey,
-              emailController: _emailController,
-              passwordController: _passwordController,
-            ),
-            EmptySpace.mediumHeight(),
-            const _LoginForgetButton(),
-            EmptySpace.extraBigHeight(),
-            _LoginSignInButton(onAuthResult: widget.onAuthResult),
-            EmptySpace.bigHeight(),
-            const _LoginWithoutSignInButton(),
-            EmptySpace.extraBigHeight(),
-            const _NotHaveAccountLine(),
-          ],
+        child: BaseBlocProviderView<LoginCubit, LoginState>(
+          create: (context) => LoginCubit(),
+          listener: _buildListener,
+          initialChildBuilder: _buildPage,
+          successChildBuilder: _buildPage,
+          errorChildBuilder: _buildPage,
         ),
       ),
     );
+  }
+
+  Column _buildPage(BuildContext context, LoginState state) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Align(alignment: Alignment.centerLeft, child: AppTextLogoImageView()),
+        _LoginTitleArea(isVisible: context.isKeyBoardOpen),
+        EmptySpace.bigHeight(),
+        _LoginFormArea(
+          formKey: _formKey,
+          emailController: _emailController,
+          passwordController: _passwordController,
+        ),
+        EmptySpace.mediumHeight(),
+        const _LoginForgetButton(),
+        EmptySpace.extraBigHeight(),
+        _LoginSignInButton(onAuthResult: widget.onAuthResult),
+        EmptySpace.bigHeight(),
+        const _LoginWithoutSignInButton(),
+        EmptySpace.extraBigHeight(),
+        const _NotHaveAccountLine(),
+      ],
+    );
+  }
+
+  void _buildListener(BuildContext context, LoginState state) {
+    if (!state.isSuccess) {
+      DisplaySnackBar(context).errorMessage(state.errorMessage);
+    }
   }
 }
 
