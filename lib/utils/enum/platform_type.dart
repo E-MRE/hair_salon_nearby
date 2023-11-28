@@ -1,6 +1,6 @@
 enum PlatformType {
-  android(0),
-  ios(1),
+  ios(0),
+  android(1),
   web(2),
   other(3);
 
