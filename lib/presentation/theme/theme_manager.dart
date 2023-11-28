@@ -15,6 +15,7 @@ class ThemeManager extends ThemeService {
   @override
   ThemeData get createTheme {
     return ThemeData(
+      useMaterial3: false,
       fontFamily: FontFamily.poppins,
       textTheme: theme.textTheme.data,
       primaryColor: theme.colorTheme.colorScheme?.primary,
