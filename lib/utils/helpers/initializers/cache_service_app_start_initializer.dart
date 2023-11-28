@@ -8,6 +8,6 @@ class CacheServiceAppStartInitializer extends FutureAppStartInitializer with Hiv
   @override
   Future<void> initialize() async {
     await kCacheService.init();
-    registerAdapters();
+    registerAdapters(kCacheService);
   }
 }

@@ -88,5 +88,11 @@ abstract class  LocaleKeys {
   static const validators_invalidEmailError = 'validators.invalidEmailError';
   static const validators_lessLengthPassword = 'validators.lessLengthPassword';
   static const validators = 'validators';
+  static const storage_deleteError = 'storage.deleteError';
+  static const storage_unsupportedStorageItem = 'storage.unsupportedStorageItem';
+  static const storage_addError = 'storage.addError';
+  static const storage_valueNotFound = 'storage.valueNotFound';
+  static const storage_invalidStorageItem = 'storage.invalidStorageItem';
+  static const storage = 'storage';
 
 }

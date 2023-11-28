@@ -96,5 +96,12 @@
         "fieldEmptyError": "{} alanı boş bırakılmamalıdır.",
         "invalidEmailError":"Lütfen geçerli bir e-posta adresi girin",
         "lessLengthPassword":"Girilen şifre en az {} karakter olmalıdır."
+    },
+    "storage":{
+        "deleteError":"Kayıt lokalden silinirken bir hata meydana geldi",
+        "unsupportedStorageItem":"Bu nesne lokale kaydedilemez",
+        "addError":"Kayıt lokale eklenirken bir hata meydana geldi",
+        "valueNotFound":"İstenen veri lokalde bulunamadı",
+        "invalidStorageItem":"Lokale kaydedilecek nesne desteklenmiyor"
     }
 }
