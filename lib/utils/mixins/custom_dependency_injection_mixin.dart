@@ -9,7 +9,7 @@ import '../../repositories/mocks/mock_public_repository.dart';
 
 mixin CustomDependencyInjectionMixin {
   void registerDependencies(DependencyInjector injector) {
-    if (kEnvironment.isTest) {
+    if (CoreAppConstants.isTest) {
       //Repositories
       injector.registerFactory<PublicRepository>(() => MockPublicRepository());
       injector.registerFactory<LoginRepository>(() => MockLoginRepository());

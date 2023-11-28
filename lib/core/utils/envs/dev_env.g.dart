@@ -8,128 +8,74 @@ part of 'dev_env.dart';
 
 class _DevEnv {
   static const List<int> _enviedkeybaseUrl = [
-    2272346292,
-    1925429211,
-    3436389630,
-    341573391,
-    2233249693,
-    2353661392,
-    350323817,
-    3201189286,
-    2387170828,
-    2431056836,
-    2178862526,
-    2658355345,
-    2153380019,
-    34101618,
-    2675371244,
-    1948659202,
-    2652080059,
-    3706496959,
-    442118695,
-    2194906591,
-    2093713298,
-    109347304,
-    4182443585,
-    3385496007,
-    3646128262,
-    88864199,
-    3952681495,
-    3296648366,
-    2491172055,
-    3790487382,
-    4258464650,
-    3103984478,
-    466375787
+    1596260457,
+    385383919,
+    3073647576,
+    1158900781,
+    1922781946,
+    3275156887,
+    278919393,
+    3409538844,
+    1810795715,
+    669483006,
+    2021329936,
+    2712584788,
+    1343853013,
+    3346762211,
+    3013517848,
+    4173771294,
+    2287986814,
+    2905207712,
+    896474751,
+    2088083110,
+    1142713162,
+    3426384900,
+    935923529,
+    1666297981,
+    2530220057,
+    2050196829,
+    3640804214,
+    3433654309,
+    199709244,
+    4081249182,
+    1568950386
   ];
   static const List<int> _envieddatabaseUrl = [
-    2272346332,
-    1925429167,
-    3436389514,
-    341573503,
-    2233249774,
-    2353661418,
-    350323782,
-    3201189257,
-    2387170926,
-    2431056805,
-    2178862541,
-    2658355444,
-    2153379998,
-    34101510,
-    2675371145,
-    1948659313,
-    2652080079,
-    3706496914,
-    442118738,
-    2194906541,
-    2093713406,
-    109347270,
-    4182443554,
-    3385495976,
-    3646128363,
-    88864232,
-    3952681590,
-    3296648414,
-    2491172030,
-    3790487417,
-    4258464764,
-    3103984495,
-    466375748
+    1596260353,
+    385383835,
+    3073647532,
+    1158900829,
+    1922781888,
+    3275156920,
+    278919374,
+    3409538861,
+    1810795760,
+    669482951,
+    2021329982,
+    2712584801,
+    1343853036,
+    3346762189,
+    3013517865,
+    4173771306,
+    2287986762,
+    2905207694,
+    896474702,
+    2088083093,
+    1142713210,
+    3426384958,
+    935923580,
+    1666297933,
+    2530220073,
+    2050196843,
+    3640804185,
+    3433654340,
+    199709260,
+    4081249271,
+    1568950365
   ];
   static final String baseUrl = String.fromCharCodes(
     List.generate(_envieddatabaseUrl.length, (i) => i, growable: false)
         .map((i) => _envieddatabaseUrl[i] ^ _enviedkeybaseUrl[i])
         .toList(growable: false),
   );
-  static const List<int> _enviedkeyclientId = [
-    4035394128,
-    2599177704,
-    4036062585,
-    3175015782,
-    2464824206,
-    1468992598,
-    749322464,
-    815012111
-  ];
-  static const List<int> _envieddataclientId = [
-    4035394083,
-    2599177613,
-    4036062490,
-    3175015700,
-    2464824299,
-    1468992546,
-    749322409,
-    815012203
-  ];
-  static final String clientId = String.fromCharCodes(
-    List.generate(_envieddataclientId.length, (i) => i, growable: false)
-        .map((i) => _envieddataclientId[i] ^ _enviedkeyclientId[i])
-        .toList(growable: false),
-  );
-  static const List<int> _enviedkeyclientSecret = [
-    1710221614,
-    2711268926,
-    294640246,
-    677941802,
-    3425022274,
-    1306839889
-  ];
-  static const List<int> _envieddataclientSecret = [
-    1710221661,
-    2711268955,
-    294640149,
-    677941848,
-    3425022247,
-    1306839845
-  ];
-  static final String clientSecret = String.fromCharCodes(
-    List.generate(_envieddataclientSecret.length, (i) => i, growable: false)
-        .map((i) => _envieddataclientSecret[i] ^ _enviedkeyclientSecret[i])
-        .toList(growable: false),
-  );
-  static final bool _enviedkeyisLoggerActive = false;
-  static final bool isLoggerActive = _enviedkeyisLoggerActive ^ false;
-  static final bool _enviedkeyisTest = false;
-  static final bool isTest = _enviedkeyisTest ^ true;
 }
