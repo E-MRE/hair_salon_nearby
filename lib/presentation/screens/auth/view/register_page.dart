@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/app_padding.dart';
 import '../../../../utils/decorations/empty_space.dart';
-import '../../../../utils/enum/auth_type.dart';
 import '../../../../utils/enum/sizes.dart';
 import '../../../../utils/enum/text_line_type.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/buttons/big_primary_elevated_button.dart';
-import '../../../widgets/buttons/selectable_container.dart';
 import '../../../widgets/columns/column_by_divider.dart';
 import '../../../widgets/dropdowns/city_dropdown_by_title.dart';
 import '../../../widgets/dropdowns/county_dropdown_by_title.dart';
@@ -19,7 +17,6 @@ import '../../../widgets/scaffolds/safe_background_page_view.dart';
 import '../../../widgets/text_fields/title_text_form_field.dart';
 import '../../../widgets/texts/app_text.dart';
 
-part '../widgets/register_type_selector.dart';
 part 'register_business_form_view.dart';
 part 'register_user_form_view.dart';
 

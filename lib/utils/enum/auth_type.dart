@@ -1,1 +1,1 @@
-enum AuthType { business, user }
+enum AuthType { emailPassword, guest }
