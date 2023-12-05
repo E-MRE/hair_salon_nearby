@@ -10,12 +10,18 @@ class _SplashBlocBodyView extends StatelessWidget {
     return BaseBlocProviderView<SplashCubit, SplashState>(
       create: (context) => CoreDependencies.getDependency<SplashCubit>()..checkUpdate(),
       listener: _buildListener,
-      loadingChildBuilder: (_, __) => AppPadding.only(
-        top: Sizes.extraExtraExtraBig,
-        child: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      loadingChildBuilder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            AssetsConstants.instance.getPngImages.icSplashLogo.image(),
+            EmptySpace.bigHeight(),
+            const CircularProgressIndicator(),
+          ],
+        );
+      },
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hair_salon_nearby/presentation/widgets/alerts/update_app_alert_content.dart';
+import 'package:hair_salon_nearby/utils/decorations/empty_space.dart';
 
 import '../../../../core/utils/display_messages/alert_dialog/display_alert_dialog.dart';
 import '../../../../core/utils/display_messages/snack_bar/display_snack_bar.dart';
@@ -10,8 +11,6 @@ import '../../../../core/utils/enums/process_status.dart';
 import '../../../../core/utils/enums/state_status.dart';
 import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
 import '../../../../utils/constants/assets_constants.dart';
-import '../../../../utils/decorations/app_padding.dart';
-import '../../../../utils/enum/sizes.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/bloc/base_bloc_provider_view.dart';
 import '../cubit/splash_cubit.dart';
@@ -46,7 +45,6 @@ class _SplashPageState extends State<SplashPage> {
           fit: StackFit.expand,
           children: [
             AssetsConstants.instance.getPngImages.icSplashBackground.image(),
-            AssetsConstants.instance.getPngImages.icSplashLogo.image(),
             _SplashBlocBodyView(_viewModel),
           ],
         ),
