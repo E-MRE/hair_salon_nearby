@@ -66,6 +66,7 @@ dependencies:
 
   #Device
   device_preview: ^1.1.0
+  flutter_app_info: ^2.0.0
 
   #env
   envied: ^0.5.2

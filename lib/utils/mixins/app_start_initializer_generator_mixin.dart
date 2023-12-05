@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hair_salon_nearby/utils/helpers/initializers/collect_device_info_app_start_initializer.dart';
 
 import '../helpers/initializers/app_start_initializer.dart';
 import '../helpers/initializers/cache_service_app_start_initializer.dart';
@@ -13,6 +14,7 @@ mixin AppStartInitializerGeneratorMixin {
       NativeSplashAppStartInitializer(widgetsBinding: widgetsBinding),
       const EasyLocalizationAppStartInitializer(),
       const DependencyAppStartInitializer(),
+      const CollectDeviceInfoAppStartInitializer(),
       const CacheServiceAppStartInitializer(),
       const TokenContextAppStartInitializer(),
     ];

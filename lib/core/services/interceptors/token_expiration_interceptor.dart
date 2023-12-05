@@ -31,7 +31,7 @@ class TokenExpirationInterceptor<TRemote> extends Interceptor {
 
     if (isTokenRequest) {
       _checkRefreshTokenAndCallHandler(handler, options);
-    } else if (isNotExistsAuthorization || isAuthorizationRequired) {
+    } else if (isNotExistsAuthorization || !isAuthorizationRequired) {
       handler.next(options);
     } else {
       await _checkTokenAndHandlerNext(options, handler);
