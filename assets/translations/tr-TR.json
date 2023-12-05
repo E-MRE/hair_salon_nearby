@@ -103,5 +103,13 @@
         "addError":"Kayıt lokale eklenirken bir hata meydana geldi",
         "valueNotFound":"İstenen veri lokalde bulunamadı",
         "invalidStorageItem":"Lokale kaydedilecek nesne desteklenmiyor"
+    },
+    "updateApp":{
+        "title":"Yeni Sürüm Mevcut!",
+        "updateAvailable":"Uygulamanızda yeni bir versiyon var.",
+        "updateOptional":"@:updateApp.updateAvailable Güncel sürümü indirmek ister misiniz?",
+        "updateRequired":"@:updateApp.updateAvailable Devam etmek için uygulamanın son sürümünü indirin!",
+        "updateNow":"Şimdi Güncelle",
+        "remindLater":"Daha Sonra Hatırlat"
     }
 }

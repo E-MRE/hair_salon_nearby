@@ -1,14 +1,13 @@
 import '../../../../core/state_managers/bloc/cubit/base_cubit.dart';
 import '../../../../core/utils/enums/state_status.dart';
-import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
 import '../../../../models/request/check_update_request_model.dart';
 import '../../../../repositories/abstracts/public_repository.dart';
 import '../../../../utils/mixins/current_platform_getter_mixin.dart';
 import 'splash_state.dart';
 
 class SplashCubit extends BaseCubit<SplashState> with CurrentPlatformGetterMixin {
-  SplashCubit({PublicRepository? publicRepository})
-      : _publicRepository = publicRepository ?? CoreDependencies.getDependency<PublicRepository>(),
+  SplashCubit({required PublicRepository publicRepository})
+      : _publicRepository = publicRepository,
         super(SplashState.initial());
 
   final PublicRepository _publicRepository;
@@ -19,6 +18,7 @@ class SplashCubit extends BaseCubit<SplashState> with CurrentPlatformGetterMixin
     final response = await _publicRepository.checkUpdate(request);
 
     safeEmit(state.copyWith(
+      processStatus: response.processStatus,
       status: response.success ? StateStatus.success : StateStatus.error,
       errorMessage: response.isNotSuccess ? response.message : '',
     ));

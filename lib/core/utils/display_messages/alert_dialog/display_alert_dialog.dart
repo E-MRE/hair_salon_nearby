@@ -26,8 +26,8 @@ class DisplayAlertDialog {
         context: _context,
         barrierDismissible: dismissible,
         builder: (context) {
-          return WillPopScope(
-            onWillPop: () => Future.value(dismissible),
+          return PopScope(
+            canPop: dismissible,
             child: SuccessAlertDialog(
               title: title ?? _success,
               content: content,
@@ -52,8 +52,8 @@ class DisplayAlertDialog {
         context: _context,
         barrierDismissible: dismissible,
         builder: (context) {
-          return WillPopScope(
-            onWillPop: () => Future.value(dismissible),
+          return PopScope(
+            canPop: dismissible,
             child: ErrorAlertDialog(
               title: title ?? _error,
               content: content,
@@ -67,16 +67,17 @@ class DisplayAlertDialog {
         });
   }
 
-  Future<T?> custom<T>({required Widget dialog, bool barrierDismisable = true}) {
+  Future<T?> custom<T>({required Widget dialog, bool barrierDismissible = true}) {
     return showDialog<T?>(
-      barrierDismissible: barrierDismisable,
+      barrierDismissible: barrierDismissible,
       builder: (context) => dialog,
       context: _context,
     );
   }
 
-  Future<T?> customAlert<T>({required Widget content}) {
+  Future<T?> customAlert<T>({required Widget content, bool dismissible = true}) {
     return showDialog<T?>(
+        barrierDismissible: dismissible,
         context: _context,
         builder: (context) {
           return AlertDialog(

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 
-class RefreshTokenExpireDioError extends DioError {
+class RefreshTokenExpireDioError extends DioException {
   RefreshTokenExpireDioError()
       : super(
           requestOptions: RequestOptions(),
-          type: DioErrorType.badCertificate,
+          type: DioExceptionType.badCertificate,
           message: 'Refresh token is expired!',
         );
 }

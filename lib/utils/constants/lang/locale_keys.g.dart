@@ -94,5 +94,12 @@ abstract class  LocaleKeys {
   static const storage_valueNotFound = 'storage.valueNotFound';
   static const storage_invalidStorageItem = 'storage.invalidStorageItem';
   static const storage = 'storage';
+  static const updateApp_title = 'updateApp.title';
+  static const updateApp_updateAvailable = 'updateApp.updateAvailable';
+  static const updateApp_updateOptional = 'updateApp.updateOptional';
+  static const updateApp_updateRequired = 'updateApp.updateRequired';
+  static const updateApp_updateNow = 'updateApp.updateNow';
+  static const updateApp_remindLater = 'updateApp.remindLater';
+  static const updateApp = 'updateApp';
 
 }

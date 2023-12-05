@@ -53,7 +53,7 @@ class MyAppByAutoRoute extends StatelessWidget {
         child: child,
       ),
       title: AppConstants.appName,
-      theme: context.read<ThemeService>().createTheme,
+      theme: context.watch<ThemeService>().createTheme,
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
       localizationsDelegates: context.localizationDelegates,

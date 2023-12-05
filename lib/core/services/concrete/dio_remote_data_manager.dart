@@ -140,7 +140,7 @@ class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeContr
       return responseJsonConverter.fromJson<DioApiResponseConvertParameterModel<T>>(
         DioApiResponseConvertParameterModel<T>(response: response, parser: (json) => fromMap?.call(json)),
       );
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       return responseJsonConverter.fromJson<DioApiResponseConvertParameterModel<T>>(
         DioApiResponseConvertParameterModel<T>(
           response: error.response ?? Response(requestOptions: error.requestOptions),
@@ -157,7 +157,7 @@ class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeContr
         processStatus: ProcessStatus.undefined,
         statusMessage: exception.toString(),
         requestOptions: RequestOptions(),
-        dioError: DioErrorType.unknown,
+        dioError: DioExceptionType.unknown,
         stackTrace: StackTrace.empty,
       );
     }

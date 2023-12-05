@@ -1,3 +1,5 @@
+import 'package:hair_salon_nearby/presentation/screens/splash/cubit/splash_cubit.dart';
+
 import '../../core/utils/constants/core_app_constants.dart';
 import '../../core/utils/helpers/dependency/dependency_injector.dart';
 import '../../repositories/abstracts/login_repository.dart';
@@ -18,5 +20,10 @@ mixin CustomDependencyInjectionMixin {
       injector.registerFactory<PublicRepository>(() => DioPublicRepository.defaultRemote());
       injector.registerFactory<LoginRepository>(() => DioLoginRepository.defaultRemote());
     }
+
+    //state managers
+    injector.registerFactory<SplashCubit>(
+      () => SplashCubit(publicRepository: injector.get<PublicRepository>()),
+    );
   }
 }

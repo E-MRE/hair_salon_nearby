@@ -12,7 +12,7 @@ class DioApiResponseJsonConverter<TResponse, TParams extends DioApiResponseConve
     final response = (otherParams as DioApiResponseConvertParameterModel).response;
 
     if (response.data is! Map<String, dynamic>) {
-      final data = otherParams.parser(response.data);
+      final data = response.data == null ? null : otherParams.parser(response.data);
       return DioApiResponseModel<TResponse>(
         statusMessage: response.statusMessage ?? otherParams.defaultMessage ?? '',
         requestOptions: response.requestOptions,
@@ -47,7 +47,7 @@ class DioApiResponseJsonConverter<TResponse, TParams extends DioApiResponseConve
 
     if (map.containsKey(ApiResponseJsonKeyMixin.dataKey)) {
       final data = map[ApiResponseJsonKeyMixin.dataKey];
-      final model = otherParams.parser(data);
+      final model = data == null ? null : otherParams.parser(data);
 
       return DioApiResponseModel<TResponse>(
         statusMessage: response.statusMessage ?? otherParams.defaultMessage ?? '',

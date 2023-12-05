@@ -14,6 +14,7 @@ class DioPublicRepository extends BaseRemoteRepository implements PublicReposito
     return dataService.postData(
       request: request,
       endpoint: EndpointConstants.public.checkUpdate,
+      fromMap: (json) {},
     );
   }
 }

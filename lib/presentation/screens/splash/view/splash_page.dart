@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:hair_salon_nearby/presentation/widgets/alerts/update_app_alert_content.dart';
 
+import '../../../../core/utils/display_messages/alert_dialog/display_alert_dialog.dart';
 import '../../../../core/utils/display_messages/snack_bar/display_snack_bar.dart';
 import '../../../../core/utils/enums/duration_types.dart';
+import '../../../../core/utils/enums/process_status.dart';
 import '../../../../core/utils/enums/state_status.dart';
 import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
 import '../../../../utils/constants/assets_constants.dart';
