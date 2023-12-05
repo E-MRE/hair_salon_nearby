@@ -2,7 +2,7 @@ import '../enums/environment/environment_profile.dart';
 import '../envs/app_environment.dart';
 
 class CoreAppConstants {
-  static const EnvironmentProfile environmentProfile = EnvironmentProfile.release;
+  static const EnvironmentProfile environmentProfile = EnvironmentProfile.development;
 
   static bool get isTest => environmentProfile != EnvironmentProfile.release;
 }

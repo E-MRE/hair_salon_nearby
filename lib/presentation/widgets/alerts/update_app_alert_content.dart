@@ -12,7 +12,7 @@ class UpdateAppAlertContent extends StatelessWidget {
   }) : this._(
           key: key,
           title: LocaleKeys.updateApp_title,
-          description: LocaleKeys.updateApp_updateRequired,
+          description: LocaleKeys.updateApp_updateOptional,
           rightButtonText: LocaleKeys.updateApp_updateNow,
           leftButtonText: LocaleKeys.updateApp_remindLater,
           rightButtonPressed: rightButtonPressed,
