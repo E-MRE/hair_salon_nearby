@@ -1,6 +1,9 @@
 import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
+import 'package:hair_salon_nearby/presentation/screens/auth/cubit/city_cubit.dart';
 import 'package:hair_salon_nearby/presentation/screens/splash/cubit/splash_cubit.dart';
+import 'package:hair_salon_nearby/repositories/abstracts/cache_city_repository.dart';
 import 'package:hair_salon_nearby/repositories/abstracts/city_repository.dart';
+import 'package:hair_salon_nearby/repositories/concretes/cache/hive/hive_city_repository.dart';
 import 'package:hair_salon_nearby/repositories/concretes/dio/dio_city_repository.dart';
 import 'package:hair_salon_nearby/repositories/mocks/mock_city_repository.dart';
 import 'package:hair_salon_nearby/utils/helpers/device/device_info.dart';
@@ -29,6 +32,7 @@ mixin CustomDependencyInjectionMixin {
       injector.registerFactory<PublicRepository>(() => DioPublicRepository(dataService: kRemoteDataService));
       injector.registerFactory<LoginRepository>(() => DioLoginRepository.defaultRemote());
       injector.registerFactory<CityRepository>(() => DioCityRepository(dataService: kRemoteDataService));
+      injector.registerFactory<CacheCityRepository>(() => HiveCityRepository(cacheService: kCacheService));
 
       //Helpers
       injector.registerLazySingleton<DeviceInfo>(() => DeviceInfo());
@@ -37,6 +41,14 @@ mixin CustomDependencyInjectionMixin {
     //state managers
     injector.registerFactory<SplashCubit>(
       () => SplashCubit(publicRepository: injector.get<PublicRepository>()),
+    );
+
+    injector.registerFactory<CityCubit>(
+      () => CityCubit(
+        cityRepository: injector.get<CityRepository>(),
+        cacheService: kCacheService,
+        cacheCityRepository: injector.get<CacheCityRepository>(),
+      ),
     );
   }
 }

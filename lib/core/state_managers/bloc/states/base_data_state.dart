@@ -15,6 +15,10 @@ abstract class BaseDataState<TData> extends BaseState {
       : data = data,
         super.initial();
 
+  BaseDataState.loading({TData? data})
+      : this.data = data,
+        super(status: StateStatus.loading, errorMessage: '', infoMessage: '');
+
   bool get isDataNull => data == null;
 
   @override
