@@ -14,6 +14,7 @@ abstract class  LocaleKeys {
   static const okay = 'okay';
   static const unExpectedError = 'unExpectedError';
   static const noRecordPhone = 'noRecordPhone';
+  static const tryAgain = 'tryAgain';
   static const main_title = 'main.title';
   static const main = 'main';
   static const apiMessage_fetchError = 'apiMessage.fetchError';
@@ -65,6 +66,7 @@ abstract class  LocaleKeys {
   static const register_createAccountDescription = 'register.createAccountDescription';
   static const register_user = 'register.user';
   static const register_business = 'register.business';
+  static const register_citiesNotFound = 'register.citiesNotFound';
   static const register = 'register';
   static const commonForm_emailTitle = 'commonForm.emailTitle';
   static const commonForm_emailHint = 'commonForm.emailHint';

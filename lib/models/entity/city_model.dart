@@ -6,11 +6,11 @@ import 'package:json_annotation/json_annotation.dart';
 part 'city_model.g.dart';
 
 @JsonSerializable()
-class CityModel extends EntityModel<CityModel> implements LocalStorageModel<CityModel> {
+final class CityModel extends EntityModel<CityModel> implements LocalStorageModel<CityModel> {
   final String? cityName;
   final List<CountyModel>? counties;
 
-  CityModel({this.cityName, this.counties});
+  const CityModel({this.cityName, this.counties});
 
   @override
   CityModel fromJson(Map<String, dynamic> json) {
@@ -21,4 +21,7 @@ class CityModel extends EntityModel<CityModel> implements LocalStorageModel<City
 
   @override
   Map<String, dynamic> toJson() => _$CityModelToJson(this);
+
+  @override
+  List<Object?> get props => [cityName];
 }

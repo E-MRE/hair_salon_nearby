@@ -6,7 +6,7 @@ import '../../utils/enum/gender.dart';
 part 'theme_model.g.dart';
 
 @JsonSerializable(createToJson: false)
-class ThemeModel extends EntityModel<ThemeModel> {
+final class ThemeModel extends EntityModel<ThemeModel> {
   final Gender? gender;
   @JsonKey(name: 'colorOne')
   final String? primaryColor;
@@ -14,12 +14,15 @@ class ThemeModel extends EntityModel<ThemeModel> {
   final String? secondaryColor;
   @JsonKey(name: 'colorThree')
   final String? alternativeColor;
-  ThemeModel({
+  const ThemeModel({
     this.gender,
     this.primaryColor,
     this.secondaryColor,
     this.alternativeColor,
   });
+
+  @override
+  List<Object?> get props => [gender, primaryColor, secondaryColor, alternativeColor];
 
   @override
   ThemeModel fromJson(Map<String, dynamic> json) => _$ThemeModelFromJson(json);

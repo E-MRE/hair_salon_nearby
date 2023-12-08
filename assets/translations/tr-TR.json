@@ -12,6 +12,7 @@
     "okay":"Tamam",
     "unExpectedError":"Beklenmedik bir hata meydana geldi",
     "noRecordPhone":"Kullanıcı bulunamadı",
+    "tryAgain":"Tekrar Deneyin!",
     "main":{
         "title":"Temel Mimari"
     },
@@ -70,7 +71,8 @@
         "createAccount":"Hesap Oluştur",
         "createAccountDescription":"Hesabınızı oluşturmanıza yardımcı olalım,  bu işlem uzun sürmeyecek.",
         "user":"Kullanıcı Kayıt",
-        "business":"İşletme Kayıt"
+        "business":"İşletme Kayıt",
+        "citiesNotFound":"İl İlçe bilgileri alınamadı, Tekrar deneyin!"
     },
     "commonForm":{
         "emailTitle":"E-posta",

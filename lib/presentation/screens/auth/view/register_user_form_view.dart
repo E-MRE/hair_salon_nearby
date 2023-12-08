@@ -23,11 +23,7 @@ class _RegisterUserFormView extends StatelessWidget {
             hintText: LocaleKeys.commonForm_passwordHint.tr(),
           ),
           const GenderDropdownByTitle(),
-          Row(children: [
-            const Expanded(child: CityDropdownByTitle()),
-            EmptySpace.mediumWidth(),
-            const Expanded(child: CountyDropdownByTitle()),
-          ]),
+          const _CityAndCountyDropdownRow(),
           EmptySpace.mediumHeight(),
         ],
       ),

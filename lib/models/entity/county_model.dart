@@ -5,11 +5,11 @@ import 'package:json_annotation/json_annotation.dart';
 part 'county_model.g.dart';
 
 @JsonSerializable()
-class CountyModel extends EntityModel<CountyModel> implements LocalStorageModel<CountyModel> {
+final class CountyModel extends EntityModel<CountyModel> implements LocalStorageModel<CountyModel> {
   final String? countyName;
   final int? id;
 
-  CountyModel({this.countyName, this.id});
+  const CountyModel({this.countyName, this.id});
 
   factory CountyModel.fromJson(Map<String, dynamic> json) => _$CountyModelFromJson(json);
 
@@ -18,4 +18,7 @@ class CountyModel extends EntityModel<CountyModel> implements LocalStorageModel<
 
   @override
   Map<String, dynamic> toJson() => _$CountyModelToJson(this);
+
+  @override
+  List<Object?> get props => [countyName, id];
 }

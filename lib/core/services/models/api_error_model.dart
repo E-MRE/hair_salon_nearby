@@ -5,10 +5,13 @@ import 'entity_model.dart';
 part 'api_error_model.g.dart';
 
 @JsonSerializable()
-class ApiErrorModel extends EntityModel<ApiErrorModel> {
-  late List<String>? errors;
+final class ApiErrorModel extends EntityModel<ApiErrorModel> {
+  final List<String>? errors;
 
-  ApiErrorModel({this.errors});
+  const ApiErrorModel({this.errors});
+
+  @override
+  List<Object?> get props => [errors];
 
   @override
   ApiErrorModel fromJson(Map<String, dynamic> json) => _$ApiErrorModelFromJson(json);

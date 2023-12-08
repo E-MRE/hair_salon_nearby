@@ -1,5 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hair_salon_nearby/models/entity/county_model.dart';
+import 'package:hair_salon_nearby/presentation/screens/auth/cubit/city_cubit.dart';
+import 'package:hair_salon_nearby/presentation/screens/auth/cubit/city_state.dart';
+import 'package:hair_salon_nearby/presentation/widgets/bloc/base_bloc_data_builder_view.dart';
 
 import '../../../utils/constants/lang/locale_keys.g.dart';
 import 'generic_title_dropdown.dart';
@@ -9,12 +14,23 @@ class CountyDropdownByTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenericTitleDropdown<String>(
-      hintText: LocaleKeys.registerForm_countyHint.tr(),
-      title: LocaleKeys.registerForm_countyTitle.tr(),
-      initialValue: 'Zeytinburnu',
-      values: <String>['Zeytinburnu', 'Adapazarı', 'Cennet Mahallesi', 'Serdivan'],
-      itemTextBuilder: (item) => item,
+    return BaseBlocDataBuilderView<CityCubit, CityState>(
+      errorChildBuilder: (_, __) => const SizedBox.shrink(),
+      successChildBuilder: (context, state) {
+        if (state.selectedCity == null || (state.selectedCity!.counties?.isEmpty ?? true)) {
+          return const SizedBox.shrink();
+        }
+
+        return GenericTitleDropdown<CountyModel>(
+          hintText: LocaleKeys.registerForm_countyHint.tr(),
+          title: LocaleKeys.registerForm_countyTitle.tr(),
+          values: state.selectedCity?.counties ?? <CountyModel>[],
+          onItemSelected: (value) => context.read<CityCubit>().setCounty(value),
+          itemTextBuilder: (item) => item.countyName ?? '',
+          selectedOption: state.selectedCounty,
+          useInitialOption: false,
+        );
+      },
     );
   }
 }

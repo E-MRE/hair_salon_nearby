@@ -11,7 +11,7 @@ class TokenModel extends LocalStorageModel<TokenModel> {
   final String? expirationDate;
   final String? refreshExpirationDate;
 
-  TokenModel({this.token, this.refreshToken, this.expirationDate, this.refreshExpirationDate});
+  const TokenModel({this.token, this.refreshToken, this.expirationDate, this.refreshExpirationDate});
 
   factory TokenModel.fromJson(Map<String, dynamic> json) => _$TokenModelFromJson(json);
 
@@ -20,4 +20,7 @@ class TokenModel extends LocalStorageModel<TokenModel> {
 
   @override
   Map<String, dynamic> toJson() => _$TokenModelToJson(this);
+
+  @override
+  List<Object?> get props => [token, refreshToken, refreshExpirationDate, expirationDate];
 }

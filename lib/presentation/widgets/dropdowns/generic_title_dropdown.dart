@@ -10,6 +10,8 @@ class GenericTitleDropdown<T> extends StatelessWidget {
     this.initialValue,
     required this.values,
     this.onItemSelected,
+    this.selectedOption,
+    this.useInitialOption = true,
     this.hintText,
     this.hintWidget,
     this.itemTextBuilder,
@@ -24,7 +26,9 @@ class GenericTitleDropdown<T> extends StatelessWidget {
   final List<T> values;
   final String? hintText;
   final Widget? hintWidget;
-  final void Function(T value)? onItemSelected;
+  final T? selectedOption;
+  final bool useInitialOption;
+  final void Function(T? value)? onItemSelected;
   final String Function(T item)? itemTextBuilder;
   final Widget Function(T item)? itemWidgetBuilder;
 
@@ -41,12 +45,14 @@ class GenericTitleDropdown<T> extends StatelessWidget {
               color: context.colorScheme.onBackground,
             ),
         GenericDropdown<T>(
+          values: values,
           hintText: hintText,
           hintWidget: hintWidget,
           initialValue: initialValue,
-          values: values,
-          itemTextBuilder: itemTextBuilder,
+          selectedOption: selectedOption,
           itemWidgetBuilder: itemWidgetBuilder,
+          useInitialOption: useInitialOption,
+          itemTextBuilder: itemTextBuilder,
           onItemSelected: onItemSelected,
         ),
       ],

@@ -63,7 +63,7 @@ abstract class RemoteDataService {
     String? customBaseUrl,
   });
 
-  List<TResponse> castFromJson<TResponse>(dynamic json, TResponse Function(Map<String, dynamic> json) fromJson) {
+  List<TResponse> castFromJson<TResponse>(dynamic json, TResponse Function(dynamic json) fromJson) {
     if (json is List) {
       return json.map((item) => fromJson(item)).cast<TResponse>().toList();
     }

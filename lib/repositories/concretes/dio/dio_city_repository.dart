@@ -10,7 +10,7 @@ final class DioCityRepository extends BaseDioRemoteRepository implements CityRep
   @override
   Future<ApiResponse<List<CityModel>>> getCities() {
     return dataService.getData<List<CityModel>>(
-      fromMap: (data) => dataService.castFromJson(data, (json) => CityModel.fromJson(json)),
+      fromMap: (data) => dataService.castFromJson<CityModel>(data, (json) => CityModel.fromJson(json)),
       endpoint: EndpointConstants.city.cities,
     );
   }

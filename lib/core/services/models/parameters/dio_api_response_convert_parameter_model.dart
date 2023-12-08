@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 
 class DioApiResponseConvertParameterModel<TEntity> {
   Response response;
-  final TEntity? Function(Map<String, dynamic> json) parser;
+  final TEntity? Function(dynamic json) parser;
   StackTrace? stackTrace;
-  DioErrorType? dioErrorType;
+  DioExceptionType? dioErrorType;
   String? defaultMessage;
 
   DioApiResponseConvertParameterModel({

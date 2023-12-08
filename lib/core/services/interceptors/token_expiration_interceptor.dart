@@ -21,6 +21,7 @@ class TokenExpirationInterceptor<TRemote> extends Interceptor {
           EndpointConstants.public.checkUpdate.toLowerCase(),
           EndpointConstants.login.refreshToken.toLowerCase(),
           EndpointConstants.login.login.toLowerCase(),
+          EndpointConstants.city.cities.toLowerCase(),
         ];
 
   @override

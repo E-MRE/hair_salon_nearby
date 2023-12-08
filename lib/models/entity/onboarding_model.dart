@@ -7,20 +7,23 @@ import 'theme_model.dart';
 part 'onboarding_model.g.dart';
 
 @JsonSerializable(createToJson: false)
-class OnboardingModel extends EntityModel<OnboardingModel> {
+final class OnboardingModel extends EntityModel<OnboardingModel> {
   final String? name;
   final String? description;
   final String imageUrl;
   final ThemeModel? theme;
   final Gender gender;
 
-  OnboardingModel({
+  const OnboardingModel({
     this.name,
     this.description,
     required this.imageUrl,
     this.theme,
     required this.gender,
   });
+
+  @override
+  List<Object?> get props => [name, description, imageUrl, theme, gender];
 
   @override
   OnboardingModel fromJson(Map<String, dynamic> json) => _$OnboardingModelFromJson(json);

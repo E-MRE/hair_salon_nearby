@@ -6,7 +6,8 @@ import '../../../core/state_managers/bloc/states/base_data_state.dart';
 import '../../../core/utils/enums/state_status.dart';
 import 'base_bloc_data_builder_view.dart';
 
-class BaseBlocDataProviderView<TData> extends StatelessWidget {
+class BaseBlocDataProviderView<TCubit extends BaseDataCubit<TState>, TState extends BaseDataState>
+    extends StatelessWidget {
   const BaseBlocDataProviderView({
     Key? key,
     required this.create,
@@ -18,21 +19,21 @@ class BaseBlocDataProviderView<TData> extends StatelessWidget {
     this.loadingChild,
   }) : super(key: key);
 
-  final BaseDataCubit<BaseDataState<TData>> Function(BuildContext context) create;
-  final BlocWidgetListener<BaseDataState<TData>>? listener;
-  final BlocWidgetBuilder<BaseDataState<TData>>? customBuilder;
+  final TCubit Function(BuildContext context) create;
+  final BlocWidgetListener<TState>? listener;
+  final BlocWidgetBuilder<TState>? customBuilder;
 
-  final BaseDataStateViewBuilder<TData>? errorChildBuilder;
-  final BaseDataStateViewBuilder<TData>? successChildBuilder;
+  final BaseDataStateViewBuilder<TState>? errorChildBuilder;
+  final BaseDataStateViewBuilder<TState>? successChildBuilder;
 
   final Widget? initialChild;
   final Widget? loadingChild;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<BaseDataCubit<BaseDataState<TData>>>(
+    return BlocProvider<TCubit>(
       create: create,
-      child: BlocConsumer<BaseDataCubit<BaseDataState<TData>>, BaseDataState<TData>>(
+      child: BlocConsumer<TCubit, TState>(
         listener: (context, state) => listener?.call(context, state),
         builder: (context, state) {
           if (customBuilder != null) {
@@ -45,7 +46,7 @@ class BaseBlocDataProviderView<TData> extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(BuildContext context, BaseDataState<TData> state) {
+  Widget _buildBody(BuildContext context, TState state) {
     switch (state.status) {
       case StateStatus.initial:
         return initialChild ?? const SizedBox.shrink();

@@ -1,6 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hair_salon_nearby/core/extensions/context_extensions.dart';
+import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
+import 'package:hair_salon_nearby/presentation/screens/auth/cubit/city_cubit.dart';
+import 'package:hair_salon_nearby/presentation/screens/auth/cubit/city_state.dart';
+import 'package:hair_salon_nearby/presentation/widgets/bloc/base_bloc_data_provider_view.dart';
 
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/app_padding.dart';
@@ -19,6 +25,7 @@ import '../../../widgets/texts/app_text.dart';
 
 part 'register_business_form_view.dart';
 part 'register_user_form_view.dart';
+part '../widgets/city_and_county_dropdown_row.dart';
 
 @RoutePage()
 class RegisterPage extends StatefulWidget {
