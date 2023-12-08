@@ -7,5 +7,5 @@ abstract class BaseDioRemoteRepository implements BaseRemoteRepository {
   final DioRemoteDataService dataService;
 
   BaseDioRemoteRepository.defaultRemote() : dataService = kRemoteDataService;
-  BaseDioRemoteRepository.remote({required this.dataService});
+  const BaseDioRemoteRepository.remote({required this.dataService});
 }
