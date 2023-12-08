@@ -4,7 +4,7 @@ import 'package:hair_salon_nearby/core/utils/enums/process_status.dart';
 import 'package:hair_salon_nearby/core/utils/helpers/dependency/get_it_injection_container.dart';
 import 'package:hair_salon_nearby/models/request/check_update_request_model.dart';
 import 'package:hair_salon_nearby/repositories/abstracts/public_repository.dart';
-import 'package:hair_salon_nearby/repositories/concretes/dio_public_repository.dart';
+import 'package:hair_salon_nearby/repositories/concretes/dio/dio_public_repository.dart';
 import 'package:hair_salon_nearby/utils/enum/platform_type.dart';
 
 import '../mocks/mock_remote_data_service.dart';
@@ -53,7 +53,9 @@ void main() {
       MockRemoteDataService(responseData: responseData, isSuccess: true),
     );
 
-    repository = DioPublicRepository.defaultRemote();
+    repository = DioPublicRepository(
+      dataService: GetItInjectionContainer.instance.injector.get<DioRemoteDataService>(),
+    );
 
     final response = await repository.checkUpdate(
       CheckUpdateRequestModel(platform: PlatformType.android, version: '1.0.0'),
@@ -72,7 +74,9 @@ void main() {
       MockRemoteDataService(responseData: errorResponse, isSuccess: false),
     );
 
-    repository = DioPublicRepository.defaultRemote();
+    repository = DioPublicRepository(
+      dataService: GetItInjectionContainer.instance.injector.get<DioRemoteDataService>(),
+    );
 
     final response = await repository.checkUpdate(
       CheckUpdateRequestModel(platform: PlatformType.android, version: '1.0.0'),

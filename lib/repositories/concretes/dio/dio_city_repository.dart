@@ -5,8 +5,7 @@ import 'package:hair_salon_nearby/repositories/abstracts/city_repository.dart';
 import 'package:hair_salon_nearby/utils/constants/endpoints/endpoint_constants.dart';
 
 final class DioCityRepository extends BaseDioRemoteRepository implements CityRepository {
-  const DioCityRepository.remote({required super.dataService}) : super.remote();
-  DioCityRepository.defaultRemote() : super.defaultRemote();
+  const DioCityRepository({required super.dataService}) : super.remote();
 
   @override
   Future<ApiResponse<List<CityModel>>> getCities() {
