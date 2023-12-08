@@ -1,8 +1,8 @@
-import '../../core/repositories/base_remote_repository.dart';
-import '../../core/services/models/api_response.dart';
-import '../../models/entity/theme_model.dart';
-import '../../utils/constants/endpoints/endpoint_constants.dart';
-import '../abstracts/theme_repository.dart';
+import '../../../core/repositories/base_remote_repository.dart';
+import '../../../core/services/models/api_response.dart';
+import '../../../models/entity/theme_model.dart';
+import '../../../utils/constants/endpoints/endpoint_constants.dart';
+import '../../abstracts/theme_repository.dart';
 
 class DioThemeRepository extends BaseRemoteRepository implements ThemeRepository {
   DioThemeRepository.remote({required super.dataService}) : super.remote();
