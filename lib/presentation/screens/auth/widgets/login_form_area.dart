@@ -1,6 +1,6 @@
 part of '../view/login_page.dart';
 
-class _LoginFormArea extends StatelessWidget with LoginValidatorMixin {
+class _LoginFormArea extends StatelessWidget with AuthValidatorMixin {
   const _LoginFormArea({required this.formKey, required this.emailController, required this.passwordController});
 
   final GlobalKey<FormState> formKey;

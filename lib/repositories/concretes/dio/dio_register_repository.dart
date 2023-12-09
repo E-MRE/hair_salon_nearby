@@ -6,7 +6,7 @@ import '../../../utils/constants/endpoints/endpoint_constants.dart';
 import '../../abstracts/register_repository.dart';
 
 class DioRegisterRepository extends BaseRemoteRepository implements RegisterRepository {
-  DioRegisterRepository({required super.dataService}) : super.remote();
+  const DioRegisterRepository({required super.dataService}) : super.remote();
 
   DioRegisterRepository.defaultRemote() : super.defaultRemote();
 

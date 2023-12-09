@@ -6,7 +6,7 @@ abstract class BaseState {
   final String errorMessage;
   final String infoMessage;
 
-  BaseState({
+  const BaseState({
     required this.status,
     required this.errorMessage,
     required this.infoMessage,

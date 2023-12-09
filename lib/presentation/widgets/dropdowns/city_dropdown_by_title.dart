@@ -10,7 +10,9 @@ import '../../../utils/constants/lang/locale_keys.g.dart';
 import 'generic_title_dropdown.dart';
 
 class CityDropdownByTitle extends StatelessWidget {
-  const CityDropdownByTitle({super.key});
+  const CityDropdownByTitle({super.key, required this.onCitySelected});
+
+  final void Function(CityModel city) onCitySelected;
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,16 @@ class CityDropdownByTitle extends StatelessWidget {
       errorChildBuilder: (_, __) => const SizedBox.shrink(),
       successChildBuilder: (context, state) {
         return GenericTitleDropdown<CityModel>(
-          onItemSelected: (value) => context.read<CityCubit>().setCity(value),
           hintText: LocaleKeys.registerForm_cityHint.tr(),
           itemTextBuilder: (item) => item.cityName ?? '',
           title: LocaleKeys.registerForm_cityTitle.tr(),
           values: state.data ?? <CityModel>[],
           selectedOption: state.selectedCity,
           useInitialOption: false,
+          onItemSelected: (value) {
+            context.read<CityCubit>().setCity(value);
+            if (value != null) onCitySelected(value);
+          },
         );
       },
     );

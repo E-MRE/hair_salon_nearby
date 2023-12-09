@@ -86,9 +86,15 @@ abstract class  LocaleKeys {
   static const registerForm = 'registerForm';
   static const validators_email = 'validators.email';
   static const validators_password = 'validators.password';
+  static const validators_nameSurname = 'validators.nameSurname';
   static const validators_fieldEmptyError = 'validators.fieldEmptyError';
   static const validators_invalidEmailError = 'validators.invalidEmailError';
   static const validators_lessLengthPassword = 'validators.lessLengthPassword';
+  static const validators_enterNameAndSurname = 'validators.enterNameAndSurname';
+  static const validators_invalidName = 'validators.invalidName';
+  static const validators_invalidSurname = 'validators.invalidSurname';
+  static const validators_invalidOtherName = 'validators.invalidOtherName';
+  static const validators_unselectedDropdownItem = 'validators.unselectedDropdownItem';
   static const validators = 'validators';
   static const storage_deleteError = 'storage.deleteError';
   static const storage_unsupportedStorageItem = 'storage.unsupportedStorageItem';

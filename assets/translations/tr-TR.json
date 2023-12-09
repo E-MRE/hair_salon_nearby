@@ -95,9 +95,15 @@
     "validators":{
         "email":"E-posta",
         "password":"Şifre",
+        "nameSurname":"Ad soyad",
         "fieldEmptyError": "{} alanı boş bırakılmamalıdır.",
         "invalidEmailError":"Lütfen geçerli bir e-posta adresi girin",
-        "lessLengthPassword":"Girilen şifre en az {} karakter olmalıdır."
+        "lessLengthPassword":"Girilen şifre en az {} karakter olmalıdır.",
+        "enterNameAndSurname":"Lütfen isminizi ve soyisminizi giriniz.",
+        "invalidName":"Lütfen geçerli bir isim giriniz",
+        "invalidSurname":"Lütfen geçerli bir soyisim giriniz",
+        "invalidOtherName":"Girilen {}. isim geçersiz, lütfen kontrol edin.",
+        "unselectedDropdownItem":"Lütfen {} alanını boş bırakmayın."
     },
     "storage":{
         "deleteError":"Kayıt lokalden silinirken bir hata meydana geldi",

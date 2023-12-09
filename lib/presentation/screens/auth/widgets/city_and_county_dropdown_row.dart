@@ -1,7 +1,10 @@
 part of '../view/register_page.dart';
 
 class _CityAndCountyDropdownRow extends StatelessWidget {
-  const _CityAndCountyDropdownRow({super.key});
+  const _CityAndCountyDropdownRow({super.key, required this.onCitySelected, required this.onCountySelected});
+
+  final void Function(CityModel city) onCitySelected;
+  final void Function(CountyModel? county) onCountySelected;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +20,9 @@ class _CityAndCountyDropdownRow extends StatelessWidget {
         }
 
         return Row(children: [
-          const Expanded(child: CityDropdownByTitle()),
+          Expanded(child: CityDropdownByTitle(onCitySelected: onCitySelected)),
           EmptySpace.mediumWidth(),
-          const Expanded(child: CountyDropdownByTitle()),
+          Expanded(child: CountyDropdownByTitle(onCountySelected: onCountySelected)),
         ]);
       },
     );

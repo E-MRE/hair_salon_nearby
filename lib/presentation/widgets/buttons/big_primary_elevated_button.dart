@@ -14,6 +14,7 @@ class BigPrimaryElevatedButton extends StatelessWidget {
     this.padding,
     this.opacity = 1,
     this.icon,
+    this.isLoading = false,
     this.radius = Sizes.small,
     this.height = Sizes.extraLarge,
     this.spaceBetweenTextAndIcon = Sizes.small,
@@ -27,6 +28,7 @@ class BigPrimaryElevatedButton extends StatelessWidget {
   final Sizes radius;
   final Sizes height;
   final Sizes spaceBetweenTextAndIcon;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,9 @@ class BigPrimaryElevatedButton extends StatelessWidget {
       opacity: opacity,
       onPressed: onPressed,
       spaceBetweenTextAndIcon: spaceBetweenTextAndIcon,
-      child: icon == null ? _buildText(context) : _buildTextAndIcon(context),
+      child: isLoading
+          ? CircularProgressIndicator(color: context.colorScheme.background)
+          : (icon == null ? _buildText(context) : _buildTextAndIcon(context)),
     );
   }
 

@@ -21,6 +21,8 @@ class BaseBlocBuilderView<TCubit extends BaseCubit<TState>, TState extends BaseS
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TCubit, TState>(builder: (context, state) => buildBody(context, state));
+    return BlocBuilder<TCubit, TState>(
+      builder: (context, state) => customBuilder?.call(context, state) ?? buildBody(context, state),
+    );
   }
 }

@@ -8,7 +8,7 @@ import '../../../../core/utils/display_messages/snack_bar/display_snack_bar.dart
 import '../../../../core/utils/enums/state_status.dart';
 import '../../../../utils/constants/lang/locale_keys.g.dart';
 import '../../../../utils/decorations/empty_space.dart';
-import '../../../../utils/mixins/validators/login_validator_mixin.dart';
+import '../../../../utils/mixins/validators/auth_validator_mixin.dart';
 import '../../../../utils/navigation/auto_router/app_router.dart';
 import '../../../widgets/bloc/base_bloc_builder_view.dart';
 import '../../../widgets/bloc/base_bloc_provider_view.dart';
