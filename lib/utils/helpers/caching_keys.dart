@@ -8,4 +8,5 @@ class CachingKeys implements StorageKeys {
 
   static const onboarding = CachingKeys._('onboarding');
   static const cities = CachingKeys._('cities');
+  static const authType = CachingKeys._('authType');
 }

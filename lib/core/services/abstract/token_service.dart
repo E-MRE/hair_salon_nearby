@@ -1,4 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:hair_salon_nearby/core/utils/constants/core_app_constants.dart';
+import 'package:hair_salon_nearby/utils/enum/auth_type.dart';
+import 'package:hair_salon_nearby/utils/helpers/caching_keys.dart';
 
 import '../../../utils/constants/lang/locale_keys.g.dart';
 import '../../utils/enums/storage_keys.dart';
@@ -17,7 +20,9 @@ abstract class TokenService with TokenContextHelperMixin {
   final String _tokenNotFound = LocaleKeys.token_notFound.tr();
   final String _tokenExpired = LocaleKeys.token_expired.tr();
 
-  String get refreshTokenEndpoint => 'api/Login/RefreshToken';
+  String get refreshTokenEndpoint => CoreAppConstants.refreshTokenEndpoint;
+
+  String get guestRefreshTokenEndpoint => CoreAppConstants.guestRefreshTokenEndpoint;
 
   CacheService get cacheService;
 
@@ -62,9 +67,12 @@ abstract class TokenService with TokenContextHelperMixin {
   Future<ApiResponse<TokenModel>> getRefreshToken({RemoteDataService? dataService}) async {
     final request = RefreshTokenRequestModel.byTokenContext(tokenContext: tokenContext);
 
+    final authResult = cacheService.getValue<AuthType>(CachingKeys.authType, defaultValue: AuthType.emailPassword);
+    final authType = authResult.data ?? AuthType.emailPassword;
+
     final response = await (dataService ?? kRemoteDataService).postData<TokenModel>(
       fromMap: (json) => TokenModel.fromJson(json),
-      endpoint: refreshTokenEndpoint,
+      endpoint: authType == AuthType.emailPassword ? refreshTokenEndpoint : guestRefreshTokenEndpoint,
       request: request,
     );
 

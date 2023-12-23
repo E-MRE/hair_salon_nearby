@@ -19,12 +19,14 @@ class HiveCacheManager extends CacheService with HiveRegisterAdapterMixin {
     BigInt,
     String,
     bool,
+    Enum,
     List<int>,
     List<double>,
     List<num>,
     List<BigInt>,
     List<String>,
     List<bool>,
+    List<Enum>,
   ];
 
   HiveCacheManager({this.customDirectory});

@@ -47,10 +47,6 @@
         "skip":"Atla",
         "discoverApp":"Uygulamayı Keşfet"
     },
-    "authType":{
-        "business":"İşletme Girişi",
-        "user":"Kullanıcı Girişi"
-    },
     "gender":{
         "value":"Cinsiyet",
         "man":"Erkek",

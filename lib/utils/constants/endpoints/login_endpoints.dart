@@ -5,6 +5,6 @@ class _LoginEndpoints {
 
   final String login = 'Login';
   final String guestLogin = 'GeneralLogin';
-  final String refreshToken = 'Login/RefreshToken';
-  final String guestRefreshToken = 'Login/GeneralRefreshToken';
+  final String refreshToken = CoreAppConstants.refreshTokenEndpoint;
+  final String guestRefreshToken = CoreAppConstants.guestRefreshTokenEndpoint;
 }

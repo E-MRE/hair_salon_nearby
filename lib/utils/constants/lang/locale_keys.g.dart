@@ -45,9 +45,6 @@ abstract class  LocaleKeys {
   static const onboarding_skip = 'onboarding.skip';
   static const onboarding_discoverApp = 'onboarding.discoverApp';
   static const onboarding = 'onboarding';
-  static const authType_business = 'authType.business';
-  static const authType_user = 'authType.user';
-  static const authType = 'authType';
   static const gender_value = 'gender.value';
   static const gender_man = 'gender.man';
   static const gender_woman = 'gender.woman';

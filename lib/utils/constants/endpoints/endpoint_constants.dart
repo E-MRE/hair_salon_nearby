@@ -1,3 +1,5 @@
+import 'package:hair_salon_nearby/core/utils/constants/core_app_constants.dart';
+
 part 'login_endpoints.dart';
 part 'onboarding_endpoints.dart';
 part 'public_endpoints.dart';

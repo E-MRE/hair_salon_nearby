@@ -20,6 +20,8 @@ class TokenExpirationInterceptor<TRemote> extends Interceptor {
         _unAuthorizedAcceptances = [
           EndpointConstants.public.checkUpdate.toLowerCase(),
           EndpointConstants.login.refreshToken.toLowerCase(),
+          EndpointConstants.login.guestLogin.toLowerCase(),
+          EndpointConstants.login.guestRefreshToken.toLowerCase(),
           EndpointConstants.register.register.toLowerCase(),
           EndpointConstants.login.login.toLowerCase(),
           EndpointConstants.city.cities.toLowerCase(),
