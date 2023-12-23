@@ -72,7 +72,8 @@
         "createAccountDescription":"Hesabınızı oluşturmanıza yardımcı olalım,  bu işlem uzun sürmeyecek.",
         "user":"Kullanıcı Kayıt",
         "business":"İşletme Kayıt",
-        "citiesNotFound":"İl İlçe bilgileri alınamadı, Tekrar deneyin!"
+        "citiesNotFound":"İl İlçe bilgileri alınamadı, Tekrar deneyin!",
+        "verifyEmail":"İşlem başarılı, e-posta adresinizi doğruladıktan sonra giriş yapabilirsiniz."
     },
     "commonForm":{
         "emailTitle":"E-posta",

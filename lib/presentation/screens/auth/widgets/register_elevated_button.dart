@@ -13,7 +13,8 @@ class _RegisterElevatedButton extends StatelessWidget {
         if (state.status == StateStatus.error) {
           DisplaySnackBar(context).errorMessage(state.errorMessage);
         } else if (state.isSuccess) {
-          //TODO: add user data and navigate to other page
+          DisplaySnackBar(context).successMessage(LocaleKeys.register_verifyEmail.tr());
+          context.router.pop();
         }
       },
       defaultBuilder: (context, state) {

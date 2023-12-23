@@ -67,6 +67,7 @@ abstract class  LocaleKeys {
   static const register_user = 'register.user';
   static const register_business = 'register.business';
   static const register_citiesNotFound = 'register.citiesNotFound';
+  static const register_verifyEmail = 'register.verifyEmail';
   static const register = 'register';
   static const commonForm_emailTitle = 'commonForm.emailTitle';
   static const commonForm_emailHint = 'commonForm.emailHint';
