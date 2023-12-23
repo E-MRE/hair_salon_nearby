@@ -17,9 +17,23 @@ abstract class LoginRepository {
   /// and returning the authentication response.
   Future<ApiResponse<AuthModel>> login(LoginRequestModel request);
 
+  /// The `guestLogin()` method in the `LoginRepository` class is a function that does not take any
+  /// parameters and returns a `Future` object that resolves to an `ApiResponse` object containing an
+  /// `AuthModel` object. This method is responsible for performing a guest login operation, which
+  /// allows users to access certain features or functionalities without having to provide
+  /// authentication credentials. The `AuthModel` object returned in the `ApiResponse` represents the
+  /// authentication information for the guest user.
+  Future<ApiResponse<AuthModel>> guestLogin();
+
   /// The `refreshToken` method in the `LoginRepository` class is a function that takes a
   /// `RefreshTokenRequestModel` object as a parameter and returns a `Future` object that resolves to an
   /// `ApiResponse` object containing a `TokenModel` object. This method is responsible for performing
   /// the refresh token operation and returning the response containing the new token.
   Future<ApiResponse<TokenModel>> refreshToken(RefreshTokenRequestModel request);
+
+  /// The `guestRefreshToken` method in the `LoginRepository` class is a function that takes a
+  /// `RefreshTokenRequestModel` object as a parameter and returns a `Future` object that resolves to an
+  /// `ApiResponse` object containing a `TokenModel` object. This method is responsible for performing
+  /// the refresh token operation for a guest user and returning the response containing the new token.
+  Future<ApiResponse<TokenModel>> guestRefreshToken(RefreshTokenRequestModel request);
 }

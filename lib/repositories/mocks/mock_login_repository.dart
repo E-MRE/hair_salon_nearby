@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:hair_salon_nearby/core/services/models/api_response.dart';
 import 'package:hair_salon_nearby/core/services/models/api_response_model.dart';
 import 'package:hair_salon_nearby/core/services/models/friendly_message_model.dart';
@@ -45,6 +43,16 @@ class MockLoginRepository extends LoginRepository {
         processStatus: (_mockLoginJsonResponse['payload'] as String).toProcessStatus(),
         friendlyMessage:
             FriendlyMessageModel.fromJson(_mockLoginJsonResponse['friendlyMessage'] as Map<String, dynamic>));
+  }
+
+  @override
+  Future<ApiResponse<AuthModel>> guestLogin() {
+    return login(LoginRequestModel(email: validEmail, password: validPassword));
+  }
+
+  @override
+  Future<ApiResponse<TokenModel>> guestRefreshToken(RefreshTokenRequestModel request) {
+    return refreshToken(request);
   }
 }
 

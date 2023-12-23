@@ -1,3 +1,5 @@
+import 'package:hair_salon_nearby/core/services/models/empty_api_request_model.dart';
+
 import '../../../core/repositories/base_remote_repository.dart';
 import '../../../core/services/models/api_response.dart';
 import '../../../core/services/models/refresh_token_request_model.dart';
@@ -21,9 +23,27 @@ class DioLoginRepository extends BaseRemoteRepository implements LoginRepository
   }
 
   @override
+  Future<ApiResponse<AuthModel>> guestLogin() {
+    return dataService.postData<AuthModel>(
+      endpoint: EndpointConstants.login.guestLogin,
+      fromMap: (json) => AuthModel.fromJson(json),
+      request: EmptyApiRequestModel(),
+    );
+  }
+
+  @override
   Future<ApiResponse<TokenModel>> refreshToken(RefreshTokenRequestModel request) async {
     return await dataService.postData(
       endpoint: EndpointConstants.login.refreshToken,
+      fromMap: (json) => TokenModel.fromJson(json),
+      request: request,
+    );
+  }
+
+  @override
+  Future<ApiResponse<TokenModel>> guestRefreshToken(RefreshTokenRequestModel request) {
+    return dataService.postData(
+      endpoint: EndpointConstants.login.guestRefreshToken,
       fromMap: (json) => TokenModel.fromJson(json),
       request: request,
     );
