@@ -7,7 +7,6 @@ import 'package:hair_salon_nearby/utils/helpers/caching_keys.dart';
 import '../../../../core/services/abstract/token_service.dart';
 import '../../../../core/state_managers/bloc/cubit/base_cubit.dart';
 import '../../../../core/utils/enums/state_status.dart';
-import '../../../../core/utils/helpers/dependency/core_dependencies.dart';
 import '../../../../core/utils/helpers/token/token_context.dart';
 import '../../../../models/request/login_request_model.dart';
 import '../../../../repositories/abstracts/login_repository.dart';
@@ -15,14 +14,14 @@ import 'login_state.dart';
 
 class LoginCubit extends BaseCubit<LoginState> {
   LoginCubit({
-    LoginRepository? loginRepository,
-    TokenContext? tokenContext,
-    TokenService? tokenService,
-    CacheService? cacheService,
-  })  : _loginRepository = loginRepository ?? CoreDependencies.getDependency<LoginRepository>(),
-        _tokenContext = tokenContext ?? kTokenContext,
-        _cacheService = cacheService ?? kCacheService,
-        _tokenService = tokenService ?? kTokenService,
+    required LoginRepository loginRepository,
+    required TokenContext tokenContext,
+    required TokenService tokenService,
+    required CacheService cacheService,
+  })  : _loginRepository = loginRepository,
+        _tokenContext = tokenContext,
+        _cacheService = cacheService,
+        _tokenService = tokenService,
         super(LoginState.initial());
 
   final LoginRepository _loginRepository;

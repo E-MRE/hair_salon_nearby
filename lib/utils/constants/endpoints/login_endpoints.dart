@@ -4,7 +4,7 @@ class _LoginEndpoints {
   const _LoginEndpoints();
 
   final String login = 'Login';
-  final String guestLogin = 'GeneralLogin';
+  final String guestLogin = 'Login/GeneralLogin';
   final String refreshToken = CoreAppConstants.refreshTokenEndpoint;
   final String guestRefreshToken = CoreAppConstants.guestRefreshTokenEndpoint;
 }

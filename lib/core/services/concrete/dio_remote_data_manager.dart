@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:hair_salon_nearby/utils/constants/lang/locale_keys.g.dart';
 
 import '../../utils/constants/core_app_constants.dart';
 import '../../utils/enums/duration_types.dart';
@@ -145,7 +147,7 @@ class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeContr
         DioApiResponseConvertParameterModel<T>(
           response: error.response ?? Response(requestOptions: error.requestOptions),
           parser: (json) => fromMap?.call(json),
-          defaultMessage: error.message,
+          defaultMessage: _handleErrorMessage(error.type, error.message),
           stackTrace: error.stackTrace,
           dioErrorType: error.type,
         ),
@@ -173,5 +175,14 @@ class DioRemoteDataManager extends DioRemoteDataService with HttpStatusCodeContr
       receiveTimeout: timeout?.rawValue(),
       sendTimeout: timeout?.rawValue(),
     );
+  }
+
+  String _handleErrorMessage(DioExceptionType exceptionType, String? message) {
+    if ([DioExceptionType.connectionError, DioExceptionType.receiveTimeout, DioExceptionType.sendTimeout]
+        .contains(exceptionType)) {
+      return LocaleKeys.apiMessage_timeoutError.tr();
+    }
+
+    return message ?? LocaleKeys.apiMessage_failed.tr();
   }
 }

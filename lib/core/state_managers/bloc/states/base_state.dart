@@ -14,6 +14,8 @@ abstract class BaseState {
 
   bool get isSuccess => status == StateStatus.success;
 
+  bool get isLoading => status == StateStatus.loading;
+
   BaseState.initial()
       : status = StateStatus.initial,
         errorMessage = SpecialKey.empty.value,

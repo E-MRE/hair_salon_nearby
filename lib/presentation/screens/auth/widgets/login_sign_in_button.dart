@@ -13,14 +13,18 @@ class _LoginSignInButton extends StatelessWidget {
         return BigPrimaryElevatedButton(
           onPressed: () => _login(context, state.status == StateStatus.loading),
           text: LocaleKeys.login_signIn.tr(),
-          icon: _buildIconByStatus(context, state.status == StateStatus.loading),
+          icon: _buildIconByStatus(
+            context,
+            state.status == StateStatus.loading,
+            state.authLoading == AuthType.emailPassword,
+          ),
         );
       },
     );
   }
 
-  Widget _buildIconByStatus(BuildContext context, bool isLoading) {
-    return isLoading
+  Widget _buildIconByStatus(BuildContext context, bool isLoading, bool isEmailAuth) {
+    return isLoading && isEmailAuth
         ? CircularProgressIndicator(color: context.colorScheme.onPrimary)
         : Icon(Icons.arrow_forward_rounded, color: context.colorScheme.onPrimary);
   }

@@ -1,7 +1,9 @@
 part of '../view/login_page.dart';
 
 class _NotHaveAccountLine extends StatelessWidget {
-  const _NotHaveAccountLine();
+  const _NotHaveAccountLine(this.isLoading);
+
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,8 @@ class _NotHaveAccountLine extends StatelessWidget {
   }
 
   void _navigateRegister(BuildContext context) {
+    if (isLoading) return;
+
     context.router.navigate(const RegisterRoute());
   }
 }
