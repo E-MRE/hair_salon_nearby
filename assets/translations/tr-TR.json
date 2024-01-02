@@ -116,5 +116,6 @@
         "updateRequired":"@:updateApp.updateAvailable Devam etmek için uygulamanın son sürümünü indirin!",
         "updateNow":"Şimdi Güncelle",
         "remindLater":"Daha Sonra Hatırlat"
-    }
+    },
+    "discounted":"İndirimli"
 }

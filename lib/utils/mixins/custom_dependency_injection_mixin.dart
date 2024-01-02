@@ -2,6 +2,7 @@ import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencie
 import 'package:hair_salon_nearby/presentation/screens/auth/cubit/city_cubit.dart';
 import 'package:hair_salon_nearby/presentation/screens/auth/cubit/login_cubit.dart';
 import 'package:hair_salon_nearby/presentation/screens/auth/cubit/register_cubit.dart';
+import 'package:hair_salon_nearby/presentation/screens/menu/cubit/menu_cubit.dart';
 import 'package:hair_salon_nearby/presentation/screens/splash/cubit/splash_cubit.dart';
 import 'package:hair_salon_nearby/repositories/abstracts/cache_city_repository.dart';
 import 'package:hair_salon_nearby/repositories/abstracts/city_repository.dart';
@@ -75,5 +76,7 @@ mixin CustomDependencyInjectionMixin {
         tokenService: kTokenService,
       ),
     );
+
+    injector.registerFactory<MenuCubit>(() => MenuCubit(venueRepository: injector.get<VenueRepository>()));
   }
 }

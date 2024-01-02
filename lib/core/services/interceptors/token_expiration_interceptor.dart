@@ -65,6 +65,6 @@ class TokenExpirationInterceptor<TRemote> extends Interceptor {
     }
 
     final result = await _tokenService.getTokenAny();
-    return result.data?.token ?? SpecialKey.empty.value;
+    return result.isNotSuccess ? SpecialKey.empty.value : result.data?.token ?? SpecialKey.empty.value;
   }
 }

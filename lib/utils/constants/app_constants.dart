@@ -7,6 +7,8 @@ class AppConstants {
 
   static const String appName = 'AppName';
 
+  static const int kZero = 0;
+
   static const double minScreenWidth = 450;
   static const double maxScreenWidth = 1280;
 

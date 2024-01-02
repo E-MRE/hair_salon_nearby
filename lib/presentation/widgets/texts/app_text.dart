@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hair_salon_nearby/core/extensions/context_extensions.dart';
+import 'package:hair_salon_nearby/utils/enum/sizes.dart';
 
 import '../../../core/utils/enums/special_key.dart';
 import '../../../utils/enum/text_line_type.dart';
@@ -265,6 +266,7 @@ class AppText extends Text {
     String? data, {
     Key? key,
     Color? color,
+    Sizes? height,
     TextLineType? maxLines,
     TextDecoration? decoration,
     required BuildContext context,
@@ -278,6 +280,7 @@ class AppText extends Text {
           maxLines: maxLines?.value,
           style: AppTextStyle.labelLargeSemiBold(
             decoration: decoration,
+            height: height ?? Sizes.verySmallerThanBig,
             textTheme: context.textTheme,
             color: color,
           ),

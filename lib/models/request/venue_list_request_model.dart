@@ -24,6 +24,8 @@ final class VenueListRequestModel extends ApiRequestModel {
     this.venueType,
   });
 
+  const VenueListRequestModel.defaults({VenueType venueType = VenueType.man}) : this(page: 1, venueType: venueType);
+
   @override
   Map<String, dynamic> toJson() => _$VenueListRequestModelToJson(this);
 }

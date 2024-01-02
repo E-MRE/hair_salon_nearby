@@ -107,5 +107,6 @@ abstract class  LocaleKeys {
   static const updateApp_updateNow = 'updateApp.updateNow';
   static const updateApp_remindLater = 'updateApp.remindLater';
   static const updateApp = 'updateApp';
+  static const discounted = 'discounted';
 
 }

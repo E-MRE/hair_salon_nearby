@@ -1,7 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
+import 'package:hair_salon_nearby/core/utils/enums/special_key.dart';
+import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
+import 'package:hair_salon_nearby/models/entity/venue_model.dart';
+import 'package:hair_salon_nearby/presentation/screens/menu/cubit/menu_cubit.dart';
+import 'package:hair_salon_nearby/presentation/screens/menu/cubit/menu_state.dart';
+import 'package:hair_salon_nearby/presentation/widgets/bloc/base_bloc_data_provider_view.dart';
+import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_card.dart';
+import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_discount_view.dart';
+import 'package:hair_salon_nearby/utils/constants/app_constants.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
@@ -15,6 +23,9 @@ import '../../../../utils/decorations/empty_space.dart';
 import '../../../../utils/enum/sizes.dart';
 import '../../../widgets/scaffolds/safe_page_view.dart';
 import '../../../widgets/texts/app_text.dart';
+
+part '../widgets/popular_venue_card.dart';
+part '../widgets/discounted_venue_card.dart';
 
 @RoutePage()
 class MenuPage extends StatefulWidget {
@@ -85,496 +96,269 @@ class _MenuPageState extends State<MenuPage> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            AppText.headlineSmallSemiBold(
-              'Kişisel bakım için en iyi kuaförleri bul',
-              context: context,
-              color: context.colorScheme.primary,
-            ),
-            EmptySpace.bigHeight(),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AssetsConstants.instance.getSvgImages.icMapping.svg(
-                  height: Sizes.small.value,
-                  width: Sizes.small.value,
-                  color: context.colorScheme.onSurfaceVariant,
-                ),
-                EmptySpace.prettySmallWidth(),
-                AppText.titleMediumSemiBold('Zeytinburnu', context: context),
-                EmptySpace.extraSmallWidth(),
-                Icon(
-                  Icons.keyboard_arrow_down_sharp,
-                  color: context.colorScheme.onSurfaceVariant,
-                  size: Sizes.medium.value,
-                ),
-                const Spacer(),
-                AssetsConstants.instance.getSvgImages.icFilterSettings.svg(
+      body: BaseBlocDataProviderView<MenuCubit, MenuState>(
+        create: (_) => CoreDependencies.getDependency<MenuCubit>()..getVenues(),
+        successChildBuilder: (context, state) => _body(context, state),
+        listener: (context, state) {
+          debugPrint(state.status.name);
+        },
+      ),
+    );
+  }
+
+  SingleChildScrollView _body(BuildContext context, MenuState state) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          AppText.headlineSmallSemiBold(
+            'Kişisel bakım için en iyi kuaförleri bul',
+            context: context,
+            color: context.colorScheme.primary,
+          ),
+          EmptySpace.bigHeight(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AssetsConstants.instance.getSvgImages.icMapping.svg(
+                height: Sizes.small.value,
+                width: Sizes.small.value,
+                color: context.colorScheme.onSurfaceVariant,
+              ),
+              EmptySpace.prettySmallWidth(),
+              AppText.titleMediumSemiBold('Zeytinburnu', context: context),
+              EmptySpace.extraSmallWidth(),
+              Icon(
+                Icons.keyboard_arrow_down_sharp,
+                color: context.colorScheme.onSurfaceVariant,
+                size: Sizes.medium.value,
+              ),
+              const Spacer(),
+              AssetsConstants.instance.getSvgImages.icFilterSettings.svg(
+                height: Sizes.big.value,
+                width: Sizes.big.value,
+                color: context.colorScheme.primary,
+              ),
+            ],
+          ),
+          EmptySpace.mediumHeight(),
+          TextField(
+            decoration: InputDecoration(
+              hintText: 'Kuaför adı yada hizmet türü...',
+              prefixIconConstraints: BoxConstraints.loose(Size.fromRadius(Sizes.big.value)),
+              prefixIcon: AppPadding.horizontalSmall(
+                child: AssetsConstants.instance.getSvgImages.icSearch.svg(
                   height: Sizes.big.value,
                   width: Sizes.big.value,
-                  color: context.colorScheme.primary,
-                ),
-              ],
-            ),
-            EmptySpace.mediumHeight(),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Kuaför adı yada hizmet türü...',
-                prefixIconConstraints: BoxConstraints.loose(Size.fromRadius(Sizes.big.value)),
-                prefixIcon: AppPadding.horizontalSmall(
-                  child: AssetsConstants.instance.getSvgImages.icSearch.svg(
-                    height: Sizes.big.value,
-                    width: Sizes.big.value,
-                    color: context.colorScheme.outline,
-                  ),
+                  color: context.colorScheme.outline,
                 ),
               ),
             ),
-            EmptySpace.mediumHeight(),
-            SizedBox(
-              height: Sizes.prettyBig.value,
-              child: ListView.separated(
-                itemCount: _mockCategories.length,
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) => EmptySpace(width: Sizes.small),
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: AppEdgeInsets.symmetric(horizontal: Sizes.prettySmall, vertical: Sizes.extraSmall),
-                    decoration: AppBoxDecoration.circularContainer(
-                      size: Sizes.prettySmall,
-                      borderColor: Colors.transparent,
-                      backgroundColor: context.colorScheme.secondary.withOpacity(.3),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        AppText.labelLargeMedium(
-                          _mockCategories[index],
-                          context: context,
-                          color: context.colorScheme.background,
-                        ),
-                        EmptySpace.extraSmallWidth(),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            color: context.colorScheme.background,
-                            size: Sizes.medium.value,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            EmptySpace.bigHeight(),
-            Row(
-              children: [
-                AppText.titleLargeSemiBold('Çevrende En Popüler 🔥', context: context),
-                const Spacer(),
-                InkWell(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
-                      EmptySpace.extraSmallWidth(),
-                      Icon(
-                        Icons.arrow_forward_rounded,
-                        color: context.colorScheme.primary,
-                        size: Sizes.verySmallerThanBig.value,
-                      )
-                    ],
+          ),
+          EmptySpace.mediumHeight(),
+          SizedBox(
+            height: Sizes.prettyBig.value,
+            child: ListView.separated(
+              itemCount: _mockCategories.length,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => EmptySpace(width: Sizes.small),
+              itemBuilder: (context, index) {
+                return Container(
+                  padding: AppEdgeInsets.symmetric(horizontal: Sizes.prettySmall, vertical: Sizes.extraSmall),
+                  decoration: AppBoxDecoration.circularContainer(
+                    size: Sizes.prettySmall,
+                    borderColor: Colors.transparent,
+                    backgroundColor: context.colorScheme.secondary.withOpacity(.3),
                   ),
-                )
-              ],
-            ),
-            EmptySpace.mediumHeight(),
-            SizedBox(
-              height: Sizes.extraVeryExtraUltraLarge.value,
-              child: ListView.separated(
-                itemCount: 4,
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) => EmptySpace.mediumWidth(),
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    width: Sizes.extraUltraExtraVeryBig.value,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        ClipRRect(
-                          borderRadius: CircularBorderRadius.normal(),
-                          child: SizedBox(
-                            height: Sizes.extraPrettyExtraVeryLarge.value,
-                            child: Stack(
-                              fit: StackFit.expand,
-                              children: [
-                                CachedNetworkImage(
-                                  imageUrl: 'https://i.ibb.co/QFYrBjr/video.png',
-                                  height: Sizes.extraPrettyExtraVeryLarge.value,
-                                  width: Sizes.extraUltraExtraVeryBig.value,
-                                  filterQuality: FilterQuality.medium,
-                                  fit: BoxFit.fitHeight,
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: AppPadding.allPrettySmall(
-                                    child: Container(
-                                      height: Sizes.prettyBig.value,
-                                      padding: AppEdgeInsets.symmetric(
-                                          horizontal: Sizes.prettySmall, vertical: Sizes.verySmall),
-                                      decoration: AppBoxDecoration.circularContainer(
-                                        borderColor: Colors.transparent,
-                                        backgroundColor: context.colorScheme.secondary.withOpacity(.3),
-                                        size: Sizes.smaller,
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          AssetsConstants.instance.getSvgImages.icStart.svg(
-                                            height: Sizes.medium.value,
-                                            width: Sizes.medium.value,
-                                            color: context.colorScheme.background,
-                                          ),
-                                          EmptySpace.extraSmallWidth(),
-                                          AppText.labelLargeSemiBold(
-                                            '4.5',
-                                            context: context,
-                                            color: context.colorScheme.background,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: AppPadding.allPrettySmall(
-                                    child: LikeButton(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      likeBuilder: (isLiked) {
-                                        return Container(
-                                          padding: AppEdgeInsets.all(Sizes.extraSmall),
-                                          decoration: AppBoxDecoration.circularContainer(
-                                            borderColor: Colors.transparent,
-                                            backgroundColor: isLiked
-                                                ? context.colorScheme.secondary
-                                                : context.colorScheme.background,
-                                            size: Sizes.verySmallerThanJumbo,
-                                          ),
-                                          child: AssetsConstants.instance.getSvgImages.icBookmark.svg(
-                                            height: Sizes.smallerThanBig.value,
-                                            width: Sizes.smallerThanBig.value,
-                                            color: isLiked
-                                                ? context.colorScheme.background
-                                                : context.colorScheme.secondary,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    padding: AppEdgeInsets.all(Sizes.smallerThanMedium),
-                                    decoration: AppBoxDecoration.circularContainer(
-                                      borderColor: Colors.transparent,
-                                      backgroundColor: context.colorScheme.secondary.withOpacity(.3),
-                                      size: Sizes.verySmallerThanJumbo,
-                                    ),
-                                    child: AssetsConstants.instance.getSvgImages.icPlayVideo.svg(
-                                      height: Sizes.verySmallerThanBig.value,
-                                      width: Sizes.verySmallerThanBig.value,
-                                      color: context.colorScheme.background,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        EmptySpace.prettySmallHeight(),
-                        AppText.bodySmallMedium(
-                          'ERKEK & KADIN',
-                          context: context,
-                          color: context.colorScheme.outline,
-                        ),
-                        EmptySpace.extraSmallHeight(),
-                        AppText.titleMediumSemiBold(
-                          'Enes İleri Kuaför Salonu',
-                          context: context,
-                          color: context.colorScheme.secondary,
-                        ),
-                        EmptySpace.extraSmallHeight(),
-                        Row(
-                          children: [
-                            AppText.bodySmallRegular(
-                              'Saç Sakal Cilt Bakım',
-                              context: context,
-                              color: context.colorScheme.outline,
-                            ),
-                            EmptySpace.prettySmallWidth(),
-                            AppText.bodySmallRegular(
-                              '·',
-                              context: context,
-                              color: context.colorScheme.outline,
-                            ),
-                            EmptySpace.prettySmallWidth(),
-                            AppText.bodySmallRegular(
-                              '2.5 Km',
-                              context: context,
-                              color: context.colorScheme.outline,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            EmptySpace.bigHeight(),
-            Row(
-              children: [
-                AppText.titleLargeSemiBold('Hizmet Seçenekleri', context: context),
-                const Spacer(),
-                InkWell(
-                  onTap: () {},
                   child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
-                      EmptySpace.extraSmallWidth(),
-                      Icon(
-                        Icons.arrow_forward_rounded,
-                        color: context.colorScheme.primary,
-                        size: Sizes.verySmallerThanBig.value,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-            EmptySpace.mediumHeight(),
-            SizedBox(
-              height: Sizes.extraExtraPrettyJumbo.value,
-              child: ListView.separated(
-                itemCount: _mockServices.length,
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) => EmptySpace.bigWidth(),
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    width: Sizes.ultraJumbo.value,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        ClipRRect(
-                          borderRadius: CircularBorderRadius(radius: Sizes.ultraJumbo),
-                          child: CachedNetworkImage(
-                            imageUrl: _mockServicePhotos[index],
-                            height: Sizes.ultraJumbo.value,
-                            width: Sizes.ultraJumbo.value,
-                            filterQuality: FilterQuality.medium,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        EmptySpace.prettySmallHeight(),
-                        AppPadding.horizontalPrettySmall(
-                          child: AppText.labelMediumSemiBold(
-                            _mockServices[index],
-                            context: context,
-                            align: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            EmptySpace.bigHeight(),
-            Row(
-              children: [
-                AppText.titleLargeSemiBold('En İyi İndirimli Teklifler', context: context),
-                const Spacer(),
-                InkWell(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
-                      EmptySpace.extraSmallWidth(),
-                      Icon(
-                        Icons.arrow_forward_rounded,
-                        color: context.colorScheme.primary,
-                        size: Sizes.verySmallerThanBig.value,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-            EmptySpace.mediumHeight(),
-            SizedBox(
-              height: Sizes.extraVeryExtraUltraLarge.value,
-              child: ListView.separated(
-                itemCount: 4,
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) => EmptySpace.mediumWidth(),
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    width: Sizes.extraUltraExtraVeryBig.value,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        ClipRRect(
-                          borderRadius: CircularBorderRadius.normal(),
-                          child: SizedBox(
-                            height: Sizes.extraPrettyExtraVeryLarge.value,
-                            child: Stack(
-                              fit: StackFit.expand,
-                              children: [
-                                CachedNetworkImage(
-                                  imageUrl: 'https://i.ibb.co/QFYrBjr/video.png',
-                                  height: Sizes.extraPrettyExtraVeryLarge.value,
-                                  width: Sizes.extraUltraExtraVeryBig.value,
-                                  filterQuality: FilterQuality.medium,
-                                  fit: BoxFit.fitHeight,
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: AppPadding.allPrettySmall(
-                                    child: Container(
-                                      padding: AppEdgeInsets.symmetric(
-                                          horizontal: Sizes.prettySmall, vertical: Sizes.verySmall),
-                                      decoration: AppBoxDecoration.circularContainer(
-                                        borderColor: Colors.transparent,
-                                        backgroundColor: context.colorScheme.secondary.withOpacity(.3),
-                                        size: Sizes.smaller,
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          AppText.labelLargeSemiBold(
-                                            '%',
-                                            context: context,
-                                            color: context.colorScheme.background,
-                                          ),
-                                          EmptySpace.extraSmallWidth(),
-                                          AppText.labelLargeSemiBold(
-                                            'İndirimli',
-                                            context: context,
-                                            color: context.colorScheme.background,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    padding: AppEdgeInsets.all(Sizes.smallerThanMedium),
-                                    decoration: AppBoxDecoration.circularContainer(
-                                      borderColor: Colors.transparent,
-                                      backgroundColor: context.colorScheme.secondary.withOpacity(.3),
-                                      size: Sizes.verySmallerThanJumbo,
-                                    ),
-                                    child: AssetsConstants.instance.getSvgImages.icPlayVideo.svg(
-                                      height: Sizes.verySmallerThanBig.value,
-                                      width: Sizes.verySmallerThanBig.value,
-                                      color: context.colorScheme.background,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        EmptySpace.prettySmallHeight(),
-                        AppText.bodySmallMedium(
-                          'ERKEK & KADIN',
-                          context: context,
-                          color: context.colorScheme.outline,
-                        ),
-                        EmptySpace.extraSmallHeight(),
-                        AppText.titleMediumSemiBold(
-                          'Fatih Mandıralı Masaj Salonu',
-                          context: context,
-                          color: context.colorScheme.secondary,
-                        ),
-                        EmptySpace.extraSmallHeight(),
-                        Row(
-                          children: [
-                            AppText.bodySmallRegular(
-                              'Spa, Masaj, Cilt Bakımı',
-                              context: context,
-                              color: context.colorScheme.outline,
-                            ),
-                            EmptySpace.prettySmallWidth(),
-                            AppText.bodySmallRegular(
-                              '·',
-                              context: context,
-                              color: context.colorScheme.outline,
-                            ),
-                            EmptySpace.prettySmallWidth(),
-                            AppText.bodySmallRegular(
-                              '2.5 Km',
-                              context: context,
-                              color: context.colorScheme.outline,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            EmptySpace.bigHeight(),
-            SizedBox(
-              height: Sizes.extraExtraUltraBig.value,
-              child: ClipRRect(
-                borderRadius: CircularBorderRadius(radius: Sizes.smaller),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    AssetsConstants.instance.getPngImages.icAdvertisementArea.image(fit: BoxFit.fill),
-                    AppPadding.allMedium(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          AppText.titleLargeSemiBold(
-                            'Reklam Alanı',
-                            context: context,
-                            color: context.colorScheme.background,
-                          ),
-                          EmptySpace.extraSmallHeight(),
-                          AppText.labelLargeRegular(
-                            'İşletmenin reklamını yapmak ister misin?\nKuaför Yanımda ile işletmenin reklamını yap ve yeni kitlelere ulaş!',
-                            context: context,
-                            color: context.colorScheme.background,
-                          ),
-                        ],
+                      AppText.labelLargeMedium(
+                        _mockCategories[index],
+                        context: context,
+                        color: context.colorScheme.background,
                       ),
+                      EmptySpace.extraSmallWidth(),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Icon(
+                          Icons.keyboard_arrow_down_sharp,
+                          color: context.colorScheme.background,
+                          size: Sizes.medium.value,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          EmptySpace.bigHeight(),
+          Row(
+            children: [
+              AppText.titleLargeSemiBold('Çevrende En Popüler 🔥', context: context),
+              const Spacer(),
+              InkWell(
+                onTap: () {},
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
+                    EmptySpace.extraSmallWidth(),
+                    Icon(
+                      Icons.arrow_forward_rounded,
+                      color: context.colorScheme.primary,
+                      size: Sizes.verySmallerThanBig.value,
                     )
                   ],
                 ),
+              )
+            ],
+          ),
+          EmptySpace.mediumHeight(),
+          SizedBox(
+            height: Sizes.extraVeryExtraUltraLarge.value,
+            child: ListView.separated(
+              itemCount: state.data?.items?.length ?? AppConstants.kZero,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => EmptySpace.mediumWidth(),
+              itemBuilder: (context, index) {
+                final item = state.data!.items![index];
+                return _PopularVenueCard(venue: item);
+              },
+            ),
+          ),
+          EmptySpace.bigHeight(),
+          Row(
+            children: [
+              AppText.titleLargeSemiBold('Hizmet Seçenekleri', context: context),
+              const Spacer(),
+              InkWell(
+                onTap: () {},
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
+                    EmptySpace.extraSmallWidth(),
+                    Icon(
+                      Icons.arrow_forward_rounded,
+                      color: context.colorScheme.primary,
+                      size: Sizes.verySmallerThanBig.value,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          EmptySpace.mediumHeight(),
+          SizedBox(
+            height: Sizes.extraExtraPrettyJumbo.value,
+            child: ListView.separated(
+              itemCount: _mockServices.length,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => EmptySpace.bigWidth(),
+              itemBuilder: (context, index) {
+                return SizedBox(
+                  width: Sizes.ultraJumbo.value,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ClipRRect(
+                        borderRadius: CircularBorderRadius(radius: Sizes.ultraJumbo),
+                        child: CachedNetworkImage(
+                          imageUrl: _mockServicePhotos[index],
+                          height: Sizes.ultraJumbo.value,
+                          width: Sizes.ultraJumbo.value,
+                          filterQuality: FilterQuality.medium,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      EmptySpace.prettySmallHeight(),
+                      AppPadding.horizontalPrettySmall(
+                        child: AppText.labelMediumSemiBold(
+                          _mockServices[index],
+                          context: context,
+                          align: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          EmptySpace.bigHeight(),
+          Row(
+            children: [
+              AppText.titleLargeSemiBold('En İyi İndirimli Teklifler', context: context),
+              const Spacer(),
+              InkWell(
+                onTap: () {},
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
+                    EmptySpace.extraSmallWidth(),
+                    Icon(
+                      Icons.arrow_forward_rounded,
+                      color: context.colorScheme.primary,
+                      size: Sizes.verySmallerThanBig.value,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          EmptySpace.mediumHeight(),
+          SizedBox(
+            height: Sizes.extraVeryExtraUltraLarge.value,
+            child: ListView.separated(
+              itemCount: state.data!.items!.length,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => EmptySpace.mediumWidth(),
+              itemBuilder: (context, index) {
+                final item = state.data!.items![index];
+                return _DiscountedVenueCard(venue: item);
+              },
+            ),
+          ),
+          EmptySpace.bigHeight(),
+          SizedBox(
+            height: Sizes.extraExtraUltraBig.value,
+            child: ClipRRect(
+              borderRadius: CircularBorderRadius(radius: Sizes.smaller),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  AssetsConstants.instance.getPngImages.icAdvertisementArea.image(fit: BoxFit.fill),
+                  AppPadding.allMedium(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        AppText.titleLargeSemiBold(
+                          'Reklam Alanı',
+                          context: context,
+                          color: context.colorScheme.background,
+                        ),
+                        EmptySpace.extraSmallHeight(),
+                        AppText.labelLargeRegular(
+                          'İşletmenin reklamını yapmak ister misin?\nKuaför Yanımda ile işletmenin reklamını yap ve yeni kitlelere ulaş!',
+                          context: context,
+                          color: context.colorScheme.background,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
-            EmptySpace.bigHeight(),
-          ],
-        ),
+          ),
+          EmptySpace.bigHeight(),
+        ],
       ),
     );
   }

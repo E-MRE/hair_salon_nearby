@@ -7,6 +7,7 @@ enum SpecialKey {
   flame('🔥'),
   slash('/'),
   backSlash('\\'),
+  percent('%'),
   underDash('_');
 
   final String value;

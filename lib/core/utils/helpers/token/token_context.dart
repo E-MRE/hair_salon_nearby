@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const String _secretKey = '**=?=**';
 const String _kEmpty = '';
 
@@ -63,7 +65,8 @@ abstract class TokenContext {
   }
 
   bool _isDateNotExpires({required DateTime date, int delaySeconds = 10}) {
-    var difference = DateTime.now().difference(date).inSeconds;
+    var difference = DateTime.now().toUtc().difference(date).inSeconds;
+    debugPrint('NOW: ${DateTime.now().toUtc()} | DATE: $date');
 
     return difference < delaySeconds;
   }
