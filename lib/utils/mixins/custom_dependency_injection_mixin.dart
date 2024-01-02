@@ -6,11 +6,14 @@ import 'package:hair_salon_nearby/presentation/screens/splash/cubit/splash_cubit
 import 'package:hair_salon_nearby/repositories/abstracts/cache_city_repository.dart';
 import 'package:hair_salon_nearby/repositories/abstracts/city_repository.dart';
 import 'package:hair_salon_nearby/repositories/abstracts/register_repository.dart';
+import 'package:hair_salon_nearby/repositories/abstracts/venue_repository.dart';
 import 'package:hair_salon_nearby/repositories/concretes/cache/hive/hive_city_repository.dart';
 import 'package:hair_salon_nearby/repositories/concretes/dio/dio_city_repository.dart';
 import 'package:hair_salon_nearby/repositories/concretes/dio/dio_register_repository.dart';
+import 'package:hair_salon_nearby/repositories/concretes/dio/dio_venue_repository.dart';
 import 'package:hair_salon_nearby/repositories/mocks/mock_city_repository.dart';
 import 'package:hair_salon_nearby/repositories/mocks/mock_register_repository.dart';
+import 'package:hair_salon_nearby/repositories/mocks/mock_venue_repository.dart';
 import 'package:hair_salon_nearby/utils/helpers/device/device_info.dart';
 
 import '../../core/utils/constants/core_app_constants.dart';
@@ -30,6 +33,7 @@ mixin CustomDependencyInjectionMixin {
       injector.registerFactory<LoginRepository>(() => MockLoginRepository());
       injector.registerFactory<RegisterRepository>(() => MockRegisterRepository());
       injector.registerFactory<CityRepository>(() => MockCityRepository());
+      injector.registerFactory<VenueRepository>(() => MockVenueRepository());
 
       //Helpers
       injector.registerLazySingleton<DeviceInfo>(() => DeviceInfo.test());
@@ -40,6 +44,7 @@ mixin CustomDependencyInjectionMixin {
       injector.registerFactory<RegisterRepository>(() => DioRegisterRepository(dataService: kRemoteDataService));
       injector.registerFactory<CityRepository>(() => DioCityRepository(dataService: kRemoteDataService));
       injector.registerFactory<CacheCityRepository>(() => HiveCityRepository(cacheService: kCacheService));
+      injector.registerFactory<VenueRepository>(() => DioVenueRepository(dataService: kRemoteDataService));
 
       //Helpers
       injector.registerLazySingleton<DeviceInfo>(() => DeviceInfo());
