@@ -117,5 +117,13 @@
         "updateNow":"Şimdi Güncelle",
         "remindLater":"Daha Sonra Hatırlat"
     },
-    "discounted":"İndirimli"
+    "discounted":"İndirimli",
+    "all":"Tümü",
+    "menuPage":{
+        "bestDiscountOffers":"En İyi İndirimli Teklifler",
+        "serviceOptions":"Hizmet Seçenekleri",
+        "mostPopularAround":"Çevrende En Popüler 🔥",
+        "home":"Anasayfa",
+        "profile":"Profil"
+    }
 }

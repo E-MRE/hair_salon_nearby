@@ -16,4 +16,15 @@ class AppBoxDecoration extends BoxDecoration {
           border: Border.all(color: borderColor, width: borderWidth),
           boxShadow: shadow,
         );
+
+  AppBoxDecoration.menuBottomNavigation()
+      : super(
+          boxShadow: <BoxShadow>[
+            const BoxShadow(
+              color: Color.fromRGBO(108, 108, 108, 0.1),
+              blurRadius: 8,
+              offset: Offset(0, -1),
+            ),
+          ],
+        );
 }

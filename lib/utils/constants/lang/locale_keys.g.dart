@@ -108,5 +108,12 @@ abstract class  LocaleKeys {
   static const updateApp_remindLater = 'updateApp.remindLater';
   static const updateApp = 'updateApp';
   static const discounted = 'discounted';
+  static const all = 'all';
+  static const menuPage_bestDiscountOffers = 'menuPage.bestDiscountOffers';
+  static const menuPage_serviceOptions = 'menuPage.serviceOptions';
+  static const menuPage_mostPopularAround = 'menuPage.mostPopularAround';
+  static const menuPage_home = 'menuPage.home';
+  static const menuPage_profile = 'menuPage.profile';
+  static const menuPage = 'menuPage';
 
 }

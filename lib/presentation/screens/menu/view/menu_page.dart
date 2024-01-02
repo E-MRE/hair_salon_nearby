@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hair_salon_nearby/core/utils/enums/special_key.dart';
 import 'package:hair_salon_nearby/core/utils/helpers/dependency/core_dependencies.dart';
@@ -10,6 +11,8 @@ import 'package:hair_salon_nearby/presentation/widgets/bloc/base_bloc_data_provi
 import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_card.dart';
 import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_discount_view.dart';
 import 'package:hair_salon_nearby/utils/constants/app_constants.dart';
+import 'package:hair_salon_nearby/utils/constants/lang/locale_keys.g.dart';
+import 'package:hair_salon_nearby/utils/enum/menu_page_option.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
@@ -26,6 +29,9 @@ import '../../../widgets/texts/app_text.dart';
 
 part '../widgets/popular_venue_card.dart';
 part '../widgets/discounted_venue_card.dart';
+part '../widgets/section_title_view.dart';
+part '../widgets/explore_button.dart';
+part '../widgets/menu_bottom_navigation_bar.dart';
 
 @RoutePage()
 class MenuPage extends StatefulWidget {
@@ -38,64 +44,21 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   final _mockCategories = ['Cinsiyet', 'Fiyat', 'İndirimli', 'Diğer Fiyat'];
   final _mockServices = ['Erkek\nSaç Kesim', 'Erkek\nSakal Kesim', 'Erkek\nCilt Bakım'];
-  final _mockServicePhotos = [
-    'https://i.ibb.co/6gvcjM2/Avatar.png',
-    'https://i.ibb.co/9VCswLK/Avatar.png',
-    'https://i.ibb.co/ChyX7Bg/Avatar.png',
-  ];
 
   int _selectedIndex = 0;
+
+  void _setSelectedPage(int value) {
+    setState(() {
+      _selectedIndex = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafePageView(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: context.colorScheme.primary,
-        onPressed: () {},
-        child: AssetsConstants.instance.getSvgImages.icExplore.svg(
-          color: context.colorScheme.onPrimary,
-          height: Sizes.veryBig.value,
-          width: Sizes.veryBig.value,
-        ),
-      ),
+      floatingActionButton: const _ExploreButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Color.fromRGBO(108, 108, 108, 0.1),
-              blurRadius: 8,
-              offset: Offset(0, -1),
-            ),
-          ],
-        ),
-        child: StylishBottomBar(
-          hasNotch: true,
-          backgroundColor: context.colorScheme.background,
-          elevation: 0,
-          currentIndex: _selectedIndex,
-          onTap: (value) {
-            setState(() {
-              _selectedIndex = value;
-            });
-          },
-          option: AnimatedBarOptions(iconStyle: IconStyle.animated, barAnimation: BarAnimation.blink),
-          items: [
-            BottomBarItem(
-              icon: AssetsConstants.instance.getSvgImages.icHome.svg(
-                color: _selectedIndex == 0 ? context.colorScheme.primary : context.colorScheme.outline,
-              ),
-              title: AppText.labelMediumSemiBold('Home', context: context, color: context.colorScheme.primary),
-            ),
-            BottomBarItem(
-              icon: AssetsConstants.instance.getSvgImages.icProfile.svg(
-                color: _selectedIndex == 1 ? context.colorScheme.primary : context.colorScheme.outline,
-              ),
-              title: AppText.labelMediumSemiBold('Profile', context: context, color: context.colorScheme.primary),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: _MenuBottomNavigationBar(currentIndex: _selectedIndex, onTap: _setSelectedPage),
       body: BaseBlocDataProviderView<MenuCubit, MenuState>(
         create: (_) => CoreDependencies.getDependency<MenuCubit>()..getVenues(),
         successChildBuilder: (context, state) => _body(context, state),
@@ -195,28 +158,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
           EmptySpace.bigHeight(),
-          Row(
-            children: [
-              AppText.titleLargeSemiBold('Çevrende En Popüler 🔥', context: context),
-              const Spacer(),
-              InkWell(
-                onTap: () {},
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
-                    EmptySpace.extraSmallWidth(),
-                    Icon(
-                      Icons.arrow_forward_rounded,
-                      color: context.colorScheme.primary,
-                      size: Sizes.verySmallerThanBig.value,
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+          _SectionTitleView(title: LocaleKeys.menuPage_mostPopularAround.tr()),
           EmptySpace.mediumHeight(),
           SizedBox(
             height: Sizes.extraVeryExtraUltraLarge.value,
@@ -231,28 +173,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
           EmptySpace.bigHeight(),
-          Row(
-            children: [
-              AppText.titleLargeSemiBold('Hizmet Seçenekleri', context: context),
-              const Spacer(),
-              InkWell(
-                onTap: () {},
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
-                    EmptySpace.extraSmallWidth(),
-                    Icon(
-                      Icons.arrow_forward_rounded,
-                      color: context.colorScheme.primary,
-                      size: Sizes.verySmallerThanBig.value,
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+          _SectionTitleView(title: LocaleKeys.menuPage_serviceOptions.tr()),
           EmptySpace.mediumHeight(),
           SizedBox(
             height: Sizes.extraExtraPrettyJumbo.value,
@@ -269,7 +190,7 @@ class _MenuPageState extends State<MenuPage> {
                       ClipRRect(
                         borderRadius: CircularBorderRadius(radius: Sizes.ultraJumbo),
                         child: CachedNetworkImage(
-                          imageUrl: _mockServicePhotos[index],
+                          imageUrl: '',
                           height: Sizes.ultraJumbo.value,
                           width: Sizes.ultraJumbo.value,
                           filterQuality: FilterQuality.medium,
@@ -291,28 +212,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
           EmptySpace.bigHeight(),
-          Row(
-            children: [
-              AppText.titleLargeSemiBold('En İyi İndirimli Teklifler', context: context),
-              const Spacer(),
-              InkWell(
-                onTap: () {},
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AppText.labelLargeSemiBold('Tümü', context: context, color: context.colorScheme.primary),
-                    EmptySpace.extraSmallWidth(),
-                    Icon(
-                      Icons.arrow_forward_rounded,
-                      color: context.colorScheme.primary,
-                      size: Sizes.verySmallerThanBig.value,
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+          _SectionTitleView(title: LocaleKeys.menuPage_bestDiscountOffers.tr()),
           EmptySpace.mediumHeight(),
           SizedBox(
             height: Sizes.extraVeryExtraUltraLarge.value,
