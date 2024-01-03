@@ -125,5 +125,9 @@
         "mostPopularAround":"Çevrende En Popüler 🔥",
         "home":"Anasayfa",
         "profile":"Profil"
+    },
+    "advertisementArea":{
+        "title":"Reklam Alanı",
+        "description":"İşletmenin reklamını yapmak ister misin?\nKuaför Yanımda ile işletmenin reklamını yap ve yeni kitlelere ulaş!"
     }
 }

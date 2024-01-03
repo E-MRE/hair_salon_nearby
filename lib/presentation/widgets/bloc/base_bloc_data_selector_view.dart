@@ -23,15 +23,16 @@ import '../../../core/state_managers/bloc/states/base_data_state.dart';
 ///         }));
 ///}
 ///```
-class BaseBlocDataSelectorView<TData, TSelected> extends StatelessWidget {
+class BaseBlocDataSelectorView<TCubit extends BaseDataCubit<TState>, TState extends BaseDataState, TSelected>
+    extends StatelessWidget {
   const BaseBlocDataSelectorView({super.key, required this.selectorCallback, required this.builder});
 
-  final TSelected Function(BaseDataState<TData> state) selectorCallback;
+  final TSelected Function(TState state) selectorCallback;
   final Widget Function(BuildContext context, TSelected data) builder;
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<BaseDataCubit<BaseDataState<TData>>, BaseDataState<TData>, TSelected>(
+    return BlocSelector<TCubit, TState, TSelected>(
       selector: selectorCallback,
       builder: builder,
     );

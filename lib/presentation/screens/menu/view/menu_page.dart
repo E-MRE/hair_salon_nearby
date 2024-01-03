@@ -8,6 +8,8 @@ import 'package:hair_salon_nearby/models/entity/venue_model.dart';
 import 'package:hair_salon_nearby/presentation/screens/menu/cubit/menu_cubit.dart';
 import 'package:hair_salon_nearby/presentation/screens/menu/cubit/menu_state.dart';
 import 'package:hair_salon_nearby/presentation/widgets/bloc/base_bloc_data_provider_view.dart';
+import 'package:hair_salon_nearby/presentation/widgets/bloc/base_bloc_data_selector_view.dart';
+import 'package:hair_salon_nearby/presentation/widgets/cards/advertisement_card.dart';
 import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_card.dart';
 import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_discount_view.dart';
 import 'package:hair_salon_nearby/utils/constants/app_constants.dart';
@@ -32,6 +34,10 @@ part '../widgets/discounted_venue_card.dart';
 part '../widgets/section_title_view.dart';
 part '../widgets/explore_button.dart';
 part '../widgets/menu_bottom_navigation_bar.dart';
+part '../widgets/horizontal_venue_list_view.dart';
+part '../widgets/section_title_and_list_view.dart';
+part '../widgets/popular_venues_section_view.dart';
+part '../widgets/discounted_venues_section_view.dart';
 
 @RoutePage()
 class MenuPage extends StatefulWidget {
@@ -158,20 +164,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
           EmptySpace.bigHeight(),
-          _SectionTitleView(title: LocaleKeys.menuPage_mostPopularAround.tr()),
-          EmptySpace.mediumHeight(),
-          SizedBox(
-            height: Sizes.extraVeryExtraUltraLarge.value,
-            child: ListView.separated(
-              itemCount: state.data?.items?.length ?? AppConstants.kZero,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (context, index) => EmptySpace.mediumWidth(),
-              itemBuilder: (context, index) {
-                final item = state.data!.items![index];
-                return _PopularVenueCard(venue: item);
-              },
-            ),
-          ),
+          const _PopularVenuesSectionView(),
           EmptySpace.bigHeight(),
           _SectionTitleView(title: LocaleKeys.menuPage_serviceOptions.tr()),
           EmptySpace.mediumHeight(),
@@ -212,51 +205,9 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
           EmptySpace.bigHeight(),
-          _SectionTitleView(title: LocaleKeys.menuPage_bestDiscountOffers.tr()),
-          EmptySpace.mediumHeight(),
-          SizedBox(
-            height: Sizes.extraVeryExtraUltraLarge.value,
-            child: ListView.separated(
-              itemCount: state.data!.items!.length,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (context, index) => EmptySpace.mediumWidth(),
-              itemBuilder: (context, index) {
-                final item = state.data!.items![index];
-                return _DiscountedVenueCard(venue: item);
-              },
-            ),
-          ),
+          const _DiscountedVenuesSectionView(),
           EmptySpace.bigHeight(),
-          SizedBox(
-            height: Sizes.extraExtraUltraBig.value,
-            child: ClipRRect(
-              borderRadius: CircularBorderRadius(radius: Sizes.smaller),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  AssetsConstants.instance.getPngImages.icAdvertisementArea.image(fit: BoxFit.fill),
-                  AppPadding.allMedium(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        AppText.titleLargeSemiBold(
-                          'Reklam Alanı',
-                          context: context,
-                          color: context.colorScheme.background,
-                        ),
-                        EmptySpace.extraSmallHeight(),
-                        AppText.labelLargeRegular(
-                          'İşletmenin reklamını yapmak ister misin?\nKuaför Yanımda ile işletmenin reklamını yap ve yeni kitlelere ulaş!',
-                          context: context,
-                          color: context.colorScheme.background,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+          const AdvertisementCard(),
           EmptySpace.bigHeight(),
         ],
       ),

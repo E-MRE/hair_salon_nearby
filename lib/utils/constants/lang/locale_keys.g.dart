@@ -115,5 +115,8 @@ abstract class  LocaleKeys {
   static const menuPage_home = 'menuPage.home';
   static const menuPage_profile = 'menuPage.profile';
   static const menuPage = 'menuPage';
+  static const advertisementArea_title = 'advertisementArea.title';
+  static const advertisementArea_description = 'advertisementArea.description';
+  static const advertisementArea = 'advertisementArea';
 
 }
