@@ -114,9 +114,16 @@ abstract class  LocaleKeys {
   static const menuPage_mostPopularAround = 'menuPage.mostPopularAround';
   static const menuPage_home = 'menuPage.home';
   static const menuPage_profile = 'menuPage.profile';
+  static const menuPage_title = 'menuPage.title';
+  static const menuPage_searchHint = 'menuPage.searchHint';
   static const menuPage = 'menuPage';
   static const advertisementArea_title = 'advertisementArea.title';
   static const advertisementArea_description = 'advertisementArea.description';
   static const advertisementArea = 'advertisementArea';
+  static const venueSortOptions_gender = 'venueSortOptions.gender';
+  static const venueSortOptions_price = 'venueSortOptions.price';
+  static const venueSortOptions_discount = 'venueSortOptions.discount';
+  static const venueSortOptions_otherPrice = 'venueSortOptions.otherPrice';
+  static const venueSortOptions = 'venueSortOptions';
 
 }

@@ -12,16 +12,17 @@ import 'package:hair_salon_nearby/presentation/widgets/bloc/base_bloc_data_selec
 import 'package:hair_salon_nearby/presentation/widgets/cards/advertisement_card.dart';
 import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_card.dart';
 import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_discount_view.dart';
+import 'package:hair_salon_nearby/presentation/widgets/cards/venue/venue_sort_option_card.dart';
 import 'package:hair_salon_nearby/utils/constants/app_constants.dart';
 import 'package:hair_salon_nearby/utils/constants/lang/locale_keys.g.dart';
 import 'package:hair_salon_nearby/utils/enum/menu_page_option.dart';
+import 'package:hair_salon_nearby/utils/enum/venue_sort_option.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../utils/constants/assets_constants.dart';
 import '../../../../utils/decorations/app_box_decoration.dart';
-import '../../../../utils/decorations/app_edge_insets.dart';
 import '../../../../utils/decorations/app_padding.dart';
 import '../../../../utils/decorations/circular_border_radius.dart';
 import '../../../../utils/decorations/empty_space.dart';
@@ -38,6 +39,10 @@ part '../widgets/horizontal_venue_list_view.dart';
 part '../widgets/section_title_and_list_view.dart';
 part '../widgets/popular_venues_section_view.dart';
 part '../widgets/discounted_venues_section_view.dart';
+part '../widgets/location_and_filter_row.dart';
+part '../widgets/venue_search_input.dart';
+part '../widgets/venue_category_options.dart';
+part '../widgets/venue_service_options.dart';
 
 @RoutePage()
 class MenuPage extends StatefulWidget {
@@ -48,7 +53,6 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  final _mockCategories = ['Cinsiyet', 'Fiyat', 'İndirimli', 'Diğer Fiyat'];
   final _mockServices = ['Erkek\nSaç Kesim', 'Erkek\nSakal Kesim', 'Erkek\nCilt Bakım'];
 
   int _selectedIndex = 0;
@@ -67,143 +71,29 @@ class _MenuPageState extends State<MenuPage> {
       bottomNavigationBar: _MenuBottomNavigationBar(currentIndex: _selectedIndex, onTap: _setSelectedPage),
       body: BaseBlocDataProviderView<MenuCubit, MenuState>(
         create: (_) => CoreDependencies.getDependency<MenuCubit>()..getVenues(),
-        successChildBuilder: (context, state) => _body(context, state),
-        listener: (context, state) {
-          debugPrint(state.status.name);
-        },
+        successChildBuilder: (context, state) => _buildBody(),
       ),
     );
   }
 
-  SingleChildScrollView _body(BuildContext context, MenuState state) {
+  SingleChildScrollView _buildBody() {
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AppText.headlineSmallSemiBold(
-            'Kişisel bakım için en iyi kuaförleri bul',
-            context: context,
-            color: context.colorScheme.primary,
-          ),
+          _buildTitle(),
           EmptySpace.bigHeight(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AssetsConstants.instance.getSvgImages.icMapping.svg(
-                height: Sizes.small.value,
-                width: Sizes.small.value,
-                color: context.colorScheme.onSurfaceVariant,
-              ),
-              EmptySpace.prettySmallWidth(),
-              AppText.titleMediumSemiBold('Zeytinburnu', context: context),
-              EmptySpace.extraSmallWidth(),
-              Icon(
-                Icons.keyboard_arrow_down_sharp,
-                color: context.colorScheme.onSurfaceVariant,
-                size: Sizes.medium.value,
-              ),
-              const Spacer(),
-              AssetsConstants.instance.getSvgImages.icFilterSettings.svg(
-                height: Sizes.big.value,
-                width: Sizes.big.value,
-                color: context.colorScheme.primary,
-              ),
-            ],
-          ),
+          const _LocationAndFilterRow(),
           EmptySpace.mediumHeight(),
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Kuaför adı yada hizmet türü...',
-              prefixIconConstraints: BoxConstraints.loose(Size.fromRadius(Sizes.big.value)),
-              prefixIcon: AppPadding.horizontalSmall(
-                child: AssetsConstants.instance.getSvgImages.icSearch.svg(
-                  height: Sizes.big.value,
-                  width: Sizes.big.value,
-                  color: context.colorScheme.outline,
-                ),
-              ),
-            ),
-          ),
+          const _VenueSearchInput(),
           EmptySpace.mediumHeight(),
-          SizedBox(
-            height: Sizes.prettyBig.value,
-            child: ListView.separated(
-              itemCount: _mockCategories.length,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (context, index) => EmptySpace(width: Sizes.small),
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: AppEdgeInsets.symmetric(horizontal: Sizes.prettySmall, vertical: Sizes.extraSmall),
-                  decoration: AppBoxDecoration.circularContainer(
-                    size: Sizes.prettySmall,
-                    borderColor: Colors.transparent,
-                    backgroundColor: context.colorScheme.secondary.withOpacity(.3),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      AppText.labelLargeMedium(
-                        _mockCategories[index],
-                        context: context,
-                        color: context.colorScheme.background,
-                      ),
-                      EmptySpace.extraSmallWidth(),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: context.colorScheme.background,
-                          size: Sizes.medium.value,
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
+          const _VenueCategoryOptions(),
           EmptySpace.bigHeight(),
           const _PopularVenuesSectionView(),
           EmptySpace.bigHeight(),
           _SectionTitleView(title: LocaleKeys.menuPage_serviceOptions.tr()),
           EmptySpace.mediumHeight(),
-          SizedBox(
-            height: Sizes.extraExtraPrettyJumbo.value,
-            child: ListView.separated(
-              itemCount: _mockServices.length,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (context, index) => EmptySpace.bigWidth(),
-              itemBuilder: (context, index) {
-                return SizedBox(
-                  width: Sizes.ultraJumbo.value,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      ClipRRect(
-                        borderRadius: CircularBorderRadius(radius: Sizes.ultraJumbo),
-                        child: CachedNetworkImage(
-                          imageUrl: '',
-                          height: Sizes.ultraJumbo.value,
-                          width: Sizes.ultraJumbo.value,
-                          filterQuality: FilterQuality.medium,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      EmptySpace.prettySmallHeight(),
-                      AppPadding.horizontalPrettySmall(
-                        child: AppText.labelMediumSemiBold(
-                          _mockServices[index],
-                          context: context,
-                          align: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
+          _VenueServiceOptions(services: _mockServices),
           EmptySpace.bigHeight(),
           const _DiscountedVenuesSectionView(),
           EmptySpace.bigHeight(),
@@ -211,6 +101,14 @@ class _MenuPageState extends State<MenuPage> {
           EmptySpace.bigHeight(),
         ],
       ),
+    );
+  }
+
+  AppText _buildTitle() {
+    return AppText.headlineSmallSemiBold(
+      LocaleKeys.menuPage_title.tr(),
+      context: context,
+      color: context.colorScheme.primary,
     );
   }
 }

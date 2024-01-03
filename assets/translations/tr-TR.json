@@ -124,10 +124,18 @@
         "serviceOptions":"Hizmet Seçenekleri",
         "mostPopularAround":"Çevrende En Popüler 🔥",
         "home":"Anasayfa",
-        "profile":"Profil"
+        "profile":"Profil",
+        "title":"Kişisel bakım için en iyi kuaförleri bul",
+        "searchHint":"Kuaför adı yada hizmet türü..."
     },
     "advertisementArea":{
         "title":"Reklam Alanı",
         "description":"İşletmenin reklamını yapmak ister misin?\nKuaför Yanımda ile işletmenin reklamını yap ve yeni kitlelere ulaş!"
+    },
+    "venueSortOptions":{
+        "gender":"Cinsiyet",
+        "price":"Price",
+        "discount":"İndirim",
+        "otherPrice":"Diğer Fiyat"
     }
 }
