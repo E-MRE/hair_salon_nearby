@@ -1,4 +1,4 @@
-part of '../view/menu_page.dart';
+part of '../index.dart';
 
 final class _SectionTitleView extends StatelessWidget {
   const _SectionTitleView({super.key, this.onTap, required this.title});

@@ -1,4 +1,4 @@
-part of '../view/menu_page.dart';
+part of '../index.dart';
 
 final class _HorizontalVenueListView extends StatelessWidget {
   const _HorizontalVenueListView({super.key, required this.venues, required this.itemBuilder});

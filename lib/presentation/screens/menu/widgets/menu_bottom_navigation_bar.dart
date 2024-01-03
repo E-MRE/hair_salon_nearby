@@ -1,4 +1,4 @@
-part of '../view/menu_page.dart';
+part of '../index.dart';
 
 final class _MenuBottomNavigationBar extends StatelessWidget {
   const _MenuBottomNavigationBar({super.key, required this.currentIndex, this.onTap});

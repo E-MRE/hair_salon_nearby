@@ -1,4 +1,4 @@
-part of '../view/menu_page.dart';
+part of '../index.dart';
 
 final class _PopularVenuesSectionView extends StatelessWidget {
   const _PopularVenuesSectionView({super.key});

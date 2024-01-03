@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hair_salon_nearby/presentation/screens/menu/index.dart';
 
 import '../../../presentation/screens/auth/view/login_page.dart';
 import '../../../presentation/screens/auth/view/register_page.dart';
-import '../../../presentation/screens/menu/view/menu_page.dart';
 import '../../../presentation/screens/onboard/index.dart';
 import '../../../presentation/screens/splash/view/splash_page.dart';
 import '../../constants/router_name_constants.dart';

@@ -1,4 +1,4 @@
-part of '../view/menu_page.dart';
+part of '../index.dart';
 
 final class _VenueCategoryOptions extends StatelessWidget {
   const _VenueCategoryOptions({super.key});

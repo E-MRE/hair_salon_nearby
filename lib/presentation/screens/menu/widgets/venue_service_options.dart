@@ -1,4 +1,4 @@
-part of '../view/menu_page.dart';
+part of '../index.dart';
 
 final class _VenueServiceOptions extends StatelessWidget {
   const _VenueServiceOptions({super.key, required this.services});

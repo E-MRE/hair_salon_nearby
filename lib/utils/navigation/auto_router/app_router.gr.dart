@@ -16,8 +16,7 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     LoginRoute.name: (routeData) {
-      final args = routeData.argsAs<LoginRouteArgs>(
-          orElse: () => const LoginRouteArgs());
+      final args = routeData.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: LoginPage(

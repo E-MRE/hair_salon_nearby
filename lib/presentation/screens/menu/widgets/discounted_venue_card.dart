@@ -1,4 +1,4 @@
-part of '../view/menu_page.dart';
+part of '../index.dart';
 
 final class _DiscountedVenueCard extends StatelessWidget {
   const _DiscountedVenueCard({super.key, required this.venue});

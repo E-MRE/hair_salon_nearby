@@ -1,4 +1,4 @@
-part of '../view/menu_page.dart';
+part of '../index.dart';
 
 final class _LocationAndFilterRow extends StatelessWidget {
   const _LocationAndFilterRow({super.key});
